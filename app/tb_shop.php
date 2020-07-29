@@ -19,7 +19,6 @@ class tb_shop extends Model
     // ];
     protected static $validationRule = [
         "name"=>"required|unique:tb_shops|min:3|regex:/^\S*$/u",
-        
         "user_id"=>"required|exists:tb_users,id",
         "description"=>"required|min:3",
         "idcard_picture"=>"nullable",

@@ -10,8 +10,16 @@ class tb_shop extends Model
     protected $guarded = ["id"];
 
     //============ Validation
+    // protected static $validationRule = [
+    //     "name"=>"required|unique:tb_shops|min:3|regex:^[a-zA-Z0-9_.-]*$^",
+    //     "user_id"=>"required|exists:tb_users,id",
+    //     "description"=>"required|min:3",
+    //     "idcard_picture"=>"nullable",
+    //     "status"=>"nullable",
+    // ];
     protected static $validationRule = [
-        "name"=>"required|unique:tb_shops|min:3|regex:^[a-zA-Z0-9_.-]*$^",
+        // "name"=>"required|unique:tb_shops|min:3|regex:^[a-zA-Z0-9_.-]*$^",
+        "name"=>['required', 'string', 'min:3', 'unique:users', 'regex:/^\S*$/u'],
         "user_id"=>"required|exists:tb_users,id",
         "description"=>"required|min:3",
         "idcard_picture"=>"nullable",

@@ -13,16 +13,24 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('buyer.dashboard');
+Route::middleware(['islogin'])->group(function () {
+    Route::get('/', function () {
+        return view('buyer.dashboard');
+    });
+    Route::get('/seller/register','shopAuthController@indexRegister');
+    Route::post('/seller/register','shopAuthController@register');
+
+    Route::get('/logout','authController@logout');
+
 });
-Route::get('/seller/register','shopAuthController@indexRegister');
-Route::post('/seller/register','shopAuthController@register');
 
-Route::get('/login','authController@loginIndex');
-Route::get('/register','authController@registerIndex');
-Route::get('/logout','authController@logout');
+Route::middleware(['isnotlogin'])->group(function () {
+    Route::get('/login','authController@loginIndex');
+    Route::get('/register','authController@registerIndex');
+    
+    Route::post('/login','authController@login');
+    Route::post('/register','authController@register');
+});
 
-Route::post('/login','authController@login');
-Route::post('/register','authController@register');
+
 

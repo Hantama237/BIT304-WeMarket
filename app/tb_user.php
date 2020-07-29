@@ -19,15 +19,16 @@ class tb_user extends Model
 
     //============ Validation
     protected static $validationRule = [
-        "name"=>"required",
-        "email"=>"required:unique:tb_users",
-        "password"=>"required",
+        "name"=>"required|regex:/(^[A-Za-z ]+$)+/",
+        "email"=>"required|email",
+        "password"=>"required|min:8",
         "profile_picture"=>"nullable",
     ];
 
     public static function getValidationRules(){
         $validationRuleRegister=self::$validationRule;
         $validationRuleRegister["password"].="|confirmed";
+        $validationRuleRegister["email"].="|unique:tb_users";
         return $validationRuleRegister;
     }
     public static function getValidationRule($key){

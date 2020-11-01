@@ -20,12 +20,10 @@ Route::middleware(['islogin'])->group(function () {
     Route::get('/seller/register','shopAuthController@indexRegister');
     Route::post('/seller/register','shopAuthController@register');
 
-    Route::get('/verify/{code}','verifyController@verify');
-
     Route::get('/logout','authController@logout');
 
 });
-Route::get('/mail','mailTest@send');
+
 Route::middleware(['isnotlogin'])->group(function () {
     Route::get('/login','authController@loginIndex');
     Route::get('/register','authController@registerIndex');

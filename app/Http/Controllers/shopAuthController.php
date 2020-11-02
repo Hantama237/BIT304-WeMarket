@@ -11,9 +11,12 @@ class shopAuthController extends Controller
     public function indexRegister(){
         $shop = Shop::isExist(Session::get("id"));
         if($shop){
-            return "Welcome to seller dashboard";
+            $shop1=Shop::find(Session::get("id"));
+           // dd($shop);
+            return view('seller.dashboard',['shop1'=>$shop1]);
+            //return "Welcome to seller dashboard";
         }
-        return view("seller.register");
+        //return view("seller.dasboard");
     }
 
     public function register(Request $req){
@@ -21,6 +24,7 @@ class shopAuthController extends Controller
         $validatedData = $req->validate(Shop::getValidationRules());
         $shop = Shop::register($validatedData);
         if($shop){
+            
             return "Shop registration success";
         }
         return redirect()->back();

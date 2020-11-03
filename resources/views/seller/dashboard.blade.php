@@ -34,16 +34,16 @@
             <div class="col-lg-3">
                 <h3></h3>
                 {{-- <h3>Menu</h3> --}}
-                <div class="col-lg-12 box" style="height: 170px; border-right:1px solid black;">
+                <div class="col-lg-12 box" style="height: 170px; border-right:1px solid gray;">
                     Menu
                     <ul>
-                        <li><a href="/">Home</a></li>
+                        <li><a href="/seller/dashboard">Home</a></li>
                         <li><a href="/">Products</a></li>
                         <li><a href="/">Orders</a></li>
                     </ul>
                 </div>
             </div>
-            <div class="col-lg-6">
+            <div class="col-lg-5">
                 {{-- <h3></h3>
                 <div class="grid-container">
                     <div class="grid-item">
@@ -65,27 +65,29 @@
                     <p>Order</p>
                   </div>
                   <div class="col-lg-4">
-                    <h3>0</h3>
+                    <h3>5</h3>
                     <p>Products</p>
                   </div>
                   <div class="col-lg-4">
-                    <h3>0</h3>
+                    <h3>3</h3>
                     <p>Products sold</p>
                   </div>
               
             </div>
         </div>
+
         <span class="desktop">
             {{-- @include("components.buyer.sidebar") --}}
-            <div class="w3-card w3-round w3-white box">
+            <div class="w3-card w3-round w3-white box" style=" border:solid gray 1px;">
               {{-- <p style="float: right;">verified</p>   --}}
               <div class="w3-container">
                 <p style="float: right;">verified</p>
                  <h4 class="w3-center">Shop info</h4>
                  {{-- <p style="float: right;">verified</p> --}}
-                 <p class="w3-center"><img src="/w3images/avatar3.png" class="w3-circle" style="height:106px;width:106px; round:50%;" alt="Avatar"></p>
-                 <hr>
                  @foreach($shop1 as $sp)
+                 <p class="w3-center"> <img width="150px" height="150px" style="border-radius: 50%;" src="{{ url('/data_file/'.$sp->idcard_picture) }}" alt="picture"></p>
+                 <hr>
+                 
  
  
                  <p> {{$sp->name}}</p>

@@ -34,9 +34,11 @@ class shopAuthController extends Controller
         return view('seller.update',['shop'=>$shop]);
     }
     public function process(Request $request){
-        $shop=Shop::get()->where("id",Session::get("id"));
+        $shop=Shop::where("id",Session::get("id"))->first();
+        // dd($request->name);
         //$validatedData = $request->validate(Shop::getValidationRules());
-        $this->validate($request, [ "name"=>"required|unique:tb_shops|min:3|regex:/^\S*$/u",
+        $this->validate($request, [
+        "name"=>"required|unique:tb_shops|min:3|regex:/^\S*$/u",
         "user_id"=>"required|exists:tb_users,id",
         "description"=>"required|min:3",
         "idcard_picture"=>"nullable|file|image|mimes:jpeg,png,jpg|max:2048",
@@ -48,12 +50,13 @@ class shopAuthController extends Controller
 		$upload_to = 'data_file';
         $idcard_picture->move($upload_to,$idcard_picture_name);
 
-        
-        $shop->name= $request->name;
+    //    $shop->insert($request); 
+        $shop->name = $request->name;
         $shop->description=$request->description;
         $shop->idcard_picture=$request->idcard_picture;
-
-        return view('seller.dashboard',['shop1'=>$shop]);
+       $shop->save();
+       //Session::flash('message','Update successfully.');
+        return redirect()->back();
     }
 
 }

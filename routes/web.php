@@ -21,7 +21,7 @@ Route::middleware(['islogin'])->group(function () {
     Route::post('/seller/register','shopAuthController@register');
 //new
     Route::get('/seller/update','shopAuthController@update');
-    Route::post('/seller/process','shopAuthController@process');
+    Route::put('/seller/process','shopAuthController@process');
     
     Route::get('/verify/{code}','verifyController@verify');
 

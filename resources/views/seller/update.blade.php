@@ -1,10 +1,20 @@
 @extends('basesell')
 @section('main')
+
+				
 <div class="container" style="margin-bottom: 5%;">
+  @if(count($errors) > 0)
+				<div class="alert alert-danger">
+					@foreach ($errors->all() as $error)
+					{{ $error }} <br/>
+					@endforeach
+				</div>
+				@endif
 <div class="col-lg-9 box">
     <h4>Manage shop information</h4>
 <form action="/seller/process" method="POST" enctype="multipart/form-data">
     {{ csrf_field() }}
+    {{ method_field('PUT') }}
     @foreach($shop as $sp)
           {{-- <div class="row"> --}}
               {{-- <div class="col-xs-12 col-sm-4 col-md-4"> --}}
@@ -13,7 +23,7 @@
                       <input type="text" name="name" id="first_name" class="form-control" placeholder="{{$sp->name}}" >
                   </div>
               {{-- </div> --}}
-              
+              <input type="text"  name="user_id" id="first_name" class="form-control" value="{{$sp->user_id}}" >
               
           {{-- </div> --}}
           
@@ -57,10 +67,11 @@
                 <p style="float: right;">verified</p>
                  <h4 class="w3-center">Shop info</h4>
                  {{-- <p style="float: right;">verified</p> --}}
-                 <p class="w3-center"><img src="/w3images/avatar3.png" class="w3-circle" style="height:106px;width:106px; round:50%;" alt="Avatar"></p>
+            
                  <hr>
                  @foreach($shop as $sp)
- 
+                 <p class="w3-center"></p>
+                   <img width="150px" src="{{ url('/data_file/'.$sp->idcard_picture) }}">
  
                  <p> {{$sp->name}}</p>
                  <p></i> {{$sp->description}}</p>

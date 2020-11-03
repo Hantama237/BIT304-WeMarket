@@ -34,6 +34,7 @@ class shopAuthController extends Controller
         return view('seller.update',['shop'=>$shop]);
     }
     public function process(Request $request){
+        $shop=Shop::get()->where("id",Session::get("id"));
         //$validatedData = $request->validate(Shop::getValidationRules());
         $this->validate($request, [ "name"=>"required|unique:tb_shops|min:3|regex:/^\S*$/u",
         "user_id"=>"required|exists:tb_users,id",
@@ -41,13 +42,13 @@ class shopAuthController extends Controller
         "idcard_picture"=>"nullable|file|image|mimes:jpeg,png,jpg|max:2048",
         "status"=>"nullable",]);
         // store file data as variable $file
-        $picture = $request->file('picture');
-        $picture_name = time()."_".$picture->getClientOriginalName();
+        $idcard_picture = $request->file('idcard_picture');
+        $idcard_picture_name = time()."_".$idcard_picture->getClientOriginalName();
         // Move file to data_file folder
 		$upload_to = 'data_file';
-        $picture->move($upload_to,$picture_name);
+        $idcard_picture->move($upload_to,$idcard_picture_name);
 
-        $shop=Shop::get()->where("id",Session::get("id"));
+        
         $shop->name= $request->name;
         $shop->description=$request->description;
         $shop->idcard_picture=$request->idcard_picture;

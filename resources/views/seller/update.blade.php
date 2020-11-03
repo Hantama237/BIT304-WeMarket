@@ -10,7 +10,7 @@
               {{-- <div class="col-xs-12 col-sm-4 col-md-4"> --}}
                   <label for="">Shop name</label>
                   <div class="form-group">
-                      <input type="text" name="Shop name" id="first_name" class="form-control" placeholder="{{$sp->name}}" >
+                      <input type="text" name="name" id="first_name" class="form-control" placeholder="{{$sp->name}}" >
                   </div>
               {{-- </div> --}}
               
@@ -22,7 +22,7 @@
           </div> --}}
           <label for="">description</label>
           <div class="form-group">
-              <input type="text" name="Description" id="desc" class="form-control " placeholder="{{$sp->description}}" >
+              <input type="text" name="description" id="desc" class="form-control " placeholder="{{$sp->description}}" >
           </div>
           
           {{-- <div class="form-group">
@@ -47,7 +47,7 @@
           </div>                       
           @endforeach			  
           <input type="submit" value="submit" class="btn btn-primary">
-        </form>   
+        
         </div> 
         <span class="desktop">
             {{-- @include("components.buyer.sidebar") --}}

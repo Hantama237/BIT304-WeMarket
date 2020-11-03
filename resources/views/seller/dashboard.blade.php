@@ -28,7 +28,9 @@
         <span class="mobile">
             @include("components.buyer.sidebar")
         </span>
+        
         <div class="col-lg-9 box">
+          <h3>Seller dashboard</h3>
             <div class="col-lg-3">
                 <h3></h3>
                 {{-- <h3>Menu</h3> --}}
@@ -76,17 +78,23 @@
         <span class="desktop">
             {{-- @include("components.buyer.sidebar") --}}
             <div class="w3-card w3-round w3-white box">
-                <div class="w3-container">
-                 <h4 class="w3-center">shop info</h4>
+              {{-- <p style="float: right;">verified</p>   --}}
+              <div class="w3-container">
+                <p style="float: right;">verified</p>
+                 <h4 class="w3-center">Shop info</h4>
+                 {{-- <p style="float: right;">verified</p> --}}
                  <p class="w3-center"><img src="/w3images/avatar3.png" class="w3-circle" style="height:106px;width:106px; round:50%;" alt="Avatar"></p>
                  <hr>
                  @foreach($shop1 as $sp)
  
  
-                 {{-- <p> {{$sp->name}}</p> --}}
-                 {{-- <p><i class="fa fa-home fa-fw w3-margin-right w3-text-theme"></i> {{$sp->description}}</p> --}}
-                 <p><i class="fa fa-home fa-fw w3-margin-right w3-text-theme"></i> deskrip, UK</p>
-                 @endforeach<i class="fa fa-pencil fa-fw w3-margin-right w3-text-theme"></i>
+                 <p> {{$sp->name}}</p>
+                 <p></i> {{$sp->description}}</p>
+                 <div style="text-align: center;">
+                 <p><i class="fa fa-pencil fa-fw w3-margin-right w3-text-theme"></i><a href="/seller/update">edit</a> </p>
+                </div>
+                 @endforeach
+                 {{--<i class="fa fa-home fa-fw w3-margin-right w3-text-theme"> <i class="fa fa-pencil fa-fw w3-margin-right w3-text-theme"></i> --}}
                 </div>
               </div>
         </span>

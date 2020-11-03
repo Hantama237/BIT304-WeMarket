@@ -1,6 +1,13 @@
 @extends('basesell')
 @section('main')
+{{-- <style>
+  .imagePic{
+    
+  border-radius: 40%;
+  border: solid 1px gray;
 
+  }
+</style> --}}
 				
 <div class="container" style="margin-bottom: 5%;">
   @if(count($errors) > 0)
@@ -9,8 +16,22 @@
 					{{ $error }} <br/>
 					@endforeach
 				</div>
-				@endif
+        @endif
+        
 <div class="col-lg-9 box">
+  <div class="col-lg-3">
+    <h3></h3>
+    {{-- <h3>Menu</h3> --}}
+    <div class="col-lg-12 box" style="height: 170px; border-right: solid 1px black;">
+        Menu
+        <ul>
+            <li><a href="/seller/dashboard">Home</a></li>
+            <li><a href="/">Products</a></li>
+            <li><a href="/">Orders</a></li>
+        </ul>
+    </div>
+</div>
+  <div class="col-lg-5 box">
     <h4>Manage shop information</h4>
 <form action="/seller/process" method="POST" enctype="multipart/form-data">
     {{ csrf_field() }}
@@ -23,7 +44,7 @@
                       <input type="text" name="name" id="first_name" class="form-control" placeholder="{{$sp->name}}" >
                   </div>
               {{-- </div> --}}
-              <input type="text"  name="user_id" id="first_name" class="form-control" value="{{$sp->user_id}}" >
+              <input type="hidden"  name="user_id" id="first_name" class="form-control" value="{{$sp->user_id}}" >
               
           {{-- </div> --}}
           
@@ -59,9 +80,10 @@
           <input type="submit" value="submit" class="btn btn-primary">
         
         </div> 
+      </div>
         <span class="desktop">
             {{-- @include("components.buyer.sidebar") --}}
-            <div class="w3-card w3-round w3-white box">
+            <div class="w3-card w3-round w3-white box col-lg-3 box" style=" border:solid gray 1px;">
               {{-- <p style="float: right;">verified</p>   --}}
               <div class="w3-container">
                 <p style="float: right;">verified</p>
@@ -69,12 +91,14 @@
                  {{-- <p style="float: right;">verified</p> --}}
             
                  <hr>
-                 @foreach($shop as $sp)
-                 <p class="w3-center"></p>
-                   <img width="150px" src="{{ url('/data_file/'.$sp->idcard_picture) }}">
- 
-                 <p> {{$sp->name}}</p>
-                 <p></i> {{$sp->description}}</p>
+                 @foreach($shop as $p)
+                 {{-- <p class="w3-center"></p> --}}
+               
+                   {{-- <img width="150px" style="round:50%" src="{{ url('/data_file/'.$p->idcard_picture) }}"> --}}
+                  <img width="150px" height="150px" style="border-radius: 50%;" src="{{ url('/data_file/'.$p->idcard_picture) }}" alt="picture">
+              
+                 <p> {{$p->name}}</p>
+                 <p></i> {{$p->description}}</p>
                  <div style="text-align: center;">
                  <p><i class="fa fa-pencil fa-fw w3-margin-right w3-text-theme"></i><a href="/seller/update">edit</a> </p>
                 </div>

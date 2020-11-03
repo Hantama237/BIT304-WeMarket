@@ -35,6 +35,7 @@ class shopAuthController extends Controller
     }
     public function process(Request $request){
         $shop=Shop::where("id",Session::get("id"))->first();
+        // dd($shop->idcard_picture);
         // dd($request->name);
         //$validatedData = $request->validate(Shop::getValidationRules());
         $this->validate($request, [
@@ -53,7 +54,7 @@ class shopAuthController extends Controller
     //    $shop->insert($request); 
         $shop->name = $request->name;
         $shop->description=$request->description;
-        $shop->idcard_picture=$request->idcard_picture;
+        $shop->idcard_picture=$idcard_picture_name;
        $shop->save();
        //Session::flash('message','Update successfully.');
         return redirect()->back();

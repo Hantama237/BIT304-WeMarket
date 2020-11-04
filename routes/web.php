@@ -32,14 +32,15 @@ Route::middleware(['islogin'])->group(function () {
         Route::post('account/update/password','manageUserProfileController@updatePassword');
     });
     
-
+    //seller
     Route::get('/seller/register','shopAuthController@indexRegister');
     Route::post('/seller/register','shopAuthController@register');
-
-//new
+   
     Route::get('/seller/dashboard','shopAuthController@indexRegister');
     Route::get('/seller/update','shopAuthController@update');
     Route::put('/seller/process','shopAuthController@process');
+    Route::get('/seller/address','shopAuthController@address');
+    
     
     Route::get('/verify/{code}','verifyController@verify');
 

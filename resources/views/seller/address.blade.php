@@ -1,20 +1,20 @@
 @extends('basesell')
 @section('main')
 <style>
-  .borderIn {
-    border-right:1px solid gray;
-    height: 170px;
-  }
-  @media screen and (max-width: 700px) {
     .borderIn {
-    border-bottom:1px solid gray;
-    border-right:0px solid gray;
-    height: 170px;
-  }
-  }
-  
-  
-  </style> 
+      border-right:1px solid gray;
+      height: 170px;
+    }
+    @media screen and (max-width: 700px) {
+      .borderIn {
+      border-bottom:1px solid gray;
+      border-right:0px solid gray;
+      height: 170px;
+    }
+    }
+    
+    
+    </style> 
 				
 <div class="container" style="margin-bottom: 5%;">
   @if(count($errors) > 0)
@@ -38,57 +38,47 @@
         </ul>
     </div>
 </div>
-  <div class="col-lg-5 box">
-    <h4>Manage shop information</h4>
+  <div class="col-lg-6 box">
+    <h4>Update Shop Address</h4>
 <form action="/seller/process" method="POST" enctype="multipart/form-data">
     {{ csrf_field() }}
-    {{ method_field('PUT') }}
     @foreach($shop as $sp)
           {{-- <div class="row"> --}}
               {{-- <div class="col-xs-12 col-sm-4 col-md-4"> --}}
-                  <label for="">Shop name</label>
+                <div class="form-group">
+                  <label for="">Province</label><br>
+                    <select name="" id="">
+                        <option value="">1</option>
+                    </select>
+                </div>  
+                <div class="form-group">
+                    <label for="">City</label><br>
+                      <select name="" id="">
+                          <option value="">1</option>
+                      </select>
+                  </div>  
                   <div class="form-group">
-                      <input type="text" name="name" id="first_name" class="form-control" placeholder="{{$sp->name}}" >
+                    <label for="">Subdistric</label><br>
+                      <select name="" id="">
+                          <option value="">1</option>
+                      </select>
                   </div>
+                <div class="form-group">
+                    <label for="">Postal Code</label><br>
+                    <input type="text" name="" id="">    
+                </div>
+                <div class="form-group">
+                    <label for="">Address</label> <br>
+                    <textarea name="" id="" cols="20" rows="10"></textarea>    
+                </div>
+
               {{-- </div> --}}
               <input type="hidden"  name="user_id" id="first_name" class="form-control" value="{{$sp->user_id}}" >
               
-          {{-- </div> --}}
-          
-          {{-- <div class="form-group">
-              <input type="email" name="email" id="email" class="form-control " placeholder="Email Address" >
-          </div> --}}
-          <label for="">Description</label>
-          <div class="form-group">
-              <input type="text" name="description" id="desc" class="form-control " placeholder="{{$sp->description}}" >
-          </div>
-          <label for="">Address</label>
-          <div class="form-group">
-            <input type="text" name="address" id="address" class="form-control " placeholder="Address" disabled > <button><a href="/seller/address">change</a></button>
-        </div>
-          
-          {{-- <div class="form-group">
-            <b>KTP</b><br>
-            <input type="file" name="KTP">
-          </div>
-          <div class="form-group">
-            <b>SIM</b><br>
-            <input type="file" name="sim">
-          </div>
-          <div class="form-group">
-            <b>SKCK</b><br>
-            <input type="file" name="skck">
-          </div>
-          <div class="form-group">
-            <b>STNK</b><br>
-            <input type="file" name="stnk">
-          </div> --}}
-          <div class="form-group">
-            <b>Change profile</b><br>
-            <input type="file" name="idcard_picture">
-          </div>                       
+         
+                          
           @endforeach			  
-          <input type="submit" value="submit" class="btn btn-primary">
+          <input type="submit" value="Save" class="btn btn-primary"> <button type="reset"  style="margin-left: 10px" class="btn">cancel</button>
         
         </div> 
       </div>
@@ -106,9 +96,8 @@
                  {{-- <p class="w3-center"></p> --}}
                
                    {{-- <img width="150px" style="round:50%" src="{{ url('/data_file/'.$p->idcard_picture) }}"> --}}
-                   <div style="text-align: center;">
-                   <img width="150px" height="150px" style="align-content: center" class="img-circle" src="{{ url('/data_file/'.$p->idcard_picture) }}" alt="picture">
-                   </div>
+                  <img width="150px" height="150px" style="border-radius: 50%;" src="{{ url('/data_file/'.$p->idcard_picture) }}" alt="picture">
+              
                  <p> {{$p->name}}</p>
                  <p></i> {{$p->description}}</p>
                  <div style="text-align: center;">

@@ -28,4 +28,16 @@ class tb_address extends Model
     // =========== End Validation
 
     // =========== Methods
+    public static function addAddress($validatedData){
+        if(self::where("user_id",$userId)->get()->count()<5){
+            return self::create($validatedData);
+        }
+        return false;   
+    }
+    public static function updateAddress($addressId,$userId,$validatedData){
+        return self::where("id",$addressId)->where("user_id",$userId)->update($validatedData);
+    }
+    public static function deleteAddress($addressId,$userId){
+        return self::where("id",$addressId)->where("user_id",$userId)->delete();
+    }
 }

@@ -16,6 +16,7 @@ class tb_address extends Model
         "province_id"=>"required",
         "city_id"=>"required",
         "subdistrict_id"=>"required",
+        "postal_code"=>"required",
         "coordinates"=>"nullable",
     ];
 
@@ -29,7 +30,7 @@ class tb_address extends Model
 
     // =========== Methods
     public static function addAddress($validatedData){
-        if(self::where("user_id",$userId)->get()->count()<5){
+        if(self::where("user_id",$validatedData["user_id"])->get()->count()<5){
             return self::create($validatedData);
         }
         return false;   

@@ -22,10 +22,10 @@ Route::middleware(['islogin'])->group(function () {
         Route::post('profile/update/profile','manageUserProfileController@updateProfile');
 
         Route::get('address',"manageUserProfileController@addressIndex");
-        Route::get('address/add/address','manageUserProfileController@addAlamatIndex');
-        Route::post('address/add/address','manageUserProfileController@addAlamat');
-        Route::get('address/update/address','manageUserProfileController@updateAlamatIndex');
-        Route::post('address/update/address','manageUserProfileController@updateAlamat');
+        Route::get('address/add/address','manageUserProfileController@addAddressIndex');
+        Route::post('address/add/address','manageUserProfileController@addAddress');
+        Route::get('address/update/address','manageUserProfileController@updateAddressIndex');
+        Route::post('address/update/address','manageUserProfileController@updateAddress');
 
         Route::get('account',"manageUserProfileController@accountIndex");
         Route::post('account/update/email','manageUserProfileController@updateEmail');

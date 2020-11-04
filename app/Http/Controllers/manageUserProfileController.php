@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\tb_user as User;
 use App\tb_address as Address;
+use App\tb_province as Province;
+use App\tb_city as City;
+use App\tb_subdistrict as SubDistrict;
 use Session;
 
 class manageUserProfileController extends Controller
@@ -28,8 +31,9 @@ class manageUserProfileController extends Controller
 
 
     public function addressIndex(Request $req){
-        $addresses = '';
-        return view("buyer.profile.manageAddress");
+        $addresses = Address::where('user_id',Session::get('id'))->get();
+        $provincies = Province::getHtmlOption(); 
+        return view("buyer.profile.manageAddress",["provincies"=>$provincies,"addresses"=>$addresses]);
     }
     public function addAddress(Request $req){
         $req->merge(["user_id"=>Session::get("id")]);
@@ -89,5 +93,32 @@ class manageUserProfileController extends Controller
             return redirect()->back()->withSuccess("Update success");
         }
         return redirect()->back()->withErrors(["Update failed"]);
+    }
+
+    public function getProvince(){
+        $data = Province::getHtmlOption();
+        if($data->success){
+            return $data->data;
+        }else{
+            return false;
+        }
+    }
+
+    public function getCity($provinceId){
+        $data = City::getHtmlOption($provinceId);
+        if($data->success){
+            return $data->data;
+        }else{
+            return false;
+        }
+    }
+
+    public function getSubDistrict($cityId){
+        $data = SubDistrict::getHtmlOption($cityId);
+        if($data->success){
+            return $data->data;
+        }else{
+            return false;
+        }
     }
 }

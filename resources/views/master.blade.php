@@ -28,8 +28,9 @@
     <link rel="stylesheet" type="text/css" href="{{asset('gofar/revslider-demo/css/settings.css')}}">
     {{-- Sweet alert --}}
     {{-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css"> --}}
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9.7.2/dist/sweetalert2.all.min.js"></script>
-    
+    {{-- <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9.7.2/dist/sweetalert2.all.min.js"></script> --}}
+    {{-- Sweet alert --}}
+	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     {{-- <script src="https://cdn.jsdelivr.net/npm/promise-polyfill"></script> --}}
 
     <!-- MAIN STYLE -->
@@ -60,6 +61,7 @@
 <!--[if IE 8]> <body class="ie8 lt-ie9 lt-ie10"> <![endif]-->
 <!--[if IE 9]> <body class="ie9 lt-ie10"> <![endif]-->
 <!--[if (gt IE 9)|!(IE)]><!-->
+
 
 <body>
     <!--<![endif]-->
@@ -105,6 +107,18 @@
           })
         }
       </script>
+    @if ($errors->any())
+        <script>let error = "";</script>
+        @foreach ($errors->all() as $error)
+            <script>error+={!!json_encode($error)!!}</script>
+        @endforeach
+        <script>swal("Failed",error)</script>
+    @endif
+    @if(session('success'))
+        <script>
+            swal("Success",{!! json_encode(session('success')) !!});
+        </script>
+    @endif
 
     <!-- PAGE WRAP -->
     <div id="page-wrap">
@@ -156,6 +170,9 @@
                                     </li> --}}
                                     <li>
                                         <a href="/seller/register">Become a Seller</a>
+                                    </li>
+                                    <li>
+                                        <a href="/manage/profile">Edit Profile</a>
                                     </li>
                                     <li>
                                         <a href="/logout">Logout</a>

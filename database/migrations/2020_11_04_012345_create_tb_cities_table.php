@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateTbEmailVerificationsTable extends Migration
+class CreateTbCitiesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,10 @@ class CreateTbEmailVerificationsTable extends Migration
      */
     public function up()
     {
-        Schema::create('tb_email_verifications', function (Blueprint $table) {
+        Schema::create('tb_cities', function (Blueprint $table) {
             $table->id();
-            $table->string("code");
-            $table->boolean("verified")->default(false);
-            $table->foreignId("user_id");
+            $table->foreignId('province_id');
+            $table->string('city_name');
             $table->timestamps();
         });
     }
@@ -29,6 +28,6 @@ class CreateTbEmailVerificationsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tb_email_verifications');
+        Schema::dropIfExists('tb_cities');
     }
 }

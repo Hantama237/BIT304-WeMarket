@@ -5,8 +5,6 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\tb_user as User;
 use Session;
-use App\tb_email_verification as Verification; 
-
 class authController extends Controller
 {
     //
@@ -31,7 +29,6 @@ class authController extends Controller
                 "profile_picture"=>$user->profile_picture,
                 "shop"=>false
             ]);
-            
             return redirect("/");
         }
         return redirect()->back()->withErrors(["Incorrect email/password"]);
@@ -47,7 +44,6 @@ class authController extends Controller
                 "profile_picture"=>$user->profile_picture,
                 "shop"=>false
             ]);
-            Verification::sendVerificationCode($user);
             return redirect("/");
         }
         return redirect()->back()->withErrors(["Register failed, please try again"]);

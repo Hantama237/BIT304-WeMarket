@@ -17,3 +17,7 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::get("/province","manageUserProfileController@getProvince");
+Route::get("/city/{provinceId}","manageUserProfileController@getCity");
+Route::get("/subdistrict/{cityId}","manageUserProfileController@getSubDistrict");

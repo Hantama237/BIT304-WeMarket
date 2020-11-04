@@ -20,6 +20,7 @@ class CreateTbAddressesTable extends Migration
             $table->foreignId("province_id");
             $table->foreignId("city_id");
             $table->foreignId("subdistrict_id");
+            $table->string('postal_code');
             $table->string("coordinates")->nullable();
             $table->timestamps();
         });

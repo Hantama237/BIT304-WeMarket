@@ -33,6 +33,7 @@ class manageUserProfileController extends Controller
     public function addressIndex(Request $req){
         $addresses = Address::where('user_id',Session::get('id'))->get();
         $provincies = Province::getHtmlOption(); 
+        //dd($addresses);
         return view("buyer.profile.manageAddress",["provincies"=>$provincies,"addresses"=>$addresses]);
     }
     public function addAddress(Request $req){
@@ -55,13 +56,14 @@ class manageUserProfileController extends Controller
     }
     public function updateAddress(Request $req){
         $validatedData = $req->validate([
-            "address_id"=>"required",
+            "id"=>"required",
+            "postal_code"=>Address::getValidationRule('postal_code'),
             "address_detail" => Address::getValidationRule("address_detail"),
             "province_id"=> Address::getValidationRule("province_id"),
             "city_id"=> Address::getValidationRule("city_id"),
             "subdistrict_id"=> Address::getValidationRule("subdistrict_id")
         ]);
-        $result = Address::updateAddress($validatedData["address_id"],$validatedData);
+        $result = Address::updateAddress($validatedData["id"],Session::get('id'),$validatedData);
         if($result){
             return redirect("/manage/address")->withSuccess("Update success");
         }

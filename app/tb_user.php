@@ -26,7 +26,7 @@ class tb_user extends Model
         "name"=>"required|regex:/(^[A-Za-z ]+$)+/",
         "email"=>"required|email",
         "password"=>"required|min:8",
-        "profile_picture"=>"nullable",
+        "profile_picture"=>"nullable|file|image|mimes:jpeg,png,jpg|max:2048",
     ];
 
     public static function getValidationRules(){

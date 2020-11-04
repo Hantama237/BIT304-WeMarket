@@ -59,5 +59,9 @@ class shopAuthController extends Controller
        //Session::flash('message','Update successfully.');
         return redirect()->back();
     }
+    public function address(){
+        $shop=Shop::get()->where("id",Session::get("id"));
+        return view('seller.address',['shop'=>$shop]);
+    }
 
 }

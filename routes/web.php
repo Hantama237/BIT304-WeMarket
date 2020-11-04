@@ -19,7 +19,11 @@ Route::middleware(['islogin'])->group(function () {
     });
     Route::get('/seller/register','shopAuthController@indexRegister');
     Route::post('/seller/register','shopAuthController@register');
-
+//new
+Route::get('/seller/dashboard','shopAuthController@indexRegister');
+    Route::get('/seller/update','shopAuthController@update');
+    Route::put('/seller/process','shopAuthController@process');
+    
     Route::get('/verify/{code}','verifyController@verify');
 
     Route::get('/logout','authController@logout');

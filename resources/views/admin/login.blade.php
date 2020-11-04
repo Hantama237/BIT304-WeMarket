@@ -7,12 +7,18 @@
     <title>Admin Login</title>
 </head>
 <body>
-    <h2>Login Admin</h2>
-    <form action="/admin/login" method="post">
-        <input placeholder="username" type="text" name="username"> <br>
-        <input placeholder="password" type="password" name="password">
-        @csrf <br>
-        <button type="submit">Login</button>
-    </form>
+    <div style="text-align:center; width: 100%; position: absolute; top:30%;">
+        <div style="display: inline-block; padding:40px; border-radius:3%; background-color:#dedede;">
+            <h2>Login Admin</h2>
+            <form action="/admin/login" method="post">
+                <input placeholder="username" type="text" name="username"> <br>
+                <br>
+                <input placeholder="password" type="password" name="password">
+                @csrf <br><br>
+                <button type="submit">Login</button>
+            </form>
+        </div>
+    </div>
+    
 </body>
 </html>

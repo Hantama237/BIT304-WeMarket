@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\tb_shop as Shop;
+use App\tb_shop_address as Address;
 use Session;
 class shopAuthController extends Controller
 {
@@ -32,6 +33,22 @@ class shopAuthController extends Controller
     public function update(){
         $shop=Shop::get()->where("id",Session::get("id"));
         return view('seller.update',['shop'=>$shop]);
+    }
+
+    public function updateAddressIndex(){
+        $shop = Shop::isExist(Session::get("id"));
+        $address = Address::where('id',$shop->id)->first();
+        if($address != null){
+            return view('',["address"=>$address]);
+        }
+        return view('');
+        
+    }
+    public function addAddress(){
+        
+    }
+    public function updateAddress(){
+
     }
     public function process(Request $request){
         $shop=Shop::where("id",Session::get("id"))->first();

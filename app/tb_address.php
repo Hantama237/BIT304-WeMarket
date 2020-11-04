@@ -20,6 +20,16 @@ class tb_address extends Model
         "coordinates"=>"nullable",
     ];
 
+    public function province(){
+        return $this->belongsTo('App\tb_province');
+    }
+    public function city(){
+        return $this->belongsTo('App\tb_city');
+    }
+    public function subdistrict(){
+        return $this->belongsTo('App\tb_subdistrict');
+    }
+
     public static function getValidationRules(){
         return self::$validationRule;
     }

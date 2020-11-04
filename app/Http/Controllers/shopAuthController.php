@@ -16,7 +16,7 @@ class shopAuthController extends Controller
             return view('seller.dashboard',['shop1'=>$shop1]);
             //return "Welcome to seller dashboard";
         }
-        //return view("seller.dasboard");
+        return view("seller.register");
     }
 
     public function register(Request $req){
@@ -25,7 +25,7 @@ class shopAuthController extends Controller
         $shop = Shop::register($validatedData);
         if($shop){
             
-            return "Shop registration success";
+            return redirect('/seller/dashboard');
         }
         return redirect()->back();
     }

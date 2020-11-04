@@ -6,6 +6,9 @@ use Illuminate\Http\Request;
 use App\tb_shop as Shop;
 use App\tb_shop_address as Address;
 use Session;
+use App\tb_province as Province;
+use App\tb_city as City;
+use App\tb_subdistrict as SubDistrict;
 class shopAuthController extends Controller
 {
     //
@@ -32,23 +35,41 @@ class shopAuthController extends Controller
     }
     public function update(){
         $shop=Shop::get()->where("id",Session::get("id"));
-        return view('seller.update',['shop'=>$shop]);
+        $address=Address::where('shop_id',$shop[0]->id)->first();
+        return view('seller.update',['shop'=>$shop,"address"=>$address]);
     }
 
-    public function updateAddressIndex(){
-        $shop = Shop::isExist(Session::get("id"));
+    public function updateAddressIndex(Request $req){
+        $shop = Shop::isExist(Session::get("id"))->first();
         $address = Address::where('id',$shop->id)->first();
+        $provincies = Province::getHtmlOption();
         if($address != null){
-            return view('',["address"=>$address]);
+            $city=City::getHtmlOption($address->province_id);
+            $subdistrict=SubDistrict::getHtmlOption($address->city_id);
+            return view('seller.address',["shop"=>[$shop],"address"=>$address,"province"=>$provincies->data,"city"=>$city->data,"subdistrict"=>$subdistrict->data]);
         }
-        return view('');
+        return view('seller.addressNew',["shop"=>[$shop],"provincies"=>$provincies->data]);
         
     }
-    public function addAddress(){
-        
+    public function addAddress(Request $req){
+        $shop = Shop::isExist(Session::get("id"));
+        $req->merge(["shop_id"=>$shop->id]);
+        $validatedData = $req->validate(Address::getValidationRules());
+        $address = Address::addAddress($validatedData);
+        if($address != null){
+            return redirect('/seller/update')->withSuccess("Address successfully added");
+        }
+        return redirect()->back()->withErrors(["Add failed"]);
     }
-    public function updateAddress(){
-
+    public function updateAddress(Request $req){
+        $shop = Shop::isExist(Session::get("id"));
+        $req->merge(["shop_id"=>$shop->id]);
+        $validatedData = $req->validate(Address::getValidationRules());
+        $result  = Address::updateAddress($shop->id,$validatedData);
+        if($result!=null){
+            return redirect('/seller/update')->withSuccess("Address successfully updated");
+        }
+        return redirect()->back()->withErrors(["Update failed"]);
     }
     public function process(Request $request){
         $shop=Shop::where("id",Session::get("id"))->first();

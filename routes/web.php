@@ -39,8 +39,13 @@ Route::middleware(['islogin'])->group(function () {
     Route::get('/seller/dashboard','shopAuthController@indexRegister');
     Route::get('/seller/update','shopAuthController@update');
     Route::put('/seller/process','shopAuthController@process');
-    Route::get('/seller/address','shopAuthController@address');
+    //Route::get('/seller/address','shopAuthController@address');
     
+    Route::get('/seller/address','shopAuthController@updateAddressIndex');
+    Route::post('/seller/add/address','shopAuthController@addAddress');
+    Route::post('/seller/update/address','shopAuthController@updateAddress');
+
+
     
     Route::get('/verify/{code}','verifyController@verify');
 

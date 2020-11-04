@@ -43,7 +43,7 @@ class tb_shop_address extends Model
         }
         return false;   
     }
-    public static function updateAddress($addressId,$shopId,$validatedData){
-        return self::where("id",$addressId)->where("shop_id",$shopId)->update($validatedData);
+    public static function updateAddress($shopId,$validatedData){
+        return self::where("shop_id",$shopId)->update($validatedData);
     }
 }

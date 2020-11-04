@@ -64,7 +64,11 @@
           </div>
           <label for="">Address</label>
           <div class="form-group">
-            <input type="text" name="address" id="address" class="form-control " placeholder="Address" disabled > <button><a href="/seller/address">change</a></button>
+            <input type="text" name="address" id="address" class="form-control " 
+            @isset($address)
+            placeholder="{{$address->subdistrict->subdistrict_name}}, {{$address->city->city_name}}, {{$address->province->province_name}}, {{$address->postal_code}} {{$address->address_detail}}" 
+            @endisset
+            disabled > <button><a href="/seller/address">change</a></button>
         </div>
           
           {{-- <div class="form-group">

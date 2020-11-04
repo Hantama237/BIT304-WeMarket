@@ -40,36 +40,36 @@
 </div>
   <div class="col-lg-6 box">
     <h4>Update Shop Address</h4>
-<form action="/seller/update/address" method="POST" >
+<form action="/seller/add/address" method="POST" >
     @csrf
    
           {{-- <div class="row"> --}}
               {{-- <div class="col-xs-12 col-sm-4 col-md-4"> --}}
                 <div class="form-group">
                   <label for="">Province</label><br>
-                    <select name="province_id" id="province" value="{{$address->province_id}}">
-                        {!!$province!!}
+                    <select name="province_id" id="province">
+                        {!!$provincies!!}
                     </select>
                 </div>  
                 <div class="form-group">
                     <label for="">City</label><br>
-                      <select name="city_id" id="city" value="{{$address->city_id}}">
-                          {!!$city!!}
+                      <select name="city_id" id="city">
+                          <option value="">Select Province First</option>
                       </select>
                   </div>  
                   <div class="form-group">
                     <label for="">Subdistric</label><br>
-                      <select name="subdistrict_id" id="subdistrict" value="{{$address->subdistrict_id}}">
-                        {!!$subdistrict!!}
+                      <select name="subdistrict_id" id="subdistrict">
+                          <option value="">Select City First</option>
                       </select>
                   </div>
                 <div class="form-group">
                     <label for="">Postal Code</label><br>
-                    <input type="text" name="postal_code" id="" value="{{$address->postal_code}}">    
+                    <input type="text" name="postal_code" id="">    
                 </div>
                 <div class="form-group">
                     <label for="">Address</label> <br>
-                    <textarea name="address_detail" id="address_detail" cols="20" rows="10">{{$address->address_detail}}</textarea>    
+                    <textarea name="address_detail" id="address_detail" cols="20" rows="10"></textarea>    
                 </div>
 
               {{-- </div> --}}
@@ -108,9 +108,7 @@
     </div> 
     <script>
       $(document).ready(()=>{
-        $('#province').val("{!!$address->province_id!!}")
-        $('#city').val("{!!$address->city_id!!}")
-        $('#subdistrict').val('{!!$address->subdistrict_id!!}')
+        
         function getKabupaten(idprovinsi){
             $.get("/api/city/"+idprovinsi,{},(data)=>{
                 updateKabupaten(data);
@@ -129,6 +127,7 @@
         }
         
         $("#province").change(()=>{
+            console.log("prov changed")
             getKabupaten($("#province").val());
         })
         $("#city").change(()=>{

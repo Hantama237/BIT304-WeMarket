@@ -1,13 +1,20 @@
 @extends('basesell')
 @section('main')
-{{-- <style>
-  .imagePic{
-    
-  border-radius: 40%;
-  border: solid 1px gray;
-
+<style>
+  .borderIn {
+    border-right:1px solid gray;
+    height: 170px;
   }
-</style> --}}
+  @media screen and (max-width: 700px) {
+    .borderIn {
+    border-bottom:1px solid gray;
+    border-right:0px solid gray;
+    height: 170px;
+  }
+  }
+  
+  
+  </style> 
 				
 <div class="container" style="margin-bottom: 5%;">
   @if(count($errors) > 0)
@@ -22,7 +29,7 @@
   <div class="col-lg-3">
     <h3></h3>
     {{-- <h3>Menu</h3> --}}
-    <div class="col-lg-12 box" style="height: 170px; border-right: solid 1px black;">
+    <div class="col-lg-12 box borderIn">
         Menu
         <ul>
             <li><a href="/seller/dashboard">Home</a></li>
@@ -51,10 +58,14 @@
           {{-- <div class="form-group">
               <input type="email" name="email" id="email" class="form-control " placeholder="Email Address" >
           </div> --}}
-          <label for="">description</label>
+          <label for="">Description</label>
           <div class="form-group">
               <input type="text" name="description" id="desc" class="form-control " placeholder="{{$sp->description}}" >
           </div>
+          <label for="">Address</label>
+          <div class="form-group">
+            <input type="text" name="address" id="address" class="form-control " placeholder="Address" disabled > <button><a href="/seller/address">change</a></button>
+        </div>
           
           {{-- <div class="form-group">
             <b>KTP</b><br>
@@ -95,8 +106,9 @@
                  {{-- <p class="w3-center"></p> --}}
                
                    {{-- <img width="150px" style="round:50%" src="{{ url('/data_file/'.$p->idcard_picture) }}"> --}}
-                  <img width="150px" height="150px" style="border-radius: 50%;" src="{{ url('/data_file/'.$p->idcard_picture) }}" alt="picture">
-              
+                   <div style="text-align: center;">
+                   <img width="150px" height="150px" style="align-content: center" class="img-circle" src="{{ url('/data_file/'.$p->idcard_picture) }}" alt="picture">
+                   </div>
                  <p> {{$p->name}}</p>
                  <p></i> {{$p->description}}</p>
                  <div style="text-align: center;">

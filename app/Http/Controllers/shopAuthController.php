@@ -34,14 +34,15 @@ class shopAuthController extends Controller
         return redirect()->back();
     }
     public function update(){
-        $shop=Shop::get()->where("id",Session::get("id"));
-        $address=Address::where('shop_id',$shop[0]->id)->first();
-        return view('seller.update',['shop'=>$shop,"address"=>$address]);
+        $shop=Shop::isExist(Session::get("id"));
+        $address=Address::where('shop_id',$shop->id)->first();
+        return view('seller.update',['shop'=>[$shop],"address"=>$address]);
     }
 
     public function updateAddressIndex(Request $req){
-        $shop = Shop::isExist(Session::get("id"))->first();
-        $address = Address::where('id',$shop->id)->first();
+        $shop = Shop::isExist(Session::get("id"));
+        $address = Address::where('shop_id',$shop->id)->first();
+ 
         $provincies = Province::getHtmlOption();
         if($address != null){
             $city=City::getHtmlOption($address->province_id);

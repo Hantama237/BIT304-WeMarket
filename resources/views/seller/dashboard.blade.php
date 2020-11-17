@@ -31,7 +31,7 @@
                     Menu
                     <ul>
                         <li><a href="/seller/dashboard">Home</a></li>
-                        <li><a href="#">Products</a></li>
+                        <li><a href="/seller/product">Products</a></li>
                         <li><a href="#">Orders</a></li>
                     </ul>
                 </div>

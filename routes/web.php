@@ -45,7 +45,9 @@ Route::middleware(['islogin'])->group(function () {
     Route::post('/seller/add/address','shopAuthController@addAddress');
     Route::post('/seller/update/address','shopAuthController@updateAddress');
 
-
+    Route::get('/seller/product','productController@index');
+    Route::get('/seller/add','productController@add');
+    Route::get('/seller/edit','productController@edit');
     
     Route::get('/verify/{code}','verifyController@verify');
 

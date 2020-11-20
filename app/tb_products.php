@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class tb_products extends Model
 {
     protected $guarded = ["id"];
+    
 
     //validation
     protected static $validationRule = [
@@ -26,7 +27,7 @@ class tb_products extends Model
     }
 
     //method
-    public static function register($validatedData){
+    public static function addProduct($validatedData){
         return self::insert([$validatedData]);
     }
     public static function isExist($userid){

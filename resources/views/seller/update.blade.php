@@ -24,7 +24,11 @@
 					@endforeach
 				</div>
         @endif
-        
+        @if(session('success'))
+        <div class="alert alert-success">
+              {{session('success')}}
+        </div>
+          @endif
 <div class="col-lg-9 box">
   <div class="col-lg-3">
     <h3></h3>

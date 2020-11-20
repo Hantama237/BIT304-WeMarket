@@ -20,7 +20,18 @@
 <section>
     
     <div class="container" style="margin-bottom: 5%;">
-        
+        @if(count($errors) > 0)
+        <div class="alert alert-danger">
+            @foreach ($errors->all() as $error)
+            {{ $error }} <br/>
+            @endforeach
+        </div>
+        @endif   
+        @if(session('success'))
+        <div class="alert alert-success">
+              {{session('success')}}
+        </div>
+          @endif
         
         <div class="col-lg-9 box" >
           <h3>Seller dashboard</h3>
@@ -40,49 +51,48 @@
                 <a class="btn btn-success" href="/seller/add" role="button">Add product</a>
                 <a class="btn btn-primary" href="#" role="button">Edit Product</a> 
                   <h3>Product list</h3>
+                  @foreach ($product as $pr)
+                      
+               
                   <!-- ITEM -->
-<div class="attraction-item">
-    <div class="item__inner">
-        <div class="item-media">
-            <div class="image-cover">
-                <img src="images/attraction/4.jpg" alt="">
-            </div>
-        </div>
-        <div class="item-body">
-            <div class="item-title">
-                <h2>
-                    <a href="#">Americany</a>
-                </h2>
-            </div>
-            <div class="item-address">
-                <i class="awe-icon awe-icon-marker-2"></i>
-                9579 Wishing Moun
-            </div>
-            <div class="item-footer">
-                <div class="item-rate">
-                    <span>7.5 Good</span>
+                <div class="attraction-item" style="border: solid 2px gray">
+                    <div class="item__inner">
+                        <div class="item-media">
+                            <div class="image-cover" style="margin-top:30%; margin-left:5%;margin-right:5%">
+                                <img src="{{ url('/data_file/'.$pr->picture) }}" alt="Picture">
+                            </div>
+                        </div>
+                        <div class="item-body">
+                            <div class="item-title">
+                                <h2>Product name:
+                                    <a href="#">{{$pr->name}}</a>
+                                </h2>
+                            </div>
+                            <div class="item-address">
+                                <i class="awe-icon awe-icon-marker-2"></i>
+                                {{$pr->description}}
+                            </div>
+                            <div class="item-footer">
+                                <p>Price</p>
+                                <div class="item-rate">
+                                    <span>IDR:{{$pr->price}}</span><br>
+                                    Stock: {{$pr->stock}}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item-price-more">
+                            <div class="price">
+                                Action
+                            </div>
+                        <a href="/seller/editProduct/{{$pr->id}}" class="awe-btn">edit</a>
+                            <a href="/seller/delete/{{ $pr->id }}" class="awe-btn">delete</a>
+                        </div>
+ 
+
+                    </div>
                 </div>
-            </div>
-        </div>
-        <div class="item-price-more">
-            <div class="price">
-                Adult ticket
-                <ins>
-                    <span class="amount">$200</span>
-                </ins>
-                <del>
-                    <span class="amount">$200</span>
-                </del>
-
-            </div>
-            <a href="#" class="awe-btn">edit</a>
-            <a href="#" class="awe-btn">delete</a>
-        </div>
-
-
-    </div>
-</div>
-<!-- END / ITEM -->
+                @endforeach
+                <!-- END / ITEM -->
 
                 {{-- <h3></h3>
                 <div class="grid-container">

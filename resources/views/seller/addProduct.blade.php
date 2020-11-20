@@ -11,6 +11,11 @@
     border-right:0px solid gray;
     height: 170px;
   }
+  #preview-profile{
+            background-size: cover;
+            background-position: center center;
+            background-repeat: no-repeat;
+        }
   }
   
   
@@ -24,7 +29,11 @@
 					@endforeach
 				</div>
         @endif
-        
+        @if(session('success'))
+        <div class="alert alert-success">
+              {{session('success')}}
+        </div>
+          @endif
 <div class="col-lg-9 box">
   <div class="col-lg-3">
     <h3></h3>
@@ -40,7 +49,7 @@
 </div>
   <div class="col-lg-6 box">
     <h4>Add Product</h4>
-<form action="#" method="POST" enctype="multipart/form-data" class="col-lg-16 box">
+<form action="/seller/addProduct" method="POST" enctype="multipart/form-data" class="col-lg-16 box">
     {{ csrf_field() }}
     {{ method_field('PUT') }}
  
@@ -51,10 +60,12 @@
                       <input type="text" name="name" id="first_name" class="form-control">
                   </div>
               {{-- </div> --}}
-              <input type="hidden"  name="user_id" id="first_name" class="form-control" value="" >
+              
               
           {{-- </div> --}}
-          
+          @foreach($shop as $sp)
+          <input type="hidden"  name="shop_id" id="first_name" class="form-control" value="{{$sp->shop_id}}" >
+          @endforeach
           {{-- <div class="form-group">
               <input type="email" name="email" id="email" class="form-control " placeholder="Email Address" >
           </div> --}}
@@ -71,32 +82,39 @@
               <input type="number" name="stock" id="num" class="form-control " >
           </div>
          
-          
-          {{-- <div class="form-group">
-            <b>KTP</b><br>
-            <input type="file" name="KTP">
-          </div>
-          <div class="form-group">
-            <b>SIM</b><br>
-            <input type="file" name="sim">
-          </div>
-          <div class="form-group">
-            <b>SKCK</b><br>
-            <input type="file" name="skck">
-          </div>
-          <div class="form-group">
-            <b>STNK</b><br>
-            <input type="file" name="stnk">
-          </div> --}}
+       
           <div class="form-group">
             <b>Picture</b><br>
-            <input type="file" name="idcard_picture">
+            {{-- test preview --}}
+            {{-- <div class="row col-lg-5" style="text-align: center;">
+              <div id="preview-profile" style="display:inline-block;background-color: #73de77; height:300px; width:300px;"></div>
+             </div>
+             <div class="row col-lg-7 align-middle" style="height: 400px; position: relative;">
+              <div style="display: inline-block; position: absolute; bottom:0%; -ms-transform: translateY(-50%); transform: translateY(-50%);"><input  onchange="readURL(this)" id="imgInp" type="file" accept="image/*" name="profile_picture"></div>  
+            </div> --}}
+            <input type="file" name="picture">
           </div>                       
           	  
           <input type="submit" value="submit" class="btn btn-primary">
         
         </div> 
       </div>
+    </form>
+    <script>
+      function readURL(input) {
+          console.log("changed");
+          if (input.files && input.files[0]) {
+              var reader = new FileReader();
+              reader.onload = function(e) {
+                  console.log(e.target.result)
+                  $('#preview-profile').css('background-image', 'url(' +  e.target.result + ')');
+                  // $('#preview-profile').text("Preview");
+              }
+              
+              reader.readAsDataURL(input.files[0]); // convert to base64 string
+          }
+      }
+  </script>
         <span class="desktop">
             {{-- @include("components.buyer.sidebar") --}}
             <div class="w3-card w3-round w3-white box col-lg-3 box" style=" border:solid gray 1px;">

@@ -44,11 +44,15 @@ Route::middleware(['islogin'])->group(function () {
     Route::get('/seller/address','shopAuthController@updateAddressIndex');
     Route::post('/seller/add/address','shopAuthController@addAddress');
     Route::post('/seller/update/address','shopAuthController@updateAddress');
-
+    //manage product
     Route::get('/seller/product','productController@index');
     Route::get('/seller/add','productController@add');
     Route::get('/seller/edit','productController@edit');
-    
+    Route::put('/seller/addProduct','productController@addProduct');
+    Route::get('/seller/product-list','productController@productList');
+    Route::get('/seller/delete/{id}', 'productController@delete');
+    Route::get('/seller/editProduct/{id}', 'productController@editProduct');
+    Route::put('/seller/editProcess/{id}','productController@editProcess');
     Route::get('/verify/{code}','verifyController@verify');
 
 

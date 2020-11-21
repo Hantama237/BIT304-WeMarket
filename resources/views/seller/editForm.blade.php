@@ -84,30 +84,61 @@
          
        
           <div class="form-group">
-            <b>Change picture</b><br>
+            <b>Change product thumbnails</b><br>
             <img src="{{ url('/data_file/'.$product->picture) }}" alt="Picture">
             <input type="file" name="picture">
           </div>                       
           {{-- @endforeach	   --}}
+          {{-- test display array --}}
+          <table class="table table-bordered table-hover table-striped">
+            <thead>
+            <tr>
+                <th>Picture</th>
+            </tr>
+            </thead>
+            <tbody>
+                @foreach($data as $image)
+               <tr>
+                   <td style="text-align: center"> <?php foreach (json_decode($image->filename)as $picture) { ?>
+                         <img src="{{ asset('/image/'.$picture) }}" style="height:120px; width:200px"/>
+                        <?php } ?>
+                   </td>
+              </tr>
+                @endforeach
+            </tbody>
+           </table>
+           <b>Replace picture</b>                      
+          <div class="input-group control-group increment" >
+            <input type="file" name="filename[]" class="form-control">
+            <div class="input-group-btn"> 
+              <button class="btn btn-success" type="button"><i class="glyphicon glyphicon-plus"></i>Add</button>
+            </div>
+          </div>
+          <div class="clone hide">
+            <div class="control-group input-group" style="margin-top:10px">
+              <input type="file" name="filename[]" class="form-control">
+              <div class="input-group-btn"> 
+                <button class="btn btn-danger" type="button"><i class="glyphicon glyphicon-remove"></i> Remove</button>
+              </div>
+            </div>
+          </div>
+        
+        
           <input type="submit" value="submit" class="btn btn-primary">
         
         </div> 
       </div>
     </form>
     <script>
-      function readURL(input) {
-          console.log("changed");
-          if (input.files && input.files[0]) {
-              var reader = new FileReader();
-              reader.onload = function(e) {
-                  console.log(e.target.result)
-                  $('#preview-profile').css('background-image', 'url(' +  e.target.result + ')');
-                  // $('#preview-profile').text("Preview");
-              }
-              
-              reader.readAsDataURL(input.files[0]); // convert to base64 string
-          }
-      }
+       $(document).ready(function() {
+      $(".btn-success").click(function(){ 
+          var html = $(".clone").html();
+          $(".increment").after(html);
+      });
+      $("body").on("click",".btn-danger",function(){ 
+          $(this).parents(".control-group").remove();
+      });
+    });
   </script>
         <span class="desktop">
             {{-- @include("components.buyer.sidebar") --}}

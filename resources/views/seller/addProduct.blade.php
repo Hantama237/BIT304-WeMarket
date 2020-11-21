@@ -1,5 +1,6 @@
 @extends('basesell')
 @section('main')
+
 <style>
   .borderIn {
     border-right:1px solid gray;
@@ -84,7 +85,7 @@
          
        
           <div class="form-group">
-            <b>Picture</b><br>
+            <b>Product thumbnails</b><br>
             {{-- test preview --}}
             {{-- <div class="row col-lg-5" style="text-align: center;">
               <div id="preview-profile" style="display:inline-block;background-color: #73de77; height:300px; width:300px;"></div>
@@ -93,7 +94,23 @@
               <div style="display: inline-block; position: absolute; bottom:0%; -ms-transform: translateY(-50%); transform: translateY(-50%);"><input  onchange="readURL(this)" id="imgInp" type="file" accept="image/*" name="profile_picture"></div>  
             </div> --}}
             <input type="file" name="picture">
-          </div>                       
+          </div> 
+          {{-- <button><a href="/seller/productPic">add product picture</a></button> --}}
+          <b>Product picture</b>                      
+          <div class="input-group control-group increment" >
+            <input type="file" name="filename[]" class="form-control">
+            <div class="input-group-btn"> 
+              <button class="btn btn-success" type="button"><i class="glyphicon glyphicon-plus"></i>Add</button>
+            </div>
+          </div>
+          <div class="clone hide">
+            <div class="control-group input-group" style="margin-top:10px">
+              <input type="file" name="filename[]" class="form-control">
+              <div class="input-group-btn"> 
+                <button class="btn btn-danger" type="button"><i class="glyphicon glyphicon-remove"></i> Remove</button>
+              </div>
+            </div>
+          </div>
           	  
           <input type="submit" value="submit" class="btn btn-primary">
         
@@ -101,19 +118,17 @@
       </div>
     </form>
     <script>
-      function readURL(input) {
-          console.log("changed");
-          if (input.files && input.files[0]) {
-              var reader = new FileReader();
-              reader.onload = function(e) {
-                  console.log(e.target.result)
-                  $('#preview-profile').css('background-image', 'url(' +  e.target.result + ')');
-                  // $('#preview-profile').text("Preview");
-              }
-              
-              reader.readAsDataURL(input.files[0]); // convert to base64 string
-          }
-      }
+      
+    $(document).ready(function() {
+      $(".btn-success").click(function(){ 
+          var html = $(".clone").html();
+          $(".increment").after(html);
+      });
+      $("body").on("click",".btn-danger",function(){ 
+          $(this).parents(".control-group").remove();
+      });
+    });
+      
   </script>
         <span class="desktop">
             {{-- @include("components.buyer.sidebar") --}}

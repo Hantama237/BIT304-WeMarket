@@ -14,12 +14,12 @@
             <div class="col-lg-12 box" style="padding-bottom: 20px;">
                 <div class="col-lg-3" >
                     <ul>
-                        <a href="">
+                        <a href="/admin/home">
                             <li>
                                 Home
                             </li>
                         </a>
-                        <a href="">
+                        <a href="/admin/verify">
                             <li>
                                 Verify Seller
                             </li>

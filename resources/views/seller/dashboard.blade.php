@@ -74,12 +74,14 @@
           <div class="w3-card w3-round w3-white box col-lg-3 box" style=" border:solid gray 1px;">
             {{-- <p style="float: right;">verified</p>   --}}
             <div class="w3-container">
-              <p style="float: right;">verified</p>
+              @foreach($shop1 as $p)
+             
+            <p style="float: right;">verified</p>
                <h4 class="w3-center">Shop info</h4>
                {{-- <p style="float: right;">verified</p> --}}
           
                <hr>
-               @foreach($shop1 as $p)
+               
                {{-- <p class="w3-center"></p> --}}
              
                  {{-- <img width="150px" style="round:50%" src="{{ url('/data_file/'.$p->idcard_picture) }}"> --}}

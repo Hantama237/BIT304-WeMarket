@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\tb_admin as Admin;
+use App\tb_shop as Shop;
 use Session;
 class adminController extends Controller
 {
@@ -25,5 +26,18 @@ class adminController extends Controller
 
     public function home(){
         return view("admin.home");
+    }
+    public function verify(){
+        $shop= Shop::where("status",0)->get();
+      
+        return view("admin.verifySeller",['shop'=>$shop]);
+    }
+    public function process($id){
+        $shop= Shop::find($id);
+        $shop->status = 1;
+        $shop->save();
+        // dd($shop->status);
+      
+        return redirect()->back();
     }
 }

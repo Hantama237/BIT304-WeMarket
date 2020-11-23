@@ -77,6 +77,8 @@ Route::prefix('admin')->group(function (){
     Route::post('/login','adminController@login');
     Route::middleware(['isadmin'])->group(function (){
         Route::get('/home','adminController@home');
+        Route::get('/verify','adminController@verify');
+        Route::get('/verified/{id}', 'adminController@process');
     });
 });
 

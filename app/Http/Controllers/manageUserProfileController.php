@@ -26,7 +26,12 @@ class manageUserProfileController extends Controller
         ]);
         $isNameSuccess = User::updateName(Session::get('id'),$validatedData['name']);
         $isPhotoSuccess = User::updateProfilePicture(Session::get('id'),$req);
-        return redirect()->back()->withSuccess("Update Success");
+        if($isNameSuccess || $isPhotoSuccess){
+            Session::put(['name'=>$validatedData['name']]);
+            if($isPhotoSuccess){ Session::put(['profile_picture']); }
+            return redirect()->back()->withSuccess("Update Success");
+        }
+        return redirect()->back()->withErrors(["Update Failed please try again"]);
     }
 
 
@@ -43,7 +48,7 @@ class manageUserProfileController extends Controller
         if($address){
             return redirect()->back()->withSuccess("Address added successfuly");
         }
-        return redirect()->back()->withErrors(["Add address failed, please try again"]);
+        return redirect()->back()->withErrors(["Add address failed already reach address limit(5)"]);
     }
 
     public function updateAddressIndex($id,Request $req){

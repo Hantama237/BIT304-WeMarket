@@ -18,12 +18,17 @@
 				
 <div class="container" style="margin-bottom: 5%;">
   @if(count($errors) > 0)
-				<div class="alert alert-danger">
-					@foreach ($errors->all() as $error)
-					{{ $error }} <br/>
-					@endforeach
-				</div>
-        @endif
+  <div class="alert alert-danger">
+    @foreach ($errors->all() as $error)
+    {{ $error }} <br/>
+    @endforeach
+  </div>
+  @endif
+  @if(session('success'))
+  <div class="alert alert-success">
+        {{session('success')}}
+  </div>
+    @endif
         
 <div class="col-lg-9 box">
   <div class="col-lg-3">
@@ -48,7 +53,7 @@
               {{-- <div class="col-xs-12 col-sm-4 col-md-4"> --}}
                   <label for="">Shop name</label>
                   <div class="form-group">
-                      <input type="text" name="name" id="first_name" class="form-control" placeholder="{{$sp->name}}" >
+                      <input type="text" name="name" id="first_name" class="form-control" value="{{$sp->name}}" placeholder="" >
                   </div>
               {{-- </div> --}}
               <input type="hidden"  name="user_id" id="first_name" class="form-control" value="{{$sp->user_id}}" >
@@ -60,7 +65,7 @@
           </div> --}}
           <label for="">Description</label>
           <div class="form-group">
-              <input type="text" name="description" id="desc" class="form-control " placeholder="{{$sp->description}}" >
+              <input type="text" name="description" id="desc" class="form-control " value="{{$sp->description}}" placeholder="" >
           </div>
           <label for="">Address</label>
           <div class="form-group">
@@ -68,7 +73,7 @@
             @isset($address)
             placeholder="{{$address->subdistrict->subdistrict_name}}, {{$address->city->city_name}}, {{$address->province->province_name}}, {{$address->postal_code}} {{$address->address_detail}}" 
             @endisset
-            disabled > <button><a href="/seller/address">change</a></button>
+            disabled > <button type="button"><a href="/seller/address">change</a></button>
         </div>
           
           {{-- <div class="form-group">

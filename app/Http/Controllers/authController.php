@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\tb_user as User;
 use Session;
@@ -21,7 +21,10 @@ class authController extends Controller
             "password"=>User::getValidationRule("password")
         ]);
         $user = User::login($validatedData["email"],$validatedData["password"]);
-        if($user){
+        $banned_days = now()->diffInDays($user->banned_until);
+        // dd($banned_days);
+        
+        if($user->banned_until == null){
             Session::put([
                 "login"=>true,
                 "id"=>$user->id,
@@ -30,6 +33,15 @@ class authController extends Controller
                 "shop"=>false
             ]);
             return redirect("/");
+        }
+        if($user->banned_until != null){
+            if ($banned_days > 14) {
+                $message = 'Your account has been suspended. Please contact administrator for more info.';
+            } else {
+                $message = 'Your account has been suspended for '.$banned_days.' '.Str::plural('day', $banned_days).'. Please contact administrator.';
+            }
+
+            return redirect("/login")->withMessage($message);
         }
         return redirect()->back()->withErrors(["Incorrect email/password"]);
     }

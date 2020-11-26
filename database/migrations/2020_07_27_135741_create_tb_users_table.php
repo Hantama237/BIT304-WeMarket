@@ -19,6 +19,7 @@ class CreateTbUsersTable extends Migration
             $table->string("email");
             $table->string("password");
             $table->string("profile_picture")->nullable();
+            $table->timestamp('banned_until')->nullable();
             $table->timestamps();
         });
     }

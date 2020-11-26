@@ -24,7 +24,7 @@
                                 Verify Seller
                             </li>
                         </a>
-                        <a href="">
+                        <a href="/admin/manageUser">
                             <li>
                                 Manage Users
                             </li>
@@ -47,8 +47,10 @@
                                    {{$p->name}}
                                </td>
                                <td style="text-align: center"> 
-                                     <img src="{{ url('/data_file/'.$p->idcard_picture) }}" style="height:120px; width:200px"/>
-                               </td>
+                                
+                                     <img id="myImg" data-toggle="modal" id="exampleModal" data-target="#exampleModal" src="{{ url('/data_file/'.$p->idcard_picture) }}" style="height:120px; width:200px"/>
+                                    
+                                    </td>
                                <td style="text-align: center">
                                 <a href="/admin/verified/{{$p->id}}" class="awe-btn">verify this user</a>
                                </td>
@@ -79,28 +81,19 @@
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Submit Application</h5>
+          <h5 class="modal-title" id="exampleModalLabel">Id_Card Preview</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
-        <form action="/residences/apply" method="POST">
             <div class="modal-body">
-                <div class="row">
-                    {{-- <div class="col-xs-12"><input type="text" disabled name="application_date" class="awe-calendar" value="Today" placeholder="Today"></div> --}}
-                    <div class="col-xs-6"><input type="number" name="required_year" id="required_year" value="{{old("required_year")}}" placeholder="Required year"></div>
-                    <div class="col-xs-6"><input type="number" name="required_month" id="required_month" value="{{old("required_month")}}" placeholder="Required month"></div>
-                    <div class="col-xs-12"><label for="residence_name">Residence</label></div>
-                    <div class="col-xs-12"><input type="text" readonly aria-readonly="true" name="residence_name" id="residence_name" value="{{old("residence_name")}}" placeholder="Please re-apply"></div>
-                    <input type="hidden" readonly aria-readonly="true" name="residence_id" id="residence_id" value="{{old("residence_id")}}" placeholder="Please re-apply">
-                    @csrf
-                </div>
+            <img class="modal-content" id="img01" style="width: 100%"> 
             </div>
             <div class="modal-footer">
                 <button type="button" class="awe-btn" data-dismiss="modal">Close</button>
-                <button type="submit" class="awe-btn awe-btn-style3">Submit</button>
+                {{-- <button type="submit" class="awe-btn awe-btn-style3">Submit</button> --}}
             </div>
-        </form>
+        
       </div>
     </div>
   </div>
@@ -111,6 +104,21 @@
         $("#residence_id").val(id);
         $("#residence_name").val(name);
     }
+    // Get the modal
+var modal = document.getElementById("exampleModal");
+
+// Get the image and insert it inside the modal - use its "alt" text as a caption
+var img = document.getElementById("myImg");
+var modalImg = document.getElementById("img01");
+var captionText = document.getElementById("caption");
+img.onclick = function(){
+  modal.style.display = "block";
+  modalImg.src = this.src;
+  captionText.innerHTML = this.alt;
+}
 </script>
+
+  
+  
 
 @endsection

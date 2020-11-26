@@ -48,7 +48,7 @@
     </div>
 </div>
   <div class="col-lg-6 box">
-    <h4>Add Product</h4>
+    <h4>Edit Product</h4>
   <form action="/seller/editProcess/{{$product->id}}" method="POST" enctype="multipart/form-data" class="col-lg-16 box">
     {{ csrf_field() }}
     {{ method_field('PUT') }}

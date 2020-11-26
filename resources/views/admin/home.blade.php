@@ -24,7 +24,7 @@
                                 Verify Seller
                             </li>
                         </a>
-                        <a href="">
+                        <a href="/admin/manageUser">
                             <li>
                                 Manage Users
                             </li>
@@ -35,17 +35,17 @@
                     <div class="col-lg-3">
                         <div class="col-lg-12" style="text-align:center; background-color:#f0f0f0; padding:10px;">
                             <div class="col-lg-12" >
-                                <span style="font-size: 30pt; ">1</span>
+                                <span style="font-size: 30pt; ">{{$shop}}</span>
                             </div>
-                            <div class="col-lg-12">New Seller</div>
+                            <div class="col-lg-12">Seller</div>
                         </div>
                     </div>
                     <div class="col-lg-3">
                         <div class="col-lg-12" style="text-align:center; background-color:#f0f0f0; padding:10px;">
                             <div class="col-lg-12" >
-                                <span style="font-size: 30pt; ">2</span>
+                                <span style="font-size: 30pt; ">{{$user}}</span>
                             </div>
-                            <div class="col-lg-12">New User</div>
+                            <div class="col-lg-12">User</div>
                         </div>
                     </div>
                     

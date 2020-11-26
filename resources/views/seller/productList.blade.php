@@ -37,6 +37,11 @@
                 </div>
             </div>
             <div class="col-lg-8">
+              @if(session('success'))
+              <div class="alert alert-success">
+                    {{session('success')}}
+              </div>
+                @endif
                 <a class="btn btn-success" href="/seller/add" role="button">Add product</a>
                 <a class="btn btn-primary" href="/seller/edit" role="button">Edit Product</a> 
                   <h3>Product list</h3>

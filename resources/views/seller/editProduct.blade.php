@@ -85,7 +85,7 @@
                                 Action
                             </div>
                         <a href="/seller/editProduct/{{$pr->id}}" class="awe-btn">edit</a>
-                            <a href="/seller/delete/{{ $pr->id }}" class="awe-btn">delete</a>
+                        <a href="/seller/delete/{{ $pr->id }}" class="awe-btn">delete</a>
                         </div>
  
 

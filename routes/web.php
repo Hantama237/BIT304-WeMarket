@@ -79,6 +79,12 @@ Route::prefix('admin')->group(function (){
         Route::get('/home','adminController@home');
         Route::get('/verify','adminController@verify');
         Route::get('/verified/{id}', 'adminController@process');
+        Route::get('/manageUser','adminController@manage');
+        Route::get('/banList','adminController@banList');
+        Route::get('/banForm/{id}','adminController@form');
+        Route::post('/processBan/{id}','adminController@ban');
+        Route::get('/revoke/{id}','adminController@revoke');
+
     });
 });
 

@@ -37,43 +37,17 @@
                 </div>
             </div>
             <div class="col-lg-6">
+              @if(count($errors) > 0)
+              <div class="alert alert-danger">
+                @foreach ($errors->all() as $error)
+                {{ $error }} <br/>
+                @endforeach
+              </div>
+              @endif
                 <a class="btn btn-success" href="/seller/add" role="button">Add product</a>
                 <a class="btn btn-primary" href="/seller/edit" role="button">Edit Product</a> 
                   <h3>Product list</h3>
-                  <div class="awe-masonry__item" style="float: left">
-                    <a href="#">
-                        <div class="image-wrap image-cover">
-                            <img src="" alt="asda">
-                        </div>
-                    </a>
-                    <div class="item-title">
-                        <h4><a href="#">Sayur</a></h4>
-                        <div class="item-cat">
-                            <ul>
-                                <li><a href="#">IDR:3000</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="item-available">
-                        <span class="count">5</span>
-                    </div>
-                </div>
-                {{-- <h3></h3>
-                <div class="grid-container">
-                    <div class="grid-item">
-                        <h3>0</h3>
-                        <p>Order</p>
-                    </div>
-                    <div class="grid-item">
-                        <h3>3</h3>
-                        <p>products</p>
-                    </div>
-                    <div class="grid-item">
-                        <h3>3</h3>
-                        <P>sold</P>
-                    </div>  
-                  
-                  </div> --}}
+            
               
             </div>
         </div>

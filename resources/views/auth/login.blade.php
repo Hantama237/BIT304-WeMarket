@@ -25,6 +25,9 @@
     <div class="awe-overlay"></div>
     <div class="container">
         <div class="login-register-page__content">
+            @if (session('message'))
+            <div class="alert alert-danger">{{ session('message') }}</div>
+        @endif
             @if ($errors->any())
                 <div class="alert alert-danger">
                     <ul>

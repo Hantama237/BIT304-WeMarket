@@ -16,7 +16,7 @@ class tb_address extends Model
         "province_id"=>"required",
         "city_id"=>"required",
         "subdistrict_id"=>"required",
-        "postal_code"=>"required",
+        "postal_code"=>"required|numeric",
         "coordinates"=>"nullable",
     ];
 

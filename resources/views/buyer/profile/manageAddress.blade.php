@@ -83,10 +83,13 @@
                             </div>
                             
                         <div class="col-lg-12" style="height: 20px;"></div>
+                        @php
+                            $i = 1;
+                        @endphp
                         @foreach ($addresses as $address)
                             <div class="col-lg-12" style="color:black; background-color: #e0e0e0; padding-top:10px; padding-bottom:10px; margin-bottom:10px;">
                                 <div class="col-lg-12" style="padding: 0px;">
-                                    <div class="col-lg-6" style="padding: 0px;"><b>Address 1</b> </div>
+                                    <div class="col-lg-6" style="padding: 0px;"><b>Address {{$i++}}</b> </div>
                                     <div class="col-lg-6" style="padding: 0px; text-align:right;"><button onclick='updateAlamat({!!json_encode($address)!!})' style="display: inline-block;" data-toggle="modal" data-target="#editAddressModal">Edit</button></div>
                                 </div>
                                 {{$address->subdistrict->subdistrict_name}}, {{$address->city->city_name}}, {{$address->province->province_name}}, {{$address->postal_code}} {{$address->address_detail}}
@@ -222,7 +225,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="awe-btn" data-dismiss="modal">Cancel</button>
-                <button type="submit" class="awe-btn awe-btn-style3">Add Address</button>
+                <button type="submit" class="awe-btn awe-btn-style3">Update Address</button>
             </div>
         </form>
         </div>

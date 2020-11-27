@@ -12,6 +12,7 @@ class adminController extends Controller
     public function login(Request $req){
         $validatedData = $req->validate(Admin::getValidationRules());
         $admin = Admin::login($validatedData["username"],$validatedData["password"]);
+        //dd($admin);
         if($admin){
             Session::put([
                 "admin"=>true
@@ -22,6 +23,7 @@ class adminController extends Controller
     }
 
     public function loginPage(){
+        
         return view("admin.login");
     }
 

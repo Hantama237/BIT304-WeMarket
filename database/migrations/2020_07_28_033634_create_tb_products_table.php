@@ -20,7 +20,8 @@ class CreateTbProductsTable extends Migration
             $table->string("description");
             $table->integer("price");
             $table->integer("stock");
-            $table->integer("status");
+            $table->string("picture")->nullable();
+            $table->integer("status")->nullable();
             $table->timestamps();
         });
     }

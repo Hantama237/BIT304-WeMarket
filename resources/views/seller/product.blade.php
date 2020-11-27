@@ -37,34 +37,17 @@
                 </div>
             </div>
             <div class="col-lg-6">
-                {{-- <h3></h3>
-                <div class="grid-container">
-                    <div class="grid-item">
-                        <h3>0</h3>
-                        <p>Order</p>
-                    </div>
-                    <div class="grid-item">
-                        <h3>3</h3>
-                        <p>products</p>
-                    </div>
-                    <div class="grid-item">
-                        <h3>3</h3>
-                        <P>sold</P>
-                    </div>  
-                  
-                  </div> --}}
-                  <div class="col-lg-4">
-                    <h3>0</h3>
-                    <p>Order</p>
-                  </div>
-                  <div class="col-lg-4">
-                    <h3>5</h3>
-                    <p>Products</p>
-                  </div>
-                  <div class="col-lg-4">
-                    <h3>3</h3>
-                    <p>Products sold</p>
-                  </div>
+              @if(count($errors) > 0)
+              <div class="alert alert-danger">
+                @foreach ($errors->all() as $error)
+                {{ $error }} <br/>
+                @endforeach
+              </div>
+              @endif
+                <a class="btn btn-success" href="/seller/add" role="button">Add product</a>
+                <a class="btn btn-primary" href="/seller/edit" role="button">Edit Product</a> 
+                  <h3>Product list</h3>
+            
               
             </div>
         </div>
@@ -74,14 +57,12 @@
           <div class="w3-card w3-round w3-white box col-lg-3 box" style=" border:solid gray 1px;">
             {{-- <p style="float: right;">verified</p>   --}}
             <div class="w3-container">
-              @foreach($shop1 as $p)
-             
-            <p style="float: right;">verified</p>
+              <p style="float: right;">verified</p>
                <h4 class="w3-center">Shop info</h4>
                {{-- <p style="float: right;">verified</p> --}}
           
                <hr>
-               
+               @foreach($shop1 as $p)
                {{-- <p class="w3-center"></p> --}}
              
                  {{-- <img width="150px" style="round:50%" src="{{ url('/data_file/'.$p->idcard_picture) }}"> --}}

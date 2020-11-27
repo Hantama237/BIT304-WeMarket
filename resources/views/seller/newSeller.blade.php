@@ -30,8 +30,8 @@
                 <div class="col-lg-12 box borderIn" >
                     Menu
                     <ul>
-                        <li><a href="/seller/dashboard">Home</a></li>
-                        <li><a href="/seller/product">Products</a></li>
+                        <li><a style="disabled" href="/seller/dashboard">Home</a></li>
+                        <li><a href="#">Products</a></li>
                         <li><a href="#">Orders</a></li>
                     </ul>
                 </div>
@@ -53,18 +53,45 @@
                     </div>  
                   
                   </div> --}}
-                  <div class="col-lg-4">
-                    <h3>0</h3>
-                    <p>Order</p>
-                  </div>
-                  <div class="col-lg-4">
-                    <h3>5</h3>
-                    <p>Products</p>
-                  </div>
-                  <div class="col-lg-4">
-                    <h3>3</h3>
-                    <p>Products sold</p>
-                  </div>
+                  @if(count($errors) > 0)
+        <div class="alert alert-danger">
+            @foreach ($errors->all() as $error)
+            {{ $error }} <br/>
+            @endforeach
+        </div>
+        @endif   
+        @if(session('success'))
+        <div class="alert alert-success">
+              {{session('success')}}
+        </div>
+          @endif
+                  <form action="/seller/process" method="POST" enctype="multipart/form-data">
+                    {{ csrf_field() }}
+                    {{ method_field('PUT') }}
+                    @foreach($shop1 as $sp)
+                          
+                                <p>Please fill the form to complete the registration</p>
+                                  <div class="form-group">
+                                      <input type="hidden" name="name" id="first_name" class="form-control" value="{{$sp->name}}" >
+                                  </div>
+                              
+                              <input type="hidden"  name="user_id" id="first_name" class="form-control" value="{{$sp->user_id}}" >
+                              
+                     
+                         
+                          <div class="form-group">
+                              <input type="hidden" name="description" id="desc" class="form-control " value="{{$sp->description}}" >
+                          </div>
+                          
+                          
+                        
+                          <div class="form-group">
+                            <b>Upload ID-card</b><br>
+                            <input type="file" name="idcard_picture">
+                          </div>                       
+                          @endforeach			  
+                          <input type="submit" value="submit" class="btn btn-primary">
+                        
               
             </div>
         </div>
@@ -76,7 +103,7 @@
             <div class="w3-container">
               @foreach($shop1 as $p)
              
-            <p style="float: right;">verified</p>
+            <p style="float: right;">unverified</p>
                <h4 class="w3-center">Shop info</h4>
                {{-- <p style="float: right;">verified</p> --}}
           
@@ -86,12 +113,12 @@
              
                  {{-- <img width="150px" style="round:50%" src="{{ url('/data_file/'.$p->idcard_picture) }}"> --}}
                  <div style="text-align: center;">
-                 <img width="150px" height="150px" style="align-content: center" class="img-circle" src="{{ url('/data_file/'.$p->idcard_picture) }}" alt="picture">
+                 <img width="150px" height="150px" style="align-content: center" class="img-circle" src="" alt="picture">
                  </div>
                <p> {{$p->name}}</p>
                <p></i> {{$p->description}}</p>
                <div style="text-align: center;">
-               <p><i class="fa fa-pencil fa-fw w3-margin-right w3-text-theme"></i><a href="/seller/update">edit</a> </p>
+               <p><i class="fa fa-pencil fa-fw w3-margin-right w3-text-theme"></i><a href="#">edit</a> </p>
               </div>
                @endforeach
                {{--<i class="fa fa-home fa-fw w3-margin-right w3-text-theme"> <i class="fa fa-pencil fa-fw w3-margin-right w3-text-theme"></i> --}}

@@ -20,7 +20,18 @@
 <section>
     
     <div class="container" style="margin-bottom: 5%;">
-        
+        @if(count($errors) > 0)
+        <div class="alert alert-danger">
+            @foreach ($errors->all() as $error)
+            {{ $error }} <br/>
+            @endforeach
+        </div>
+        @endif   
+        @if(session('success'))
+        <div class="alert alert-success">
+              {{session('success')}}
+        </div>
+          @endif
         
         <div class="col-lg-9 box" >
           <h3>Seller dashboard</h3>
@@ -36,7 +47,53 @@
                     </ul>
                 </div>
             </div>
-            <div class="col-lg-6">
+            <div class="col-lg-9">
+                <a class="btn btn-success" href="/seller/add" role="button">Add product</a>
+                <a class="btn btn-primary" href="#" role="button">Edit Product</a> 
+                  <h3>Product list</h3>
+                  @foreach ($product as $pr)
+                      
+               
+                  <!-- ITEM -->
+                <div class="attraction-item" style="border: solid 2px gray">
+                    <div class="item__inner">
+                        <div class="item-media">
+                            <div class="image-cover" style="margin-top:30%; margin-left:5%;margin-right:5%">
+                                <img src="{{ url('/data_file/'.$pr->picture) }}" alt="Picture">
+                            </div>
+                        </div>
+                        <div class="item-body">
+                            <div class="item-title">
+                                <h2>Product name:
+                                    <a href="#">{{$pr->name}}</a>
+                                </h2>
+                            </div>
+                            <div class="item-address">
+                                <i class="awe-icon awe-icon-marker-2"></i>
+                                {{$pr->description}}
+                            </div>
+                            <div class="item-footer">
+                                <p>Price</p>
+                                <div class="item-rate">
+                                    <span>IDR:{{$pr->price}}</span><br>
+                                    Stock: {{$pr->stock}}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item-price-more">
+                            <div class="price">
+                                Action
+                            </div>
+                        <a href="/seller/editProduct/{{$pr->id}}" class="awe-btn">edit</a>
+                        <a href="/seller/delete/{{ $pr->id }}" class="awe-btn">delete</a>
+                        </div>
+ 
+
+                    </div>
+                </div>
+                @endforeach
+                <!-- END / ITEM -->
+
                 {{-- <h3></h3>
                 <div class="grid-container">
                     <div class="grid-item">
@@ -53,18 +110,6 @@
                     </div>  
                   
                   </div> --}}
-                  <div class="col-lg-4">
-                    <h3>0</h3>
-                    <p>Order</p>
-                  </div>
-                  <div class="col-lg-4">
-                    <h3>5</h3>
-                    <p>Products</p>
-                  </div>
-                  <div class="col-lg-4">
-                    <h3>3</h3>
-                    <p>Products sold</p>
-                  </div>
               
             </div>
         </div>
@@ -74,14 +119,12 @@
           <div class="w3-card w3-round w3-white box col-lg-3 box" style=" border:solid gray 1px;">
             {{-- <p style="float: right;">verified</p>   --}}
             <div class="w3-container">
-              @foreach($shop1 as $p)
-             
-            <p style="float: right;">verified</p>
+              <p style="float: right;">verified</p>
                <h4 class="w3-center">Shop info</h4>
                {{-- <p style="float: right;">verified</p> --}}
           
                <hr>
-               
+               @foreach($shop1 as $p)
                {{-- <p class="w3-center"></p> --}}
              
                  {{-- <img width="150px" style="round:50%" src="{{ url('/data_file/'.$p->idcard_picture) }}"> --}}

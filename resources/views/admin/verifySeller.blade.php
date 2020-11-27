@@ -32,22 +32,32 @@
                     </ul>
                 </div>
                 <div class="col-lg-9" style="color: black; border-left: 2px solid #dedede;">
-                    <div class="col-lg-3">
-                        <div class="col-lg-12" style="text-align:center; background-color:#f0f0f0; padding:10px;">
-                            <div class="col-lg-12" >
-                                <span style="font-size: 30pt; ">{{$shop}}</span>
-                            </div>
-                            <div class="col-lg-12">Seller</div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3">
-                        <div class="col-lg-12" style="text-align:center; background-color:#f0f0f0; padding:10px;">
-                            <div class="col-lg-12" >
-                                <span style="font-size: 30pt; ">{{$user}}</span>
-                            </div>
-                            <div class="col-lg-12">User</div>
-                        </div>
-                    </div>
+                    <table class="table table-bordered table-hover table-striped">
+                        <thead>
+                        <tr>
+                            <th>Shop name</th>
+                            <th>Picture</th>
+                            <th>Action</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                            @foreach($shop as $p)
+                           <tr>
+                               <td style="text-align: center">
+                                   {{$p->name}}
+                               </td>
+                               <td style="text-align: center"> 
+                                
+                                     <img id="myImg" data-toggle="modal" id="exampleModal" data-target="#exampleModal" src="{{ url('/data_file/'.$p->idcard_picture) }}" style="height:120px; width:200px"/>
+                                    
+                                    </td>
+                               <td style="text-align: center">
+                                <a href="/admin/verified/{{$p->id}}" class="awe-btn">verify this user</a>
+                               </td>
+                          </tr>
+                            @endforeach
+                        </tbody>
+                       </table>
                     
                 </div>
             </div>
@@ -71,28 +81,19 @@
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Submit Application</h5>
+          <h5 class="modal-title" id="exampleModalLabel">Id_Card Preview</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
-        <form action="/residences/apply" method="POST">
             <div class="modal-body">
-                <div class="row">
-                    {{-- <div class="col-xs-12"><input type="text" disabled name="application_date" class="awe-calendar" value="Today" placeholder="Today"></div> --}}
-                    <div class="col-xs-6"><input type="number" name="required_year" id="required_year" value="{{old("required_year")}}" placeholder="Required year"></div>
-                    <div class="col-xs-6"><input type="number" name="required_month" id="required_month" value="{{old("required_month")}}" placeholder="Required month"></div>
-                    <div class="col-xs-12"><label for="residence_name">Residence</label></div>
-                    <div class="col-xs-12"><input type="text" readonly aria-readonly="true" name="residence_name" id="residence_name" value="{{old("residence_name")}}" placeholder="Please re-apply"></div>
-                    <input type="hidden" readonly aria-readonly="true" name="residence_id" id="residence_id" value="{{old("residence_id")}}" placeholder="Please re-apply">
-                    @csrf
-                </div>
+            <img class="modal-content" id="img01" style="width: 100%"> 
             </div>
             <div class="modal-footer">
                 <button type="button" class="awe-btn" data-dismiss="modal">Close</button>
-                <button type="submit" class="awe-btn awe-btn-style3">Submit</button>
+                {{-- <button type="submit" class="awe-btn awe-btn-style3">Submit</button> --}}
             </div>
-        </form>
+        
       </div>
     </div>
   </div>
@@ -103,6 +104,21 @@
         $("#residence_id").val(id);
         $("#residence_name").val(name);
     }
+    // Get the modal
+var modal = document.getElementById("exampleModal");
+
+// Get the image and insert it inside the modal - use its "alt" text as a caption
+var img = document.getElementById("myImg");
+var modalImg = document.getElementById("img01");
+var captionText = document.getElementById("caption");
+img.onclick = function(){
+  modal.style.display = "block";
+  modalImg.src = this.src;
+  captionText.innerHTML = this.alt;
+}
 </script>
+
+  
+  
 
 @endsection

@@ -38,7 +38,7 @@ class authController extends Controller
             if ($banned_days > 14) {
                 $message = 'Your account has been suspended. Please contact administrator for more info.';
             } else {
-                $message = 'Your account has been suspended for '.$banned_days.' '.Str::plural('day', $banned_days).'. Please contact administrator.';
+                $message = 'Your account has been suspended for '.$banned_days.' '.Str::plural('day', $banned_days).'. Please contact administrator for more info.';
             }
 
             return redirect("/login")->withMessage($message);

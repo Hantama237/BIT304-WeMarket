@@ -17,6 +17,9 @@ Route::middleware(['islogin'])->group(function () {
     Route::get('/', function () {
         return view('buyer.dashboard');
     });
+    Route::get('/design',function(){
+        return view('buyer.search.result');
+    });
     Route::prefix('manage')->group(function(){
         Route::get('profile','manageUserProfileController@index');
         Route::post('profile/update/profile','manageUserProfileController@updateProfile');

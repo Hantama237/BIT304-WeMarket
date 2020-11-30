@@ -14,9 +14,10 @@ class tb_products extends Model
         "shop_id"=>"required|exists:tb_shops,id",
         "name"=>"required",
         "description"=>"required|min:3",
+
         "price"=>"required|numeric",
         "stock"=>"required|numeric",
-        "picture"=>"nullable",
+        "picture"=>"nullable|file|image|mimes:jpeg,png,jpg|max:2048",
         "status"=>"nullable",
         //newly added
         "taste_id"=>"required|exists:tb_products,id",
@@ -24,6 +25,7 @@ class tb_products extends Model
         "sold"=>"nullable|numeric",
         "taste_level"=>"required|numeric",
         "search_tag"=>"nullable|string",
+
     ];
     public static function getValidationRules(){
         return self::$validationRule;
@@ -39,8 +41,10 @@ class tb_products extends Model
     public static function isExist($userid){
         return self::where("user_id",$userid)->first();
     }
+
     public static function generateSearchTag($id){
 
     }
+
     //
 }

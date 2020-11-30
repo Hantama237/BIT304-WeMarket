@@ -6,6 +6,9 @@
 <section>
     
     <div class="container">
+        @if (session('message'))
+            <div class="alert alert-danger">{{ session('message') }}</div>
+        @endif
         <span class="mobile">
             @include("components.buyer.sidebar")
         </span>

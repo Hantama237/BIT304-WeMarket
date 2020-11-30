@@ -47,9 +47,18 @@ Route::middleware(['islogin'])->group(function () {
     Route::get('/seller/address','shopAuthController@updateAddressIndex');
     Route::post('/seller/add/address','shopAuthController@addAddress');
     Route::post('/seller/update/address','shopAuthController@updateAddress');
+    //manage product
+    Route::get('/seller/product','productController@index');
+    Route::get('/seller/add','productController@add');
+    Route::get('/seller/edit','productController@edit');
+    Route::put('/seller/addProduct','productController@addProduct');
+    Route::get('/seller/product-list','productController@productList');
+    Route::get('/seller/delete/{id}', 'productController@delete');
+    Route::get('/seller/editProduct/{id}', 'productController@editProduct');
+    Route::put('/seller/editProcess/{id}','productController@editProcess');
+    Route::get('/seller/productPic','productController@productPic');
+    // Route::post('/seller/addPicture','productController@addPicture');
 
-
-    
     Route::get('/verify/{code}','verifyController@verify');
 
 
@@ -71,6 +80,14 @@ Route::prefix('admin')->group(function (){
     Route::post('/login','adminController@login');
     Route::middleware(['isadmin'])->group(function (){
         Route::get('/home','adminController@home');
+        Route::get('/verify','adminController@verify');
+        Route::get('/verified/{id}', 'adminController@process');
+        Route::get('/manageUser','adminController@manage');
+        Route::get('/banList','adminController@banList');
+        Route::get('/banForm/{id}','adminController@form');
+        Route::post('/processBan/{id}','adminController@ban');
+        Route::get('/revoke/{id}','adminController@revoke');
+
     });
 });
 

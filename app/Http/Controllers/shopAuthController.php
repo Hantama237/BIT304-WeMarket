@@ -15,8 +15,13 @@ class shopAuthController extends Controller
     public function indexRegister(){
         $shop = Shop::isExist(Session::get("id"));
         if($shop){
-            $shop1=Shop::get()->where("id",Session::get("id"));
-           // dd($shop);
+
+            $shop1=Shop::get()->where("user_id",Session::get("id"));
+            $shop2=Shop::where("user_id",Session::get("id"))->first();
+            // dd($shop1);
+            if($shop2->status == 0){
+                return view('seller.newSeller',['shop1'=>$shop1]);    
+            }
             return view('seller.dashboard',['shop1'=>$shop1]);
             //return "Welcome to seller dashboard";
         }
@@ -73,10 +78,27 @@ class shopAuthController extends Controller
         return redirect()->back()->withErrors(["Update failed"]);
     }
     public function process(Request $request){
-        $shop=Shop::where("id",Session::get("id"))->first();
-        // dd($shop->idcard_picture);
-        // dd($request->name);
-        //$validatedData = $request->validate(Shop::getValidationRules());
+        $shop=Shop::where("user_id",Session::get("id"))->first();
+        if($shop->status == 0){
+            $this->validate($request, [
+                "name"=>"required|min:3|regex:/^\S*$/u",
+                "user_id"=>"required|exists:tb_users,id",
+                "description"=>"required|min:3",
+                "idcard_picture"=>"nullable|file|image|mimes:jpeg,png,jpg|max:2048",
+                "status"=>"nullable",]);
+                // store file data as variable $file
+                $idcard_picture = $request->file('idcard_picture');
+                $idcard_picture_name = time()."_".$idcard_picture->getClientOriginalName();
+                // Move file to data_file folder
+                $upload_to = 'data_file';
+                $idcard_picture->move($upload_to,$idcard_picture_name);
+                //insert data
+                $shop->name = $request->name;
+                $shop->description=$request->description;
+                $shop->idcard_picture=$idcard_picture_name;
+               $shop->save();
+                return redirect()->back()->withSuccess("Wait admin for verify");
+        }
         $this->validate($request, [
         "name"=>$request->input('name')==$shop->name?"required":"required|unique:tb_shops|min:3|regex:/^\S*$/u",
         "user_id"=>"required|exists:tb_users,id",

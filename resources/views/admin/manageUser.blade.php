@@ -24,7 +24,7 @@
                                 Verify Seller
                             </li>
                         </a>
-                        <a href="/admin/manageUser">
+                        <a href="">
                             <li>
                                 Manage Users
                             </li>
@@ -32,22 +32,41 @@
                     </ul>
                 </div>
                 <div class="col-lg-9" style="color: black; border-left: 2px solid #dedede;">
-                    <div class="col-lg-3">
-                        <div class="col-lg-12" style="text-align:center; background-color:#f0f0f0; padding:10px;">
-                            <div class="col-lg-12" >
-                                <span style="font-size: 30pt; ">{{$shop}}</span>
-                            </div>
-                            <div class="col-lg-12">Seller</div>
-                        </div>
+                    {{-- @if(session('success'))
+                    <div class="alert alert-success">
+                    {{session('success')}}
                     </div>
-                    <div class="col-lg-3">
-                        <div class="col-lg-12" style="text-align:center; background-color:#f0f0f0; padding:10px;">
-                            <div class="col-lg-12" >
-                                <span style="font-size: 30pt; ">{{$user}}</span>
-                            </div>
-                            <div class="col-lg-12">User</div>
-                        </div>
+                     @endif --}}
+                    <div>
+                    <a href="/admin/manageUser"class="awe-btn btn-outline-secondary">User list</a>  
+                    <a href="/admin/banList" class="awe-btn  btn-btn-secondary">Ban list</a>
                     </div>
+                    
+                    <h4>{{$label}}</h4>
+                    <table class="table table-bordered table-hover table-striped">
+                        <thead>
+                        <tr>
+                            <th>User name</th>
+                            <th>Email</th>
+                            <th>Action</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                            @foreach($user as $u)
+                           <tr>
+                               <td style="text-align: center">
+                                   {{$u->name}}
+                               </td>
+                               <td style="text-align: center"> 
+                                     {{$u->email}}
+                               </td>
+                               <td style="text-align: center">
+                               <a href="/admin/{{$route}}/{{$u->id}}" class="awe-btn">{{$button}}</a>
+                               </td>
+                          </tr>
+                            @endforeach
+                        </tbody>
+                       </table>
                     
                 </div>
             </div>

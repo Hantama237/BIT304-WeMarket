@@ -19,7 +19,7 @@ class categorySeeder extends Seeder
         ];
 
         foreach ($categories as $c) {
-            Category::insert($c);
+            Category::insert(["category"=>$c]);
         }
     }
 }

@@ -21,7 +21,7 @@ class tb_products extends Model
         "status"=>"nullable",
         //newly added
         "taste_id"=>"required|exists:tb_products,id",
-        "sub_category_id"=>"required",
+        "sub_category_id"=>"required|exists:tb_sub_category,id",
         "sold"=>"nullable|numeric",
         "taste_level"=>"required|numeric",
         "search_tag"=>"nullable|string",

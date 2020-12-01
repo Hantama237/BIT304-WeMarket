@@ -33,7 +33,6 @@ class productController extends Controller
     }
     public function add(){
         $category=Category::get();
-        // dd($category);
         $sub=SubCategory::get();
         $taste=Taste::get();
         $shop1=Shop::get()->where("user_id",Session::get("id"));
@@ -54,7 +53,6 @@ class productController extends Controller
             "stock"=>"required",
             "picture"=>"required|file|image|mimes:jpeg,png,jpg|max:2048",
             "status"=>"nullable",
-            "category"=>"required",
             "sub_category_id"=>"required",
             "taste_id"=>"required",
             "taste_level"=>"required",
@@ -114,10 +112,13 @@ class productController extends Controller
     }
     public function editProduct($id)
     {
+        $category=Category::get();
+        $sub=SubCategory::get();
+        $taste=Taste::get();
         $data = Picture::where('product_id',$id)->get();
         $shop1=Shop::get()->where("id",Session::get("id"));
         $product = Product::find($id);
-        return view('seller.editForm', ['shop'=>$shop1,'product' => $product,'data'=>$data]);
+        return view('seller.editForm', ['shop'=>$shop1,'product' => $product,'data'=>$data,'category'=>$category,'subCategory'=>$sub,'taste'=>$taste]);
     }
     //edit
     public function editProcess($id, Request $request)
@@ -131,6 +132,9 @@ class productController extends Controller
             $product->description =$request->description;
             $product->price = $request->price;
             $product->stock =$request->stock;
+            $product->taste_id=$request->taste_id;
+            $product->sub_category_id=$request->sub_category_id;
+            $product->taste_level=$request->taste_level;
             $picture_name = time()."_".$picture->getClientOriginalName();
             // Move file to data_file folder
             $upload_to = 'data_file';
@@ -143,6 +147,9 @@ class productController extends Controller
         $product->description =$request->description;
         $product->price = $request->price;
         $product->stock =$request->stock;
+        $product->taste_id=$request->taste_id;
+        $product->sub_category_id=$request->sub_category_id;
+        $product->taste_level=$request->taste_level;
         $product->save();
         // dd($product);
         //update product picture

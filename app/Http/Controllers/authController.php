@@ -21,9 +21,9 @@ class authController extends Controller
             "password"=>User::getValidationRule("password")
         ]);
         $user = User::login($validatedData["email"],$validatedData["password"]);
-        $banned_days = now()->diffInDays($user->banned_until);
-        // dd($banned_days);
         
+        // dd($banned_days);
+        if($user)
         if($user->banned_until == null){
             Session::put([
                 "login"=>true,
@@ -34,7 +34,8 @@ class authController extends Controller
             ]);
             return redirect("/");
         }
-        if($user->banned_until != null){
+        else{
+            $banned_days = now()->diffInDays($user->banned_until);
             if ($banned_days > 14) {
                 $message = 'Your account has been suspended. Please contact administrator for more info.';
             } else {

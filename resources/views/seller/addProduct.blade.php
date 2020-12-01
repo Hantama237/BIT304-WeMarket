@@ -74,16 +74,6 @@
           <div class="form-group">
               <input type="number" name="stock" id="num" class="form-control " >
           </div>
-          <div class="form-group">
-            <label for="">Category</label><br>
-            
-            <select name="category" id="" value="">
-              @foreach ($category as $c)
-              <option value="{{$c->id}}">{{$c->category}}</option>
-              @endforeach
-          </select>
-          
-         </div>	  
          
           <div class="form-group">
             <label for="">Sub category</label>

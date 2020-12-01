@@ -23,7 +23,7 @@ class shopAuthController extends Controller
                 return view('seller.newSeller',['shop1'=>$shop1]);    
             }
             return view('seller.dashboard',['shop1'=>$shop1]);
-            //return "Welcome to seller dashboard";
+            
         }
         return view("seller.register");
     }
@@ -100,29 +100,25 @@ class shopAuthController extends Controller
                 return redirect()->back()->withSuccess("Wait admin for verify");
         }
         $this->validate($request, [
-        "name"=>$request->input('name')==$shop->name?"required":"required|unique:tb_shops|min:3|regex:/^\S*$/u",
+        "name"=>"required|unique:tb_shops|min:3|regex:/^\S*$/u",
         "user_id"=>"required|exists:tb_users,id",
         "description"=>"required|min:3",
         "idcard_picture"=>"nullable|file|image|mimes:jpeg,png,jpg|max:2048",
         "status"=>"nullable",]);
         // store file data as variable $file
-        
         $idcard_picture = $request->file('idcard_picture');
-        if($idcard_picture!=null){
-            $idcard_picture_name = time()."_".$idcard_picture->getClientOriginalName();
-            // Move file to data_file folder
-            $upload_to = 'data_file';
-            $idcard_picture->move($upload_to,$idcard_picture_name);
-            $shop->idcard_picture=$idcard_picture_name;
-        }
+        $idcard_picture_name = time()."_".$idcard_picture->getClientOriginalName();
+        // Move file to data_file folder
+		$upload_to = 'data_file';
+        $idcard_picture->move($upload_to,$idcard_picture_name);
+
     //    $shop->insert($request); 
         $shop->name = $request->name;
         $shop->description=$request->description;
-        
+        $shop->idcard_picture=$idcard_picture_name;
        $shop->save();
        //Session::flash('message','Update successfully.');
-       return redirect()->back()->withSuccess("shop information successfully updated");
-        return redirect()->back();
+        return redirect()->back()->withSuccess("shop information successfully updated");
     }
     public function address(){
         $shop=Shop::get()->where("id",Session::get("id"));

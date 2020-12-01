@@ -82,6 +82,27 @@
           <input type="number" name="stock" id="num" class="form-control " placeholder="{{$product->stock}}">
           </div>
          
+          <div class="form-group">
+            <label for="">Sub category</label>
+            <select name="sub_category_id" id="" value="">
+              @foreach ($subCategory as $sc)
+              <option value="{{$sc->id}}">{{$sc->sub_category}}</option>
+              @endforeach
+          </select>
+          
+         </div>
+        
+          <div class="form-group">
+            <label for="">Taste</label><br>
+            <select name="taste_id" id="province" value="">
+              @foreach ($taste as $t)
+              <option value="{{$t->id}}">{{$t->taste}}</option>
+              @endforeach
+          </select>
+          <label for="">Taste level</label>
+          <input type="range" id="" name="taste_level" min="0" max="5">  
+          
+         </div>
        
           <div class="form-group">
             <b>Change product thumbnails</b><br>

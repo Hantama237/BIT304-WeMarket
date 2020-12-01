@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\tb_shop as Shop;
 use App\tb_products as Product;
+use App\tb_category as Category;
+use App\tb_sub_category as SubCategory;
+use App\tb_taste_kind as Taste;
 use App\productPicture as Picture;
 use Session;
 class productController extends Controller
@@ -29,8 +32,12 @@ class productController extends Controller
         return view("seller.productList",['shop1'=>$shop1, "product"=>$product1]);
     }
     public function add(){
+        $category=Category::get();
+        // dd($category);
+        $sub=SubCategory::get();
+        $taste=Taste::get();
         $shop1=Shop::get()->where("user_id",Session::get("id"));
-        return view("seller.addProduct",['shop'=>$shop1]);
+        return view("seller.addProduct",['shop'=>$shop1,'category'=>$category,'subCategory'=>$sub,'taste'=>$taste]);
     }
     //addproduct
     public function addProduct(Request $req){
@@ -47,6 +54,10 @@ class productController extends Controller
             "stock"=>"required",
             "picture"=>"required|file|image|mimes:jpeg,png,jpg|max:2048",
             "status"=>"nullable",
+            "category"=>"required",
+            "sub_category_id"=>"required",
+            "taste_id"=>"required",
+            "taste_level"=>"required",
             "filename"=>"nullable",
             "filename.*"=>"file|image|mimes:jpeg,png,jpg|max:2048"
         ]);

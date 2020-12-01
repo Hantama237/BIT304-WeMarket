@@ -20,8 +20,8 @@ class tb_products extends Model
         "picture"=>"nullable|file|image|mimes:jpeg,png,jpg|max:2048",
         "status"=>"nullable",
         //newly added
-        "taste_id"=>"required|exists:tb_products,id",
-        "sub_category_id"=>"required|exists:tb_sub_category,id",
+        "taste_id"=>"required|exists:tb_taste_kinds,id",
+        "sub_category_id"=>"required|exists:tb_sub_categories,id",
         "sold"=>"nullable|numeric",
         "taste_level"=>"required|numeric",
         "search_tag"=>"nullable|string",

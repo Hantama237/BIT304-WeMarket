@@ -52,5 +52,4 @@ class orderController extends Controller
         $product=Product::get();
         return view('seller.takeDelivery',['shop1'=>$shop1,'order'=>$order,'orderProduct'=>$orderProduct,'product'=>$product]);     
     }
-
 }

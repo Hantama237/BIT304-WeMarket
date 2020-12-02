@@ -43,7 +43,7 @@
                     <ul>
                         <li><a href="/seller/dashboard">Home</a></li>
                         <li><a href="/seller/product">Products</a></li>
-                        <li><a href="#">Orders</a></li>
+                        <li><a href="/seller/order">Orders</a></li>
                     </ul>
                 </div>
             </div>

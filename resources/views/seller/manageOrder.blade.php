@@ -36,51 +36,53 @@
                     </ul>
                 </div>
             </div>
-            <div class="col-lg-8">
-              @if(session('success'))
-              <div class="alert alert-success">
-                    {{session('success')}}
-              </div>
-                @endif
-                <a class="btn btn-success" href="/seller/add" role="button">Add product</a>
-                <a class="btn btn-primary" href="/seller/edit" role="button">Edit Product</a> 
-                  <h3>Product list</h3>
-                  @foreach ($product as $pr)
-                      
-                  
-                  <div class="col-lg" style="float: left; margin-left:10px;margin-top:5px; border: solid 1px gray;">
-                    <a href="#">
-                        {{-- <div class="image-wrap image-cover"> --}}
-                        <img src="{{ url('/data_file/'.$pr->picture) }}" alt="asda" class="img-thumbnail" style="height: 100px" width="150px">
-                        {{-- </div> --}}
-                    </a>
-                    <div class="text-center">
-                        <h5><a href="#">{{$pr->name}}</a></h5>
-                        <div class="item-cat">
-                                <a href="#" disabled>IDR:{{$pr->price}}</a>  
-                        </div>
-                    </div>
-                    <div class="text-center">
-                    <span class="count"><p>Stock:{{$pr->stock}}</p></span>
-                    </div>
-                </div>
+            <div class="col-lg-9">
+              @if(count($errors) > 0)
+              <div class="alert alert-danger">
+                @foreach ($errors->all() as $error)
+                {{ $error }} <br/>
                 @endforeach
-                {{-- <h3></h3>
-                <div class="grid-container">
-                    <div class="grid-item">
-                        <h3>0</h3>
-                        <p>Order</p>
-                    </div>
-                    <div class="grid-item">
-                        <h3>3</h3>
-                        <p>products</p>
-                    </div>
-                    <div class="grid-item">
-                        <h3>3</h3>
-                        <P>sold</P>
-                    </div>  
-                  
-                  </div> --}}
+              </div>
+              @endif
+                <a class="btn btn-success" href="/seller/order" role="button">Order</a>
+                <a class="btn btn-primary" href="/seller/takeOrDelivery" role="button">Take/Delivery status</a>
+                  <h3>Manage order</h3>
+               
+                  <table class="table" style="width: 100%; color:black;">
+                    <tr style="border: 1px solid gray;">
+                      <th scope="col">Order date</th>
+                      <th scope="col">Order item</th>
+                      <th scope="col">Payment Method</th>
+                      <th scope="col">Delivery method</th>
+                      <th scope="col">Total Price</th>
+                      <th scope="col">Action</th>
+                    </tr>
+                    @foreach ($order as $o)
+                    <tr style="border: 1px solid #ddd;">
+                    <td style="border: 1px solid #ddd;">{{$o->order_date}}</td>
+                      
+                        <td style="border: 1px solid #ddd;">  @foreach ($orderProduct->where("order_id",$o->id) as $item)
+                          @foreach ($product->where("id",$item->product_id) as $p)
+                          <p>Product: {{$p->name}}</p>
+                          @endforeach
+                          <p>Quantity: {{$item->quantity}}</p>
+                          <p>Price: {{$item->price}}</p>
+                          
+                      
+                        @endforeach
+                      </td>
+                    <td style="border: 1px solid #ddd;">{{$o->payment_method}}</td>
+                    <td >{{$o->delivery_method}}</td>
+                    <td >{{$o->total_price}}</td>
+                    <td style="border: 1px solid #ddd;"><a class="btn btn-primary" style="margin-top: 5px" href="/seller/processOrder/{{$o->id}}" role="button">Accept</a>
+                        <br><br><a class="btn btn-danger" href="/seller/cancelOrder/{{$o->id}}" role="button">Decline</a>
+                    </td>
+                    </tr>
+                        
+                    @endforeach
+
+                  </table>
+            
               
             </div>
         </div>

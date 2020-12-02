@@ -57,6 +57,11 @@ Route::middleware(['islogin'])->group(function () {
     Route::get('/seller/editProduct/{id}', 'productController@editProduct');
     Route::put('/seller/editProcess/{id}','productController@editProcess');
     Route::get('/seller/productPic','productController@productPic');
+    //order
+    Route::get('/seller/order','orderController@order');
+    Route::get('/seller/takeOrDelivery','orderController@status');
+    Route::get('/seller/cancelOrder/{id}', 'orderController@cancel');
+    Route::get('/seller/processOrder/{id}', 'orderController@process');
     // Route::post('/seller/addPicture','productController@addPicture');
 
     Route::get('/verify/{code}','verifyController@verify');

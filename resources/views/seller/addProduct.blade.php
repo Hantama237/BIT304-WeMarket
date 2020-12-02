@@ -44,7 +44,7 @@
         <ul>
             <li><a href="/seller/dashboard">Home</a></li>
             <li><a href="/seller/product">Products</a></li>
-            <li><a href="/">Orders</a></li>
+            <li><a href="/seller/order">Orders</a></li>
         </ul>
     </div>
 </div>
@@ -54,22 +54,14 @@
     {{ csrf_field() }}
     {{ method_field('PUT') }}
  
-          {{-- <div class="row"> --}}
-              {{-- <div class="col-xs-12 col-sm-4 col-md-4"> --}}
-                  <label for="">Product name</label>
-                  <div class="form-group">
-                      <input type="text" name="name" id="first_name" class="form-control">
-                  </div>
-              {{-- </div> --}}
+        <label for="">Product name</label>
+        <div class="form-group">
+            <input type="text" name="name" id="first_name" class="form-control">
+        </div>
               
-              
-          {{-- </div> --}}
           @foreach($shop as $sp)
           <input type="hidden"  name="shop_id" id="first_name" class="form-control" value="{{$sp->shop_id}}" >
           @endforeach
-          {{-- <div class="form-group">
-              <input type="email" name="email" id="email" class="form-control " placeholder="Email Address" >
-          </div> --}}
           <label for="">Description</label>
           <div class="form-group">
               <input type="text" name="description" id="desc" class="form-control " >
@@ -83,19 +75,31 @@
               <input type="number" name="stock" id="num" class="form-control " >
           </div>
          
-       
+          <div class="form-group">
+            <label for="">Sub category</label>
+            <select name="sub_category_id" id="" value="">
+              @foreach ($subCategory as $sc)
+              <option value="{{$sc->id}}">{{$sc->sub_category}}</option>
+              @endforeach
+          </select>
+          
+         </div>
+        
+          <div class="form-group">
+            <label for="">Taste</label><br>
+            <select name="taste_id" id="province" value="">
+              @foreach ($taste as $t)
+              <option value="{{$t->id}}">{{$t->taste}}</option>
+              @endforeach
+          </select>
+          <label for="">Taste level</label>
+          <input type="range" id="" name="taste_level" min="0" max="5">  
+          
+         </div>
           <div class="form-group">
             <b>Product thumbnails</b><br>
-            {{-- test preview --}}
-            {{-- <div class="row col-lg-5" style="text-align: center;">
-              <div id="preview-profile" style="display:inline-block;background-color: #73de77; height:300px; width:300px;"></div>
-             </div>
-             <div class="row col-lg-7 align-middle" style="height: 400px; position: relative;">
-              <div style="display: inline-block; position: absolute; bottom:0%; -ms-transform: translateY(-50%); transform: translateY(-50%);"><input  onchange="readURL(this)" id="imgInp" type="file" accept="image/*" name="profile_picture"></div>  
-            </div> --}}
             <input type="file" name="picture">
           </div> 
-          {{-- <button><a href="/seller/productPic">add product picture</a></button> --}}
           <b>Product picture</b>                      
           <div class="input-group control-group increment" >
             <input type="file" name="filename[]" class="form-control">
@@ -111,7 +115,7 @@
               </div>
             </div>
           </div>
-          	  
+
           <input type="submit" value="submit" class="btn btn-primary">
         
         </div> 

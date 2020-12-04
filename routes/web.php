@@ -18,8 +18,13 @@ Route::middleware(['islogin'])->group(function () {
         return view('buyer.dashboard');
     });
     Route::get('/design',function(){
-        return view('buyer.search.result');
+        return view('buyer.search.detail');
     });
+    Route::get('/cart','searchController@addToCart');
+
+
+    Route::get('/search','searchController@search');
+    Route::get('/detail','searchController@detail');
     Route::prefix('manage')->group(function(){
         Route::get('profile','manageUserProfileController@index');
         Route::post('profile/update/profile','manageUserProfileController@updateProfile');

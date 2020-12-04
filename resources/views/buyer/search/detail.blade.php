@@ -1,6 +1,7 @@
 @extends('base')
 @section('main')
 
+
 <style>
     #product-img{
         border-radius: 3px;
@@ -88,54 +89,80 @@
 <section>
     
     <div class="container">
-        @if (session('message'))
-            <div class="alert alert-danger">{{ session('message') }}</div>
-        @endif
         <span class="mobile">
             @include("components.buyer.sidebar")
         </span>
         <div class="col-lg-9">
-            <h3>Search Products</h3>
+            <h3>Product Detail</h3>
             <div class="col-lg-12 box" style="padding-bottom: 20px;">
-                <form action="/search" method="get">
-                    <div class="col-lg-6">
-                        <input name="keywords" style="width: 100%;" type="text" > 
+                <div class="col-md-6 ">
+                    <div class="col-lg-12 detail-picture">
+
                     </div>
-                    <div style="padding-left:0px;" class="col-lg-6">
-                        <button type="submit" class="awe-btn awe-btn-style3">Search</button> 
-                        <button  class="awe-btn ">Recommendation</button>
+                    <div class="col-lg-12 row detail-thumbnails">
+                        <div class="col-xs-3 detail-thumbnail"></div>
+                        <div class="col-xs-3 detail-thumbnail" style="background-color: aquamarine;"></div>
+                        <div class="col-xs-3 detail-thumbnail"></div>
+                        <div class="col-xs-3 detail-thumbnail" style="background-color: aquamarine;"></div>
                     </div>
-                </form>
-            </div>
-            <h3>Special For You</h3>
-            <div class="col-lg-12 box" style="margin-bottom:100px; padding-bottom: 20px;">
-                <div class="product col-lg-3" >
-                    <div style="width: 100%; height:120px;" id="product-img" >
-                        
-                    </div>
-                    <div class="product-name">Jeruk Bali, Manis</div>
-                    <div class="product-location">Kediri, Tabanan</div>
-                    <div>
-                        
-                        <div class="product-price">Rp. 22.000</div>
-                        <div class="product-stock">stock 22</div>
-                    </div>
-                    
                 </div>
-                <div class="product col-lg-3" >
-                    <div style="width: 100%; height:120px;" id="product-img" >
+                <div class="col-md-6 detail-info">
+                    <h5>{{$product->name}}</h5>
+                    <div>Stock {{$product->stock}} | Sold {{$product->sold}}</div>
+                    <div class="detail-description">
+                        {{$product->description}}
+                    </div>
+                    <div class="detail-price">Rp. {{number_format($product->price,0,',','.')}}</div>
+                    <div class="detail-purchase">
+                        <div class="col-md-6" style="padding-left: 0px; padding-right:5px;"><button class="col-lg-12 awe-btn  awe-btn-style3">Add To cart</button></div>
+                        <div class="col-md-6" style="padding-right 0px; padding-left: 5px;"><button class="col-lg-12 awe-btn">Buy Now</button></div>
+                        
                         
                     </div>
-                    <div class="product-name">Jeruk Bali, Manis</div>
-                    <div class="product-location">Kediri, Tabanan</div>
-                    <div>
-                        
-                        <div class="product-price">Rp. 22.000</div>
-                        <div class="product-stock">stock 22</div>
-                    </div>
-                    
                 </div>
             </div>
+
+            <div class="col-lg-12 box" style="margin-top:20px; margin-bottom:20px; padding-bottom:15px;">
+                <div class="col-xs-2">
+                <div class="shop-image" style="">
+                    {{-- Background Image --}}
+                    </div>
+                </div>
+                <div class="col-xs-4">
+                    <h5>{{$shop->name}}</h5>
+                    <span>{{$shop->description}}</span>
+                </div>
+                <div class="col-xs-6" style="text-align: right;  padding-top:10px;">
+                    <button>Contact Seller</button>
+                    {{-- <button>Visit Shop</button> --}}
+                </div>
+            </div>
+            
+            <div class="col-lg-12 box" style="margin-bottom:100px; padding-bottom:20px;">
+                <h5>Also from this shop</h5>
+                @foreach ($products as $p)
+                @php
+                    $address = $p->shop->address;
+                @endphp
+                <a href="/detail?id={{$p->id}}">
+                    <div class="product col-lg-3" >
+                        <div style="width: 100%; height:120px;" id="product-img" >
+                            
+                        </div>
+                        <div class="product-name">{{$p->name}}, {{$p->taste->taste}}</div>
+                        <div class="product-location">{{$address->subdistrict->subdistrict_name}}, {{$address->city->city_name}}</div>
+                        <div>
+                            
+                            <div class="product-price">Rp. {{number_format($p->price,0,',','.')}}</div>
+                            <div class="product-stock">stock {{$p->stock}}</div>
+                        </div>
+                        
+                    </div>
+                </a>
+                @endforeach
+                {!!$pagination !!}
+            </div>
+            
         </div>
         <span class="desktop">
             @include("components.buyer.sidebar")

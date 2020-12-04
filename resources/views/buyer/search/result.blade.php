@@ -16,12 +16,38 @@
         padding-top: 10px;
         padding-bottom: 10px;
         background-color: #f2f2f2; 
+        color: black;
     }
     .product:hover{
         cursor: pointer;
         background-color: #d1d1d1;
         border: 3px solid white;
     }
+    .product-name{
+        padding-top: 3px;
+        font-weight:600;
+    }
+    .product-price{
+        font-size: 16px;
+        color: black;
+        width: 62%;
+        display: inline-block;
+        text-align: left;
+    }
+    .product-location{
+        width: 100%;
+        text-align: left;
+        color: gray;
+        font-size: 13px;
+    }
+    .product-stock{
+        font-size: 12px;
+        color: green;
+        width: 35%;
+        display: inline-block;
+        text-align: right;
+    }
+    
 </style>
 <!-- LIST -->
 <section>
@@ -33,59 +59,39 @@
         <div class="col-lg-9">
             <h3>Search Products</h3>
             <div class="col-lg-12 box" style="padding-bottom: 20px;">
-                <div class="col-lg-6">
-                    <input style="width: 100%;" type="text"> 
-                </div>
-                <div style="padding-left:0px;" class="col-lg-6">
-                    <button   class="awe-btn awe-btn-style3">Search</button> 
-                    <button  class="awe-btn ">Recommendation</button>
-                </div>
+                <form action="/search" method="get">
+                    <div class="col-lg-6">
+                        <input name="keywords" style="width: 100%;" type="text" value="{{$keywords}}"> 
+                    </div>
+                    <div style="padding-left:0px;" class="col-lg-6">
+                        <button type="submit" class="awe-btn awe-btn-style3">Search</button> 
+                        <button  class="awe-btn ">Recommendation</button>
+                    </div>
+                </form>
             </div>
             <h3>Search Result</h3>
             <div class="col-lg-12 box" style="margin-bottom:100px; padding-bottom: 20px;">
-                <div class="product col-lg-3" >
-                    <div style="width: 100%; height:120px;" id="product-img" >
+                @foreach ($products as $p)
+                @php
+                    $address = $p->shop->address;
+                @endphp
+                <a href="/detail?id={{$p->id}}">
+                    <div class="product col-lg-3" >
+                        <div style="width: 100%; height:120px;" id="product-img" >
+                            
+                        </div>
+                        <div class="product-name">{{$p->name}}, {{$p->taste->taste}}</div>
+                        <div class="product-location">{{$address->subdistrict->subdistrict_name}}, {{$address->city->city_name}}</div>
+                        <div>
+                            
+                            <div class="product-price">Rp. {{number_format($p->price,0,',','.')}}</div>
+                            <div class="product-stock">stock {{$p->stock}}</div>
+                        </div>
                         
                     </div>
-                    <div>Jeruk Bali, Manis</div>
-                    <div>Lokasi</div>
-                    <div>Rp. 22.000/Kg</div>
-                </div>
-
-                <div class="product col-lg-3" >
-                    <div style="width: 100%; height:120px;" id="product-img" >
-                        
-                    </div>
-                    <div>Jeruk Bali, Manis</div>
-                    <div>Lokasi</div>
-                    <div>Rp. 22.000/Kg</div>
-                </div>
-                <div class="product col-lg-3" >
-                    <div style="width: 100%; height:120px;" id="product-img" >
-                        
-                    </div>
-                    <div>Jeruk Bali, Manis</div>
-                    <div>Lokasi</div>
-                    <div>Rp. 22.000/Kg</div>
-                </div>
-                <div class="product col-lg-3" >
-                    <div style="width: 100%; height:120px;" id="product-img" >
-                        
-                    </div>
-                    <div>Jeruk Bali, Manis</div>
-                    <div>Lokasi</div>
-                    <div>Rp. 22.000/Kg</div>
-                </div>
-
-                <div class="product col-lg-3" >
-                    <div style="width: 100%; height:120px;" id="product-img" >
-                        
-                    </div>
-                    <div>Jeruk Bali, Manis</div>
-                    <div>Lokasi</div>
-                    <div>Rp. 22.000/Kg</div>
-                </div>
-                
+                </a>
+                @endforeach
+                {!! $pagination!!}
             </div>
         </div>
         <span class="desktop">

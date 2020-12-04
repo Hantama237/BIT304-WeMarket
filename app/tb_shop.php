@@ -3,7 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-
+use App\tb_products as Product;
 class tb_shop extends Model
 {
     //
@@ -46,5 +46,16 @@ class tb_shop extends Model
     }
     public static function isExist($userid){
         return self::where("user_id",$userid)->first();
+    }
+
+    //executed when updating shop address/ shop name
+    public static function generateAllSearchTag($id){
+        $shop = self::where('id',$id)->first();
+        $products = $shop->products();
+        if($products){
+            foreach ($products as $p) {
+                Product::generateSearchTag($p->id);
+            }
+        }
     }
 }

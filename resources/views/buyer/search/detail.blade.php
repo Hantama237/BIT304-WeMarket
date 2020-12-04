@@ -114,7 +114,7 @@
                     </div>
                     <div class="detail-price">Rp. {{number_format($product->price,0,',','.')}}</div>
                     <div class="detail-purchase">
-                        <div class="col-md-6" style="padding-left: 0px; padding-right:5px;"><button class="col-lg-12 awe-btn  awe-btn-style3">Add To cart</button></div>
+                        <div class="col-md-6" style="padding-left: 0px; padding-right:5px;"><button class="col-lg-12 awe-btn  awe-btn-style3" data-toggle="modal" data-target="#addToCartModal">Add To cart</button></div>
                         <div class="col-md-6" style="padding-right 0px; padding-left: 5px;"><button class="col-lg-12 awe-btn">Buy Now</button></div>
                         
                         
@@ -178,7 +178,7 @@
         margin-bottom: 10px;
     }
 </style>
-<div style="z-index:999999" class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div style="z-index:999999" class="modal fade" id="addToCartModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">

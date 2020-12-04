@@ -59,16 +59,16 @@ class tb_products extends Model
         $category = $sub_category->category->category;
         $shop = $product->shop;
         $taste = $product->taste->taste;
-        $address = $shop->address;
+        $address = $shop->address!=null?$shop->address:"";
         $product->search_tag = 
             $product->name.
             $shop->name.
             $sub_category->sub_category.
             $category.
             $taste.
-            $address->province->province_name.
-            $address->city->city_name.
-            $address->subdistrict->subdistrict_name;
+            ($address!=""?$address->province->province_name:"").
+            ($address!=""?$address->city->city_name:"").
+            ($address!=""?$address->subdistrict->subdistrict_name:"");
         $product->save();
     }
 

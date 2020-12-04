@@ -27,7 +27,7 @@ class CreateTbProductsTable extends Migration
             $table->foreignId("sub_category_id");
             $table->integer("sold")->default(0);
             $table->integer("taste_level");
-            $table->string("search_tag")->nullable();
+            $table->string("search_tag")->nullable()->default("");
             $table->timestamps();
         });
     }

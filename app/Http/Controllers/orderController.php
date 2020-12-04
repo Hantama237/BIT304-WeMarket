@@ -47,13 +47,9 @@ class orderController extends Controller
         $shop=Shop::where("user_id",Session::get("id"))->first();
         // dd($shop1[0]->id);
         $order=Order::where("shop_id",$shop->id)->where('status',"!=","wait for seller")->get();
-        // $order1=Order::where('status',"waiting you to come")->where('status',"on delivery")->get();
-        // $count=count($order);
-        // dd($order);
         $orderProduct=orderProduct::get();
         // $orderProduct1=orderProduct::where("order_id",$order1->id)->first();
         $product=Product::get();
-        // dd($product);,'orderProduct'=>$orderProduct,'product'=>$product]
         return view('seller.takeDelivery',['shop1'=>$shop1,'order'=>$order,'orderProduct'=>$orderProduct,'product'=>$product]);     
     }
 

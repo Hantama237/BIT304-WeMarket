@@ -27,6 +27,17 @@ class tb_products extends Model
         "search_tag"=>"nullable|string",
 
     ];
+    public function sub_category(){
+        return $this->belongsTo('App\tb_sub_category','sub_category_id');
+    }
+    public function taste(){
+        return $this->belongsTo('App\tb_taste_kind','taste_id');
+    }
+    public function shop(){
+        return $this->belongsTo('App\tb_shop','shop_id');
+    }
+
+
     public static function getValidationRules(){
         return self::$validationRule;
     }
@@ -36,14 +47,43 @@ class tb_products extends Model
 
     //method
     public static function addProduct($validatedData){
-        return self::insert([$validatedData]);
+        return self::create($validatedData);
     }
     public static function isExist($userid){
         return self::where("user_id",$userid)->first();
     }
 
     public static function generateSearchTag($id){
+        $product = self::where("id",$id)->first();
+        $sub_category = $product->sub_category;
+        $category = $sub_category->category->category;
+        $shop = $product->shop;
+        $taste = $product->taste->taste;
+        $address = $shop->address;
+        $product->search_tag = 
+            $product->name.
+            $shop->name.
+            $sub_category->sub_category.
+            $category.
+            $taste.
+            $address->province->province_name.
+            $address->city->city_name.
+            $address->subdistrict->subdistrict_name;
+        $product->save();
+    }
 
+    public static function search($keywords,$paginate = 8){
+        $words = explode(' ', $keywords);
+        $products=self::with([]);
+        foreach ($words as $w) {
+            $products=$products->where('search_tag', 'like', '%' . $w . '%');
+        }   
+        $products =$products->paginate($paginate); 
+        if($products){
+            return $products;
+        }
+        return false;
+        
     }
 
     //

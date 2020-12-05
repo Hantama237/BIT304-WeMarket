@@ -36,6 +36,9 @@ class tb_products extends Model
     public function shop(){
         return $this->belongsTo('App\tb_shop','shop_id');
     }
+    public function pictures(){
+        return $this->hasMany('App\productPicture','product_id');
+    }
 
 
     public static function getValidationRules(){

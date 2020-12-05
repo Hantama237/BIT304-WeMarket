@@ -77,7 +77,7 @@
                 @endphp
                 <a href="/detail?id={{$p->id}}">
                     <div class="product col-lg-3" >
-                        <div style="width: 100%; height:120px;" id="product-img" >
+                        <div style="width: 100%; height:120px;" id="product-img" style="background-image:url('{{ url('/data_file/'.$p->picture) }}') ">
                             
                         </div>
                         <div class="product-name">{{$p->name}}, {{$p->taste->taste}}</div>
@@ -91,7 +91,10 @@
                     </div>
                 </a>
                 @endforeach
-                {!! $pagination!!}
+                <div class="col-lg-12">
+                    {!! $pagination!!}
+                </div>
+                
             </div>
         </div>
         <span class="desktop">

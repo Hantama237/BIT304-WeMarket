@@ -50,7 +50,9 @@
     
     .detail-picture{
         background-color: bisque;
-        
+        background-size: cover;
+        background-position: center center;
+        background-repeat: no-repeat;
         height: 300px;
     }
     .detail-description{
@@ -70,12 +72,16 @@
     .detail-thumbnails{
         margin-top:10px;
         cursor: pointer;
+        
     }
     .detail-thumbnail:hover{
-        border-bottom: 2px solid gray;
+        border-bottom: 2px solid white;
     }
     .detail-thumbnail{
         height: 60px;
+        background-size: cover;
+        background-position: center center;
+        background-repeat: no-repeat;
         background-color: bisque;
     }
 
@@ -83,6 +89,12 @@
         height:100px;
         border-radius: 100%;
         background-color: aqua;
+        background-size: cover;
+        background-position: center center;
+        background-repeat: no-repeat;
+    }
+    .hidden{
+        display: none;
     }
 </style>
 <!-- LIST -->
@@ -96,14 +108,31 @@
             <h3>Product Detail</h3>
             <div class="col-lg-12 box" style="padding-bottom: 20px;">
                 <div class="col-md-6 ">
-                    <div class="col-lg-12 detail-picture">
-
+                    <div id="detail-picture1" class="col-lg-12 detail-picture" style="background-image:url('{{ url('/data_file/'.$product->picture) }}') ">
+                        {{-- image --}}
                     </div>
+                    @if($product->pictures()->first()!==null)
+                    @php
+                        $id = 1;
+                    @endphp
+                        @foreach (json_decode($product->pictures()->first()->filename) as $p)
+                            
+                            <div id="detail-picture{{++$id}}" class="col-lg-12 detail-picture" style="background-image:url('{{ asset('/image/'.$p) }}'); display:none;">
+                                {{-- image --}}
+                            </div>
+                        @endforeach
+                       @endif
                     <div class="col-lg-12 row detail-thumbnails">
-                        <div class="col-xs-3 detail-thumbnail"></div>
-                        <div class="col-xs-3 detail-thumbnail" style="background-color: aquamarine;"></div>
-                        <div class="col-xs-3 detail-thumbnail"></div>
-                        <div class="col-xs-3 detail-thumbnail" style="background-color: aquamarine;"></div>
+                        <div onclick="updateThumbnail('detail-picture1')" class="col-xs-3 detail-thumbnail" style="background-image:url('{{ url('/data_file/'.$product->picture) }}') "></div>
+                       @if($product->pictures()->first()!==null)
+                        @php
+                            $id = 1;
+                        @endphp
+                        @foreach (json_decode($product->pictures()->first()->filename) as $p)
+                            <div onclick="updateThumbnail('detail-picture{{++$id}}')" class="col-xs-3 detail-thumbnail" style="background-image:url('{{ asset('/image/'.$p) }}') "></div>
+                        @endforeach
+                       @endif
+                        
                     </div>
                 </div>
                 <div class="col-md-6 detail-info">
@@ -124,7 +153,7 @@
 
             <div class="col-lg-12 box" style="margin-top:20px; margin-bottom:20px; padding-bottom:15px;">
                 <div class="col-xs-2">
-                <div class="shop-image" style="">
+                <div class="shop-image" style="background-image:url('{{ url('/data_file/'.$shop->idcard_picture) }}') ">
                     {{-- Background Image --}}
                     </div>
                 </div>
@@ -146,7 +175,7 @@
                 @endphp
                 <a href="/detail?id={{$p->id}}">
                     <div class="product col-lg-3" >
-                        <div style="width: 100%; height:120px;" id="product-img" >
+                        <div style="width: 100%; height:120px;" id="product-img" style="background-image:url('{{ url('/data_file/'.$p->picture) }}') ">
                             
                         </div>
                         <div class="product-name">{{$p->name}}, {{$p->taste->taste}}</div>
@@ -160,7 +189,10 @@
                     </div>
                 </a>
                 @endforeach
-                {!!$pagination !!}
+                <div class="col-lg-12">
+                    {!!$pagination !!}
+                </div>
+                
             </div>
             
         </div>
@@ -213,6 +245,11 @@
     function updateModal(id,name){
         $("#residence_id").val(id);
         $("#residence_name").val(name);
+    }
+    //$('detail-picture')
+    function updateThumbnail(id){
+        $('.detail-picture').css({"display":"none"})
+        $("#"+id).css({"display":"block"})
     }
 </script>
 

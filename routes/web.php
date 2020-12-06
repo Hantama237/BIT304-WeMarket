@@ -20,8 +20,11 @@ Route::middleware(['islogin'])->group(function () {
     Route::get('/design',function(){
         return view('buyer.search.detail');
     });
-    Route::get('/cart','searchController@addToCart');
-
+    // Route::get('/cart','searchController@addToCart');
+    Route::post('/cart/add','searchController@addToCart');
+    Route::get('/cart/remove','searchController@removeFromCart');
+    Route::get('/cart/update','searchController@updateCartPrice');
+    Route::post('/cart/set','searchController@setAmmount');
 
     Route::get('/search','searchController@search');
     Route::get('/detail','searchController@detail');

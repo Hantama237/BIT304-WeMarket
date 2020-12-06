@@ -202,6 +202,7 @@
     </div>
 </section>
 
+
 {{-- Modal --}}
 <!-- Modal -->
 <style>
@@ -219,21 +220,23 @@
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
-        <form action="/residences/apply" method="POST">
+        <form action="/cart/add" method="POST">
+            @csrf
             <div class="modal-body">
                 <div class="row">
                     {{-- <div class="col-xs-12"><input type="text" disabled name="application_date" class="awe-calendar" value="Today" placeholder="Today"></div> --}}
-                    <div class="col-xs-6"><input type="number" name="required_year" id="required_year" value="{{old("required_year")}}" placeholder="Required year"></div>
-                    <div class="col-xs-6"><input type="number" name="required_month" id="required_month" value="{{old("required_month")}}" placeholder="Required month"></div>
-                    <div class="col-xs-12"><label for="residence_name">Residence</label></div>
-                    <div class="col-xs-12"><input type="text" readonly aria-readonly="true" name="residence_name" id="residence_name" value="{{old("residence_name")}}" placeholder="Please re-apply"></div>
+                    <input type="hidden" name="id" value="{{$product->id}}">
+                    <input type="hidden" name="price" value="{{$product->price}}">
+                    <div class="col-xs-12"><label for="ammount">Ammount</label></div>
+                    <div class="col-xs-6"><input required type="number" name="ammount" id="item_ammount" value="{{old("ammount")}}" placeholder="Ammount eg. 10"></div>
+                    
                     <input type="hidden" readonly aria-readonly="true" name="residence_id" id="residence_id" value="{{old("residence_id")}}" placeholder="Please re-apply">
                     @csrf
                 </div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="awe-btn" data-dismiss="modal">Close</button>
-                <button type="submit" class="awe-btn awe-btn-style3">Submit</button>
+                <button type="submit" class="awe-btn awe-btn-style3">Add to cart</button>
             </div>
         </form>
       </div>
@@ -242,6 +245,7 @@
 {{-- End Model --}}
 <!-- END / SEARCH TABS -->
 <script>
+    var max = {!!$product->stock!!};
     function updateModal(id,name){
         $("#residence_id").val(id);
         $("#residence_name").val(name);
@@ -251,6 +255,13 @@
         $('.detail-picture').css({"display":"none"})
         $("#"+id).css({"display":"block"})
     }
+    $('#item_ammount').change(function(){
+        console.log($('#item_ammount').val());
+        if($('#item_ammount').val() > max){
+            $('#item_ammount').val(null);
+            alert('Stock is less than the desired ammount')
+        }
+    })
 </script>
 
 @endsection

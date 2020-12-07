@@ -103,7 +103,7 @@
                     </div>
                     <div style="padding-left:0px;" class="col-lg-6">
                         <button type="submit" class="awe-btn awe-btn-style3">Search</button> 
-                        <button  class="awe-btn ">Recommendation</button>
+                        <a href="/recommendation/form"><button type="button"  class="awe-btn ">Recommendation</button></a>
                     </div>
                 </form>
             </div>

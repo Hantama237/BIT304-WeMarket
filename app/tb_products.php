@@ -3,7 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-
+use App\tb_sub_category as SubCategory;
 class tb_products extends Model
 {
     protected $guarded = ["id"];
@@ -87,6 +87,28 @@ class tb_products extends Model
         }
         return false;
         
+    }
+
+    public static function searchRecommendation($categoryId,$taste,$tasteLevel,$price){
+        $subCategoryIds = SubCategory::where('category_id',$categoryId)->get();
+        $subArray = [];
+        foreach ($subCategoryIds as $s) {
+            array_push($subArray,$s->id);
+        }
+        $product = self::where('taste_id',$taste);
+        $product = $product->whereIn('sub_category_id',$subArray);
+        $product = $product->whereBetween('taste_level',[$tasteLevel-1,$tasteLevel+1]);
+        if($price='low'){
+            $product = $product->orderBy('price','ASC');
+        }else if($price='high'){
+            $product = $product->orderBy('price','DESC');
+        }else{
+            $product =  $product->inRandomOrder();
+        }
+        $product = $product->paginate(12);
+
+        return $product;
+        //dd($product);
     }
 
     //

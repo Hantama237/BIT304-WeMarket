@@ -19,7 +19,7 @@
                 @php
                     $totalPrice+=$c['price']*$c['ammount'];
                 @endphp
-                <span>{{$c['name']}} Rp {{number_format($c['price'],0,',','.')}} x{{$c['ammount']}}</span><br>
+                <span>{{strlen($c['name'])>14?substr($c['name'],0,14)."..":$c['name']}} Rp {{number_format($c['price'],0,',','.')}} x{{$c['ammount']}}</span><br>
             @endforeach
         
         

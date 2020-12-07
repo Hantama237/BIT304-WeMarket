@@ -61,7 +61,7 @@
             <div class="col-lg-12 box" style="padding-bottom: 20px;">
                 <form action="/search" method="get">
                     <div class="col-lg-6">
-                        <input name="keywords" style="width: 100%;" type="text" value="{{$keywords}}"> 
+                        <input name="keywords" style="width: 100%;" type="text" value=""> 
                     </div>
                     <div style="padding-left:0px;" class="col-lg-6">
                         <button type="submit" class="awe-btn awe-btn-style3">Search</button> 
@@ -69,11 +69,12 @@
                     </div>
                 </form>
             </div>
-            <h3>Search Result</h3>
+            <h3>Recommendation Result</h3>
             <div class="col-lg-12 box" style="margin-bottom:100px; padding-bottom: 20px;">
                 @foreach ($products as $p)
                 @php
                     $address = $p->shop->address;
+                    
                 @endphp
                 <a href="/detail?id={{$p->id}}">
                     <div class="product col-lg-3" >
@@ -91,6 +92,7 @@
                     </div>
                 </a>
                 @endforeach
+                
                 <div class="col-lg-12">
                     {!! $pagination!!}
                 </div>

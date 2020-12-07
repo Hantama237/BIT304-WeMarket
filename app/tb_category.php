@@ -6,5 +6,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class tb_category extends Model
 {
-    //
+    protected $guarded =['id'];
+    
 }

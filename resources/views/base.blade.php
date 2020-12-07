@@ -177,8 +177,8 @@
                             @php
                                 $totalPrice +=$c['price']*$c['ammount'];
                             @endphp
-                            <div class="col-lg-1"><input checked="true" type="checkbox" name="id[]" id="" value="{{$c['id']}}"></div>
-                            <div class="col-lg-4"><a href="/detail?id={{$c['id']}}">{{$c['name']}} </a></div>
+                            <div class="col-xs-1"><input checked="true" type="checkbox" name="id[]" id="" value="{{$c['id']}}"></div>
+                            <div class="col-lg-4"><a href="/detail?id={{$c['id']}}">{{strlen($c['name'])>25?substr($c['name'],0,25)."..":$c['name']}} </a></div>
                             <div class="col-lg-3"> Rp. {{number_format($c['price'],0,',','.')}}</div>
                             <div class="col-lg-1">x{{$c['ammount']}}</div>
                             <div class="col-lg-3"><button onclick="updateEditCartModal({!!$c['id']!!})" data-toggle="modal" data-target="#editCartModal" >edit</button> <a href="/cart/remove?id={{$c['id']}}"><button>hapus</button></a></div>

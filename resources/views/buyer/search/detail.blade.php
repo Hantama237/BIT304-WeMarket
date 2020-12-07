@@ -178,7 +178,7 @@
                         <div style="width: 100%; height:120px;" id="product-img" style="background-image:url('{{ url('/data_file/'.$p->picture) }}') ">
                             
                         </div>
-                        <div class="product-name">{{$p->name}}, {{$p->taste->taste}}</div>
+                        <div class="product-name">{{strlen($p->name)>11?substr($p->name,0,11)."..":$p->name}}, {{$p->taste->taste}}</div>
                         <div class="product-location">{{$address->subdistrict->subdistrict_name}}, {{$address->city->city_name}}</div>
                         <div>
                             

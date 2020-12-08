@@ -44,6 +44,11 @@
                 @endforeach
               </div>
               @endif
+              @if(session('success'))
+              <div class="alert alert-success">
+                    {{session('success')}}
+              </div>
+                @endif
                 <a class="btn btn-success" href="/seller/order" role="button">Order</a>
                 <a class="btn btn-primary" href="/seller/takeOrDelivery" role="button">Take/Delivery status</a>
                   <h3>Manage order</h3>

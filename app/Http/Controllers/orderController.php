@@ -34,7 +34,7 @@ class orderController extends Controller
     public function cancel($id){
         $order=Order::find($id);
         //test history
-        $product=Product::find($id);
+        $product=Product::find(3);
         // dd($product);
         $view= new View;
         $view->user_id= Session::get("id");
@@ -42,6 +42,7 @@ class orderController extends Controller
         $view->taste_id=$product->taste_id;
         $view->product_name= $product->name;
         $view->save();
+        dd($view);
         // $cart= new Cart;
         // $cart->user_id= Session::get("id");
         // $cart->sub_category_id= $product->sub_category_id;

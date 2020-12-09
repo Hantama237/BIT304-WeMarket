@@ -54,15 +54,15 @@
                   
                   </div> --}}
                   <div class="col-lg-4">
-                    <h3>0</h3>
+                  <h3>{{$order}}</h3>
                     <p>Order</p>
                   </div>
                   <div class="col-lg-4">
-                    <h3>5</h3>
+                  <h3>{{$product}}</h3>
                     <p>Products</p>
                   </div>
                   <div class="col-lg-4">
-                    <h3>3</h3>
+                    <h3>{{$sold}}</h3>
                     <p>Products sold</p>
                   </div>
               

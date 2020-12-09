@@ -169,7 +169,8 @@
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
-            
+            <form action="/checkout" method="post">
+                @csrf
                 <div class="modal-body">
                     <div class="row">
                         @if($cart!=null)
@@ -198,7 +199,7 @@
                     <button type="button" class="awe-btn" data-dismiss="modal">Close</button>
                     <button   class="awe-btn awe-btn-style3">Check Out</button>
                 </div>
-            
+            </form>
           </div>
         </div>
       </div>

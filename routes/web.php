@@ -18,13 +18,18 @@ Route::middleware(['islogin'])->group(function () {
         return view('buyer.dashboard');
     });
     Route::get('/design',function(){
-        return view('buyer.recommendation.form');
+        return view('buyer.order.history');
     });
     // Route::get('/cart','searchController@addToCart');
     Route::post('/cart/add','searchController@addToCart');
     Route::get('/cart/remove','searchController@removeFromCart');
     Route::get('/cart/update','searchController@updateCartPrice');
     Route::post('/cart/set','searchController@setAmmount');
+
+    Route::post('/checkout','checkOutController@preview');
+    Route::post('/checkout/proceed','checkOutController@proceed');
+    Route::get('/orders','checkOutController@history');
+    Route::get('/orders/detail','checkOutController@detail');
 
     Route::get('/recommendation/form','recommendationController@index');
     Route::get('/recommendation','recommendationController@searchRecommendation');

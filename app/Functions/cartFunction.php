@@ -31,12 +31,12 @@ class cartFunction{
         }
         return false;
     }
-    public static function removeProduct($id){
+    public static function removeProducts($ids){
         $cart = Session::get("cart");
         $newCart = [];
         if($cart){
             foreach ($cart as $c) {
-                if($c['id']!=$id){
+                if(!in_array($c['id'],$ids)){
                     array_push($newCart,$c);
                 }
             }

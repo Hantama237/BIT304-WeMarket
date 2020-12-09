@@ -18,7 +18,7 @@ class TbOrder extends Migration
             $table->string("payment_method");
             $table->string("delivery_method");
             $table->string("address");
-            $table->timestamps("order_date");
+            $table->timestamp("order_date");
             $table->timestamps();
         });
     }

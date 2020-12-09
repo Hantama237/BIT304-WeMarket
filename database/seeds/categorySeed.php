@@ -15,7 +15,9 @@ class categorySeed extends Seeder
         $categories =[
             "vegetables",
             "fruit",
-            "vegetables and fruit"
+            "vegetables & fruit",
+            "seasoning & spices",
+            "rice"
         ];
 
         foreach ($categories as $c) {

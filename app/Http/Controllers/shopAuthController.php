@@ -9,6 +9,8 @@ use Session;
 use App\tb_province as Province;
 use App\tb_city as City;
 use App\tb_subdistrict as SubDistrict;
+use App\tb_orders as Order;
+use App\tb_products as Product;
 class shopAuthController extends Controller
 {
     //
@@ -18,11 +20,14 @@ class shopAuthController extends Controller
 
             $shop1=Shop::get()->where("user_id",Session::get("id"));
             $shop2=Shop::where("user_id",Session::get("id"))->first();
+            $order=Order::where("shop_id",$shop2->id)->where('status',"wait for seller")->count();
+            $sold=Order::where("shop_id",$shop2->id)->where('status',"complete")->count();
+            $product = Product::where('shop_id',$shop2->id)->count();
             // dd($shop1);
             if($shop2->status == 0){
                 return view('seller.newSeller',['shop1'=>$shop1]);    
             }
-            return view('seller.dashboard',['shop1'=>$shop1]);
+            return view('seller.dashboard',['shop1'=>$shop1,'order'=>$order,'sold'=>$sold,'product'=>$product]);
             
         }
         return view("seller.register");

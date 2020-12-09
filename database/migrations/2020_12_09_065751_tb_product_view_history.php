@@ -22,7 +22,6 @@ class TbProductViewHistory extends Migration
             $table->timestamps();
         });
     }
-
     /**
      * Reverse the migrations.
      *
@@ -30,6 +29,6 @@ class TbProductViewHistory extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tb_product_cart_history');
+        Schema::dropIfExists('tb_product_view_history');
     }
 }

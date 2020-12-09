@@ -36,13 +36,13 @@ class orderController extends Controller
         //test history
         $product=Product::find(3);
         // dd($product);
-        $view= new View;
-        $view->user_id= Session::get("id");
-        $view->sub_category_id= $product->sub_category_id;
-        $view->taste_id=$product->taste_id;
-        $view->product_name= $product->name;
-        $view->save();
-        dd($view);
+        // $view= new View;
+        // $view->user_id= Session::get("id");
+        // $view->sub_category_id= $product->sub_category_id;
+        // $view->taste_id=$product->taste_id;
+        // $view->product_name= $product->name;
+        // $view->save();
+        // dd($view);
         // $cart= new Cart;
         // $cart->user_id= Session::get("id");
         // $cart->sub_category_id= $product->sub_category_id;
@@ -62,7 +62,7 @@ class orderController extends Controller
     }
     public function process($id){
         $order=Order::find($id);
-        dd($order);
+        // dd($order);
         if($order->delivery_method == 'Delivery'){
             $order->status ="on delivery";
             $order->save();

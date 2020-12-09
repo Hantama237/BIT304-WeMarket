@@ -18,8 +18,19 @@ Route::middleware(['islogin'])->group(function () {
         return view('buyer.dashboard');
     });
     Route::get('/design',function(){
-        return view('buyer.search.result');
+        return view('buyer.recommendation.form');
     });
+    // Route::get('/cart','searchController@addToCart');
+    Route::post('/cart/add','searchController@addToCart');
+    Route::get('/cart/remove','searchController@removeFromCart');
+    Route::get('/cart/update','searchController@updateCartPrice');
+    Route::post('/cart/set','searchController@setAmmount');
+
+    Route::get('/recommendation/form','recommendationController@index');
+    Route::get('/recommendation','recommendationController@searchRecommendation');
+
+    Route::get('/search','searchController@search');
+    Route::get('/detail','searchController@detail');
     Route::prefix('manage')->group(function(){
         Route::get('profile','manageUserProfileController@index');
         Route::post('profile/update/profile','manageUserProfileController@updateProfile');

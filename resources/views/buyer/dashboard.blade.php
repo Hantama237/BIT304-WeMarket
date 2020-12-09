@@ -1,7 +1,89 @@
 @extends('base')
 @section('main')
 
+<style>
+    #product-img{
+        border-radius: 3px;
+        background-size: cover;
+        background-position: center center;
+        background-repeat: no-repeat;
+        background-image: url('http://127.0.0.1:8000/images/user/1/TVD9ldkcG7.jpg');
+    }
+    .product{
+        border: 3px solid white;
+        border-radius: 3px;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        background-color: #f2f2f2; 
+        color: black;
+    }
+    .product:hover{
+        cursor: pointer;
+        background-color: #d1d1d1;
+        border: 3px solid white;
+    }
+    .product-name{
+        padding-top: 3px;
+        font-weight:600;
+    }
+    .product-price{
+        font-size: 16px;
+        color: black;
+        width: 67%;
+        display: inline-block;
+        text-align: left;
+    }
+    .product-location{
+        width: 100%;
+        text-align: left;
+        color: gray;
+        font-size: 13px;
+    }
+    .product-stock{
+        font-size: 12px;
+        color: green;
+        width: 30%;
+        display: inline-block;
+        text-align: right;
+    }
+    
+    .detail-picture{
+        background-color: bisque;
+        
+        height: 300px;
+    }
+    .detail-description{
+        margin-top: 5px;
+        color: black;
+    }
+    .detail-price{
+        margin-top: 10px;
+        color: green;
+        font-size: 20px;
+        font-weight: 600;
+    }
+    .detail-purchase{
+        margin-top:15px;
+    }
 
+    .detail-thumbnails{
+        margin-top:10px;
+        cursor: pointer;
+    }
+    .detail-thumbnail:hover{
+        border-bottom: 2px solid gray;
+    }
+    .detail-thumbnail{
+        height: 60px;
+        background-color: bisque;
+    }
+
+    .shop-image{
+        height:100px;
+        border-radius: 100%;
+        background-color: aqua;
+    }
+</style>
 <!-- LIST -->
 <section>
     
@@ -15,21 +97,44 @@
         <div class="col-lg-9">
             <h3>Search Products</h3>
             <div class="col-lg-12 box" style="padding-bottom: 20px;">
-                <div class="col-lg-6">
-                    <input style="width: 100%;" type="text"> 
-                </div>
-                <div style="padding-left:0px;" class="col-lg-6">
-                    <button  border: 1px solid #3eb842;" class="awe-btn awe-btn-style3">Search</button> 
-                    <button  class="awe-btn ">Recommendation</button>
-                </div>
+                <form action="/search" method="get">
+                    <div class="col-lg-6">
+                        <input name="keywords" style="width: 100%;" type="text" > 
+                    </div>
+                    <div style="padding-left:0px;" class="col-lg-6">
+                        <button type="submit" class="awe-btn awe-btn-style3">Search</button> 
+                        <a href="/recommendation/form"><button type="button"  class="awe-btn ">Recommendation</button></a>
+                    </div>
+                </form>
             </div>
-            <h3>Popular Products</h3>
+            <h3>Special For You</h3>
             <div class="col-lg-12 box" style="margin-bottom:100px; padding-bottom: 20px;">
-                {{-- @if(count($products)<1) --}}
-                No Products available yet
-                {{-- @else
-
-                @endif --}}
+                <div class="product col-lg-3" >
+                    <div style="width: 100%; height:120px;" id="product-img" >
+                        
+                    </div>
+                    <div class="product-name">Jeruk Bali, Manis</div>
+                    <div class="product-location">Kediri, Tabanan</div>
+                    <div>
+                        
+                        <div class="product-price">Rp. 22.000</div>
+                        <div class="product-stock">stock 22</div>
+                    </div>
+                    
+                </div>
+                <div class="product col-lg-3" >
+                    <div style="width: 100%; height:120px;" id="product-img" >
+                        
+                    </div>
+                    <div class="product-name">Jeruk Bali, Manis</div>
+                    <div class="product-location">Kediri, Tabanan</div>
+                    <div>
+                        
+                        <div class="product-price">Rp. 22.000</div>
+                        <div class="product-stock">stock 22</div>
+                    </div>
+                    
+                </div>
             </div>
         </div>
         <span class="desktop">

@@ -62,7 +62,7 @@ class productController extends Controller
         // check file data
         if($req->hasfile('picture')){
             $product = Product::addProduct($validatedData);
-            
+            Product::generateSearchTag($product->id);
             // store file data as variable $file
             $picture = $req->file('picture');
             $picture_name = time()."_".$picture->getClientOriginalName();
@@ -151,6 +151,7 @@ class productController extends Controller
         $product->sub_category_id=$request->sub_category_id;
         $product->taste_level=$request->taste_level;
         $product->save();
+        Product::generateSearchTag($product->id);
         // dd($product);
         //update product picture
         if($request->hasfile("filename")){

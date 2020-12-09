@@ -156,5 +156,86 @@
         </div>
     </section> --}}
     @yield('main')
+    @php
+        $cart = Session::get('cart');
+        $totalPrice = 0;
+    @endphp
+    <div style="z-index:9999" class="modal fade" id="cartModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">My Cart</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            
+                <div class="modal-body">
+                    <div class="row">
+                        @if($cart!=null)
+                            @foreach ($cart as $c)
+                            @php
+                                $totalPrice +=$c['price']*$c['ammount'];
+                            @endphp
+                            <div class="col-xs-1"><input checked="true" type="checkbox" name="id[]" id="" value="{{$c['id']}}"></div>
+                            <div class="col-lg-4"><a href="/detail?id={{$c['id']}}">{{strlen($c['name'])>25?substr($c['name'],0,25)."..":$c['name']}} </a></div>
+                            <div class="col-lg-3"> Rp. {{number_format($c['price'],0,',','.')}}</div>
+                            <div class="col-lg-1">x{{$c['ammount']}}</div>
+                            <div class="col-lg-3"><button onclick="updateEditCartModal({!!$c['id']!!})" data-toggle="modal" data-target="#editCartModal" >edit</button> <a href="/cart/remove?id={{$c['id']}}"><button>hapus</button></a></div>
+                            <div class="col-lg-12"><hr></div>
+                            @endforeach
+                        @else
+                        No Product in cart
+                        @endif
+                        <div class="col-lg-12" style="text-align: right;">
+                            <span style="font-weight:600;">
+                                Total price: Rp. {{number_format($totalPrice,0,',','.')}}
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="awe-btn" data-dismiss="modal">Close</button>
+                    <button   class="awe-btn awe-btn-style3">Check Out</button>
+                </div>
+            
+          </div>
+        </div>
+      </div>
+      <script>
+          function updateEditCartModal(id){
+              $('#editCartId').val(id);
+          }
+      </script>
+      <div style="z-index:999999" class="modal fade" id="editCartModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Edit Ammount</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <form action="/cart/set" method="POST">
+                @csrf
+                <div class="modal-body">
+                    <div class="row">
+                        {{-- <div class="col-xs-12"><input type="text" disabled name="application_date" class="awe-calendar" value="Today" placeholder="Today"></div> --}}
+                        <input id="editCartId" type="hidden" name="id" value="">
+                        <div class="col-xs-12"><label for="ammount">Ammount</label></div>
+                        <div class="col-xs-6"><input required type="number" name="ammount" id="item_ammount" value="{{old("ammount")}}" placeholder="new ammount"></div>
+                        
+                        <input type="hidden" readonly aria-readonly="true" name="residence_id" id="residence_id" value="{{old("residence_id")}}" placeholder="Please re-apply">
+                        @csrf
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="awe-btn" data-dismiss="modal">Close</button>
+                    <button type="submit" class="awe-btn awe-btn-style3">Update</button>
+                </div>
+            </form>
+          </div>
+        </div>
+      </div>
     <!-- END / HERO SECTION -->
 @endsection

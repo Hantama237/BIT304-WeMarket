@@ -13,19 +13,23 @@ class subCategorySeeder extends Seeder
     {
         //
         $subCategories=[
-            //sayur id 0
-            ["sub_category"=>"Potato","category_id"=>"0"],
-            ["sub_category"=>"Cabbage","category_id"=>"0"],
-            ["sub_category"=>"Corn","category_id"=>"0"],
-            //buah id 1
-            ["sub_category"=>"Orange","category_id"=>"1"],
-            ["sub_category"=>"Apple","category_id"=>"1"],
-            ["sub_category"=>"Avocado","category_id"=>"1"],
-            //buah dan sayur id 2
-            ["sub_category"=>"Pickle","category_id"=>"2"],
-            ["sub_category"=>"Tomato","category_id"=>"2"],
+            //sayur id 1
+
+            ["sub_category"=>"Potato","category_id"=>"1"],
+            ["sub_category"=>"Cabbage","category_id"=>"1"],
+            ["sub_category"=>"Corn","category_id"=>"1"],
+
+            //buah id 2
+            ["sub_category"=>"Orange","category_id"=>"2"],
+            ["sub_category"=>"Apple","category_id"=>"2"],
+            ["sub_category"=>"Avocado","category_id"=>"2"],
+            //buah dan sayur id 3
+          
+            ["sub_category"=>"Pickle","category_id"=>"3"],
+            ["sub_category"=>"Tomato","category_id"=>"3"],
             //rice
             ["sub_category"=>"Local rice","category_id"=>"5"],
+
         ];
 
         foreach ($subCategories as $sc) {

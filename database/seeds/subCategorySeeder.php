@@ -16,6 +16,7 @@ class subCategorySeeder extends Seeder
             //sayur id 0
             ["sub_category"=>"Potato","category_id"=>"0"],
             ["sub_category"=>"Cabbage","category_id"=>"0"],
+            ["sub_category"=>"Corn","category_id"=>"0"],
             //buah id 1
             ["sub_category"=>"Orange","category_id"=>"1"],
             ["sub_category"=>"Apple","category_id"=>"1"],
@@ -23,6 +24,8 @@ class subCategorySeeder extends Seeder
             //buah dan sayur id 2
             ["sub_category"=>"Pickle","category_id"=>"2"],
             ["sub_category"=>"Tomato","category_id"=>"2"],
+            //rice
+            ["sub_category"=>"Local rice","category_id"=>"5"],
         ];
 
         foreach ($subCategories as $sc) {

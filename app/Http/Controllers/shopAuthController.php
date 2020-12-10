@@ -112,7 +112,8 @@ class shopAuthController extends Controller
         "user_id"=>"required|exists:tb_users,id",
         "description"=>"required|min:3",
         "idcard_picture"=>"nullable|file|image|mimes:jpeg,png,jpg|max:2048",
-        "status"=>"nullable",]);
+        "status"=>"nullable",
+        "whatsapp"=>"nullable|numeric"]);
         // store file data as variable $file
         $idcard_picture = $request->file('idcard_picture');
         $idcard_picture_name = time()."_".$idcard_picture->getClientOriginalName();
@@ -121,6 +122,7 @@ class shopAuthController extends Controller
         $idcard_picture->move($upload_to,$idcard_picture_name);
 
     //    $shop->insert($request); 
+            $shop->whatsapp=$request->whatsapp;
         $shop->name = $request->name;
         $shop->description=$request->description;
         $shop->idcard_picture=$idcard_picture_name;

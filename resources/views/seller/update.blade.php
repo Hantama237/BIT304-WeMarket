@@ -80,7 +80,7 @@
             @endisset
             disabled > <button type="button"><a href="/seller/address">change</a></button>
         </div>
-          <a href="https://api.whatsapp.com/send?phone={{$sp->whatsapp}}">contact me</a>
+          {{-- <a href="https://api.whatsapp.com/send?phone={{$sp->whatsapp}}">contact me</a> --}}
           {{-- <div class="form-group">
             <b>KTP</b><br>
             <input type="file" name="KTP">

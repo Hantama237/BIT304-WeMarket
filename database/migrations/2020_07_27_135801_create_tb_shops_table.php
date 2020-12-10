@@ -18,6 +18,7 @@ class CreateTbShopsTable extends Migration
             $table->foreignId("user_id");
             $table->string("name");
             $table->string("description");
+            $table->string("whatsapp")->nullable();
             $table->string("idcard_picture")->nullable();
             $table->integer("status")->default(0);
             $table->timestamps();

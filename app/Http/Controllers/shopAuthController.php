@@ -121,8 +121,7 @@ class shopAuthController extends Controller
 		$upload_to = 'data_file';
         $idcard_picture->move($upload_to,$idcard_picture_name);
 
-    //    $shop->insert($request); 
-            $shop->whatsapp=$request->whatsapp;
+        $shop->whatsapp=$request->whatsapp;
         $shop->name = $request->name;
         $shop->description=$request->description;
         $shop->idcard_picture=$idcard_picture_name;

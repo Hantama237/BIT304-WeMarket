@@ -70,7 +70,7 @@
           </div>
           <label for="">Whatsapp</label>
           <div class="form-group">
-              <input type="text" name="whatsapp" id="desc" class="form-control " value="{{$sp->whatsapp}}" placeholder="" >
+              <input type="text" name="whatsapp" id="desc" class="form-control " value="{{$sp->whatsapp}}" placeholder="your phone number" >
           </div>
           <label for="">Address</label>
           <div class="form-group">

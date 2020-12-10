@@ -68,6 +68,10 @@
           <div class="form-group">
               <input type="text" name="description" id="desc" class="form-control " value="{{$sp->description}}" placeholder="" >
           </div>
+          <label for="">Whatsapp</label>
+          <div class="form-group">
+              <input type="text" name="whatsapp" id="desc" class="form-control " value="{{$sp->whatsapp}}" placeholder="" >
+          </div>
           <label for="">Address</label>
           <div class="form-group">
             <input type="text" name="address" id="address" class="form-control " 
@@ -76,7 +80,7 @@
             @endisset
             disabled > <button type="button"><a href="/seller/address">change</a></button>
         </div>
-          
+          <a href="https://api.whatsapp.com/send?phone={{$sp->whatsapp}}">contact me</a>
           {{-- <div class="form-group">
             <b>KTP</b><br>
             <input type="file" name="KTP">

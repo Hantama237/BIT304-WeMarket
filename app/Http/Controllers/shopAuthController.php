@@ -46,6 +46,7 @@ class shopAuthController extends Controller
     public function update(){
         $shop=Shop::isExist(Session::get("id"));
         $address=Address::where('shop_id',$shop->id)->first();
+        // dd($shop);
         return view('seller.update',['shop'=>[$shop],"address"=>$address]);
     }
 
@@ -68,7 +69,7 @@ class shopAuthController extends Controller
         $validatedData = $req->validate(Address::getValidationRules());
         $address = Address::addAddress($validatedData);
         if($address != null){
-            Shop::generateAllSearchTag($shop->$id);
+            Shop::generateAllSearchTag($shop->id);
             return redirect('/seller/update')->withSuccess("Address successfully added");
         }
         return redirect()->back()->withErrors(["Add failed"]);
@@ -79,7 +80,7 @@ class shopAuthController extends Controller
         $validatedData = $req->validate(Address::getValidationRules());
         $result  = Address::updateAddress($shop->id,$validatedData);
         if($result!=null){
-            Shop::generateAllSearchTag($shop->$id);
+            Shop::generateAllSearchTag($shop->id);
             return redirect('/seller/update')->withSuccess("Address successfully updated");
         }
         return redirect()->back()->withErrors(["Update failed"]);
@@ -104,7 +105,7 @@ class shopAuthController extends Controller
                 $shop->description=$request->description;
                 $shop->idcard_picture=$idcard_picture_name;
                $shop->save();
-               Shop::generateAllSearchTag($shop->$id);
+               Shop::generateAllSearchTag($shop->id);
                 return redirect()->back()->withSuccess("Wait admin for verify");
         }
         $this->validate($request, [
@@ -113,20 +114,27 @@ class shopAuthController extends Controller
         "description"=>"required|min:3",
         "idcard_picture"=>"nullable|file|image|mimes:jpeg,png,jpg|max:2048",
         "status"=>"nullable",
-        "whatsapp"=>"nullable|numeric"]);
-        // store file data as variable $file
-        $idcard_picture = $request->file('idcard_picture');
-        $idcard_picture_name = time()."_".$idcard_picture->getClientOriginalName();
-        // Move file to data_file folder
-		$upload_to = 'data_file';
-        $idcard_picture->move($upload_to,$idcard_picture_name);
-
+        "whatsapp"=>"required|numeric"]);
+        if($request->idcard_picture != null){
+            // store file data as variable $file
+            $idcard_picture = $request->file('idcard_picture');
+            $idcard_picture_name = time()."_".$idcard_picture->getClientOriginalName();
+            // Move file to data_file folder
+            $upload_to = 'data_file';
+            $idcard_picture->move($upload_to,$idcard_picture_name);
+            //insert data to shop
+            $shop->whatsapp=$request->whatsapp;
+            $shop->name = $request->name;
+            $shop->description=$request->description;
+            $shop->idcard_picture=$idcard_picture_name;
+            $shop->save();
+            return redirect()->back()->withSuccess("shop information successfully updated");
+        }
+        //insert data to shop when idcard null
         $shop->whatsapp=$request->whatsapp;
         $shop->name = $request->name;
         $shop->description=$request->description;
-        $shop->idcard_picture=$idcard_picture_name;
-       $shop->save();
-       //Session::flash('message','Update successfully.');
+        $shop->save();
         return redirect()->back()->withSuccess("shop information successfully updated");
     }
     public function address(){

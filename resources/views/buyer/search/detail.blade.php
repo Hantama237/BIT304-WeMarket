@@ -8,7 +8,6 @@
         background-size: cover;
         background-position: center center;
         background-repeat: no-repeat;
-        background-image: url('http://127.0.0.1:8000/images/user/1/TVD9ldkcG7.jpg');
     }
     .product{
         border: 3px solid white;
@@ -175,7 +174,7 @@
                 @endphp
                 <a href="/detail?id={{$p->id}}">
                     <div class="product col-lg-3" >
-                        <div style="width: 100%; height:120px;" id="product-img" style="background-image:url('{{ url('/data_file/'.$p->picture) }}') ">
+                        <div style="width: 100%; height:120px; background-image:url('{{ url('/data_file/'.$p->picture) }}') ;" id="product-img">
                             
                         </div>
                         <div class="product-name">{{strlen($p->name)>11?substr($p->name,0,11)."..":$p->name}}, {{$p->taste->taste}}</div>
@@ -215,7 +214,7 @@
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Submit Application</h5>
+          <h5 class="modal-title" id="exampleModalLabel">Product Quantity</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
@@ -227,7 +226,7 @@
                     {{-- <div class="col-xs-12"><input type="text" disabled name="application_date" class="awe-calendar" value="Today" placeholder="Today"></div> --}}
                     <input type="hidden" name="id" value="{{$product->id}}">
                     <input type="hidden" name="price" value="{{$product->price}}">
-                    <div class="col-xs-12"><label for="ammount">Ammount</label></div>
+                    <div class="col-xs-12"><label for="ammount">Amount</label></div>
                     <div class="col-xs-6"><input required type="number" name="ammount" id="item_ammount" value="{{old("ammount")}}" placeholder="Ammount eg. 10"></div>
                     
                     <input type="hidden" readonly aria-readonly="true" name="residence_id" id="residence_id" value="{{old("residence_id")}}" placeholder="Please re-apply">

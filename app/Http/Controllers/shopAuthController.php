@@ -68,7 +68,7 @@ class shopAuthController extends Controller
         $validatedData = $req->validate(Address::getValidationRules());
         $address = Address::addAddress($validatedData);
         if($address != null){
-            Shop::generateAllSearchTag($shop->$id);
+            Shop::generateAllSearchTag($shop->id);
             return redirect('/seller/update')->withSuccess("Address successfully added");
         }
         return redirect()->back()->withErrors(["Add failed"]);
@@ -79,7 +79,7 @@ class shopAuthController extends Controller
         $validatedData = $req->validate(Address::getValidationRules());
         $result  = Address::updateAddress($shop->id,$validatedData);
         if($result!=null){
-            Shop::generateAllSearchTag($shop->$id);
+            Shop::generateAllSearchTag($shop->id);
             return redirect('/seller/update')->withSuccess("Address successfully updated");
         }
         return redirect()->back()->withErrors(["Update failed"]);
@@ -104,7 +104,7 @@ class shopAuthController extends Controller
                 $shop->description=$request->description;
                 $shop->idcard_picture=$idcard_picture_name;
                $shop->save();
-               Shop::generateAllSearchTag($shop->$id);
+               Shop::generateAllSearchTag($shop->id);
                 return redirect()->back()->withSuccess("Wait admin for verify");
         }
         $this->validate($request, [

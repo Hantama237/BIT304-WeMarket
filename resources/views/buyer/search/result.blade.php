@@ -8,7 +8,7 @@
         background-size: cover;
         background-position: center center;
         background-repeat: no-repeat;
-        background-image: url('http://127.0.0.1:8000/images/user/1/TVD9ldkcG7.jpg');
+        /* background-image: url('http://127.0.0.1:8000/images/user/1/TVD9ldkcG7.jpg'); */
     }
     .product{
         border: 3px solid white;
@@ -77,7 +77,7 @@
                 @endphp
                 <a href="/detail?id={{$p->id}}">
                     <div class="product col-lg-3" >
-                        <div style="width: 100%; height:120px;" id="product-img" style="background-image:url('{{ url('/data_file/'.$p->picture) }}') ">
+                        <div style="width: 100%; height:120px; background-image:url('{{ url('/data_file/'.$p->picture) }}') ;" id="product-img" >
                             
                         </div>
                         <div class="product-name">{{strlen($p->name)>11?substr($p->name,0,11)."..":$p->name}}, {{$p->taste->taste}}</div>

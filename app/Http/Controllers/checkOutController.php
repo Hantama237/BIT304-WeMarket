@@ -95,7 +95,7 @@ class checkOutController extends Controller
 
     function history(Request $req){
         $links = Orders::where('user_id',Session::get('id'))->paginate(10);
-        $orders = $links->sortBy('order_date');
+        $orders = $links->sortByDesc('order_date');
         return view('buyer.order.history',['orders'=>$orders,'links'=>$links->links()]);
     }
 

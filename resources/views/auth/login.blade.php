@@ -41,7 +41,7 @@
                 <span>Welcome back</span>
                 <h2>WEfans!</h2>
             </div>
-            <form id="form-login" action="/login" method="POST">
+            <form id="form-login" action="{{URL::to('/login')}}" method="POST">
                 <div class="form-item">
                     <label>Email</label>
                     <input type="email" name="email">

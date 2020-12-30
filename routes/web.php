@@ -14,9 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::middleware(['islogin'])->group(function () {
-    Route::get('/', function () {
-        return view('buyer.dashboard');
-    });
+    Route::get('/','dashboardController@index');
     Route::get('/design',function(){
         return view('buyer.order.history');
     });

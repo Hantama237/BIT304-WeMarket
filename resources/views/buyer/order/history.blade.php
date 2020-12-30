@@ -197,7 +197,7 @@
                         @endforeach
                     </tbody>
                 </table>
-                {{$links}}
+                {!!$links!!}
             </div>     
         </div>
         <span class="desktop">

@@ -19,7 +19,7 @@ class tb_user_preference extends Model
 
     public static function calculate(){
         $cartHistory = CartHistory::where('user_id',Session::get('id'));
-        $ViewHistory = ViewHistory::where('user_id',Session::get('id'));
+        $viewHistory = ViewHistory::where('user_id',Session::get('id'));
 
         $category = [];
         $historyPoint = [];

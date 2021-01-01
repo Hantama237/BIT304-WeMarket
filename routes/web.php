@@ -28,6 +28,7 @@ Route::middleware(['islogin'])->group(function () {
     Route::post('/checkout/proceed','checkOutController@proceed');
     Route::get('/orders','checkOutController@history');
     Route::get('/orders/detail','checkOutController@detail');
+    Route::post('/order/confirm','checkOutController@confirm');
 
     Route::get('/recommendation/form','recommendationController@index');
     Route::get('/recommendation','recommendationController@searchRecommendation');

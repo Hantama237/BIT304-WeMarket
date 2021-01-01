@@ -9,6 +9,7 @@ use App\tb_products as Products;
 class dashboardController extends Controller
 {
     function index(){
+        Preference::calculate();
         $products = Preference::generateProducts();
         //dd($products);
         return view('buyer.dashboard',['products'=>$products]);

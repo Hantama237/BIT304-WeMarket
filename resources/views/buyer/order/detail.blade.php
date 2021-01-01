@@ -169,9 +169,11 @@
                @endphp
                @foreach ($order->products as $prod)
                @php
+                    //dd($prod);
                    $p = $prod->product;
                    $totalPrice+=$prod->price*$prod->quantity;
                @endphp
+               @if($p)
                    <div class="col-lg-12">
                         <div class="col-lg-4"><a href="/detail?id={{$p->id}}">{{strlen($p->name)>25?substr($p->name,0,25)."..":$p->name}} </a></div>
                         <div class="col-lg-3"> Rp. {{number_format($prod->price,0,',','.')}}</div>
@@ -180,6 +182,11 @@
                         <div class="col-lg-3">{{number_format($p->price*$prod->quantity,0,',','.')}}</div>
                         <div class="col-lg-12"><hr></div>
                    </div>
+                @else
+                <div class="col-lg-12">
+                   Product not found
+                </div>
+                @endif
                @endforeach
                <div class="col-lg-12" style="text-align: left; color:black; font-size:18px;">
                     <span>
@@ -206,9 +213,15 @@
                 </div>
 
                 <div class="col-lg-12"><hr></div>
+                @if($order->status == "waiting you to come")
                 <div class="col-lg-12" style="text-align: right;">
-                    <button class="awe-btn awe-btn-style3">Confirm Received</button>
+                    <form action="{{URL::to("/order/confirm")}}" method="POST">
+                        @csrf
+                        <input type="hidden" name="id" id="" value="{{$order->id}}">
+                        <button type="submit" class="awe-btn awe-btn-style3">Confirm Received</button>
+                    </form>
                 </div>
+                @endif
             </div>     
             
         </div>

@@ -51,7 +51,7 @@ class productController extends Controller
             "description"=>"required|min:3",
             "price"=>"required",
             "stock"=>"required",
-            "picture"=>"required|file|image|mimes:jpeg,png,jpg|max:2048",
+            "picture"=>"required|file|image|max:2048",
             "status"=>"nullable",
             "sub_category_id"=>"required",
             "taste_id"=>"required",

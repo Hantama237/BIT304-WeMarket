@@ -93,9 +93,16 @@ class checkOutController extends Controller
         return redirect('/orders');
     }
 
+    function confirm(Request $req){
+        $order = Orders::where('id',$req->id)->where('user_id',Session::get('id'))->first();
+        $order->status = "complete";
+        $order->save();
+        return redirect()->back()->withSuccess("Thanks & enjoy the product");
+    }
+
     function history(Request $req){
         $links = Orders::where('user_id',Session::get('id'))->paginate(10);
-        $orders = $links->sortBy('order_date');
+        $orders = $links->sortByDesc('order_date');
         return view('buyer.order.history',['orders'=>$orders,'links'=>$links->links()]);
     }
 

@@ -7,7 +7,7 @@
         background-size: cover;
         background-position: center center;
         background-repeat: no-repeat;
-        background-image: url('http://127.0.0.1:8000/images/user/1/TVD9ldkcG7.jpg');
+        /* background-image: url('http://127.0.0.1:8000/images/user/1/TVD9ldkcG7.jpg'); */
     }
     .product{
         border: 3px solid white;
@@ -29,7 +29,7 @@
     .product-price{
         font-size: 16px;
         color: black;
-        width: 67%;
+        width: 62%;
         display: inline-block;
         text-align: left;
     }
@@ -42,47 +42,11 @@
     .product-stock{
         font-size: 12px;
         color: green;
-        width: 30%;
+        width: 35%;
         display: inline-block;
         text-align: right;
     }
     
-    .detail-picture{
-        background-color: bisque;
-        
-        height: 300px;
-    }
-    .detail-description{
-        margin-top: 5px;
-        color: black;
-    }
-    .detail-price{
-        margin-top: 10px;
-        color: green;
-        font-size: 20px;
-        font-weight: 600;
-    }
-    .detail-purchase{
-        margin-top:15px;
-    }
-
-    .detail-thumbnails{
-        margin-top:10px;
-        cursor: pointer;
-    }
-    .detail-thumbnail:hover{
-        border-bottom: 2px solid gray;
-    }
-    .detail-thumbnail{
-        height: 60px;
-        background-color: bisque;
-    }
-
-    .shop-image{
-        height:100px;
-        border-radius: 100%;
-        background-color: aqua;
-    }
 </style>
 <!-- LIST -->
 <section>
@@ -109,32 +73,26 @@
             </div>
             <h3>Special For You</h3>
             <div class="col-lg-12 box" style="margin-bottom:100px; padding-bottom: 20px;">
-                <div class="product col-lg-3" >
-                    <div style="width: 100%; height:120px;" id="product-img" >
+                @foreach ($products as $p)
+                @php
+                    $address = $p->shop->address;
+                @endphp
+                <a href="/detail?id={{$p->id}}">
+                    <div class="product col-lg-3" >
+                        <div style="width: 100%; height:120px; background-image:url('{{ url('/data_file/'.$p->picture) }}') ;" id="product-img" >
+                            
+                        </div>
+                        <div class="product-name">{{strlen($p->name)>11?substr($p->name,0,11)."..":$p->name}}, {{$p->taste->taste}}</div>
+                        <div class="product-location">{{$address->subdistrict->subdistrict_name}}, {{$address->city->city_name}}</div>
+                        <div>
+                            
+                            <div class="product-price">Rp. {{number_format($p->price,0,',','.')}}</div>
+                            <div class="product-stock">stock {{$p->stock}}</div>
+                        </div>
                         
                     </div>
-                    <div class="product-name">Jeruk Bali, Manis</div>
-                    <div class="product-location">Kediri, Tabanan</div>
-                    <div>
-                        
-                        <div class="product-price">Rp. 22.000</div>
-                        <div class="product-stock">stock 22</div>
-                    </div>
-                    
-                </div>
-                <div class="product col-lg-3" >
-                    <div style="width: 100%; height:120px;" id="product-img" >
-                        
-                    </div>
-                    <div class="product-name">Jeruk Bali, Manis</div>
-                    <div class="product-location">Kediri, Tabanan</div>
-                    <div>
-                        
-                        <div class="product-price">Rp. 22.000</div>
-                        <div class="product-stock">stock 22</div>
-                    </div>
-                    
-                </div>
+                </a>
+                @endforeach
             </div>
         </div>
         <span class="desktop">

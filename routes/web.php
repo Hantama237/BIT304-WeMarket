@@ -14,9 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::middleware(['islogin'])->group(function () {
-    Route::get('/', function () {
-        return view('buyer.dashboard');
-    });
+    Route::get('/','dashboardController@index');
     Route::get('/design',function(){
         return view('buyer.order.history');
     });
@@ -30,6 +28,7 @@ Route::middleware(['islogin'])->group(function () {
     Route::post('/checkout/proceed','checkOutController@proceed');
     Route::get('/orders','checkOutController@history');
     Route::get('/orders/detail','checkOutController@detail');
+    Route::post('/order/confirm','checkOutController@confirm');
 
     Route::get('/recommendation/form','recommendationController@index');
     Route::get('/recommendation','recommendationController@searchRecommendation');

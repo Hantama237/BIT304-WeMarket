@@ -22,7 +22,7 @@ class CreateTbProductsTable extends Migration
             $table->integer("stock");
             $table->string("picture")->nullable(); 
             $table->integer("status")->default(1);
-            //newly added
+            
             $table->foreignId("taste_id");
             $table->foreignId("sub_category_id");
             $table->integer("sold")->default(0);

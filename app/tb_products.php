@@ -17,7 +17,7 @@ class tb_products extends Model
 
         "price"=>"required|numeric",
         "stock"=>"required|numeric",
-        "picture"=>"nullable|file|image|mimes:jpeg,png,jpg|max:2048",
+        "picture"=>"nullable|file|image|max:2048",
         "status"=>"nullable",
         //newly added
         "taste_id"=>"required|exists:tb_taste_kinds,id",
@@ -58,6 +58,9 @@ class tb_products extends Model
 
     public static function generateSearchTag($id){
         $product = self::where("id",$id)->first();
+        if(!$product){
+            return false;
+        }
         $sub_category = $product->sub_category;
         $category = $sub_category->category->category;
         $shop = $product->shop;
@@ -73,6 +76,7 @@ class tb_products extends Model
             ($address!=""?$address->city->city_name:"").
             ($address!=""?$address->subdistrict->subdistrict_name:"");
         $product->save();
+        return $product;
     }
 
     public static function search($keywords,$paginate = 8){

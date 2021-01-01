@@ -132,7 +132,7 @@
                 <div class="container">
                     <!-- LOGO -->
                     <div class="logo">
-                        <a href="/">
+                        <a href="{{URL::to('/')}}">
                             <h1 style="color: #2f990b;">WeMarket</h1>
                             {{-- <img  src="{{asset('gofar/images/logo.png')}}" alt=""> --}}
                         </a>

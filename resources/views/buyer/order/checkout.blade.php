@@ -144,11 +144,11 @@
                         <a href="/">
                             <button class="awe-btn">Cancel</button>
                         </a>
-                        <a href="/checkout/proceed">
+                        
                             <button class="awe-btn awe-btn-style3">
                                 Order Now
                             </button>
-                        </a>
+                        
                     </div>
                 </form>
             </div>     

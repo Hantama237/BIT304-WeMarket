@@ -10,6 +10,9 @@ use App\tb_products as Product;
 class searchController extends Controller
 {
     public function search(Request $req){
+        $req->validate([
+            "keywords"=>"required|string"
+        ]);
         $products = Product::search($req->input("keywords"),12);
         $pagination = $products->appends($req->except('page'))->links();
         //dd($products);
@@ -34,6 +37,9 @@ class searchController extends Controller
         
         if(!$product){
             return redirect()->back()->withErrors(["Failed, product not valid"]);
+        }
+        if($req->input('ammount')<1){
+            return redirect()->back()->withErrors(['Invalid amount']);
         }
         if(!$cart){
             Session::put([
@@ -79,6 +85,12 @@ class searchController extends Controller
         $cart = Session::get('cart');
         $newCart = [];
         $product = Product::where('id',$req->input('id'))->first();
+        if($req->input('ammount')<1){
+            return redirect()->back()->withErrors(['Invalid amount']);
+        }
+        if(!$product){
+            return redirect()->back()->withErrors(["Failed, product not valid"]);
+        }
         if($cart){
             foreach ($cart as $c) {
                 $temp = $c;

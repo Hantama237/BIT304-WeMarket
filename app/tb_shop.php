@@ -23,6 +23,7 @@ class tb_shop extends Model
         "description"=>"required|min:3",
         "idcard_picture"=>"nullable|file|image|mimes:jpeg,png,jpg|max:2048",
         "status"=>"nullable",
+        "whatsapp"=>"nullable|numeric"
     ];
 
     public function address(){

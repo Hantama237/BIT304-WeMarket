@@ -30,9 +30,9 @@
                 <div class="col-lg-12 box borderIn" >
                     Menu
                     <ul>
-                        <li><a href="/seller/dashboard">Home</a></li>
-                        <li><a href="/seller/product">Products</a></li>
-                        <li><a href="/seller/order">Orders</a></li>
+                      <li><a href="{{URL::to("/seller/dashboard")}}">Home</a></li>
+                      <li><a href="{{URL::to("/seller/product"))}}">Products</a></li>
+                      <li><a href="{{URL::to("/seller/order")}}">Orders</a></li>
                     </ul>
                 </div>
             </div>
@@ -42,8 +42,8 @@
                     {{session('success')}}
               </div>
                 @endif
-                <a class="btn btn-success" href="/seller/add" role="button">Add product</a>
-                <a class="btn btn-primary" href="/seller/edit" role="button">Edit Product</a> 
+                <a class="btn btn-success" href="{{URL::to("/seller/add")}}" role="button">Add product</a>
+                <a class="btn btn-primary" href="{{URL::to("/seller/edit")}}" role="button">Edit Product</a> 
                   <h3>Product list</h3>
                   @foreach ($product as $pr)
                       
@@ -105,7 +105,7 @@
                <p> {{$p->name}}</p>
                <p></i> {{$p->description}}</p>
                <div style="text-align: center;">
-               <p><i class="fa fa-pencil fa-fw w3-margin-right w3-text-theme"></i><a href="/seller/update">edit</a> </p>
+               <p><i class="fa fa-pencil fa-fw w3-margin-right w3-text-theme"></i><a href="{{URL::to("/seller/update")}}">edit</a> </p>
               </div>
                @endforeach
                {{--<i class="fa fa-home fa-fw w3-margin-right w3-text-theme"> <i class="fa fa-pencil fa-fw w3-margin-right w3-text-theme"></i> --}}

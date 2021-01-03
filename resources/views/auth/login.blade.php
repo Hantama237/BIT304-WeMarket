@@ -57,7 +57,7 @@
                 @csrf
             </form>
             <div class="login-register-link">
-                Dont have account yet? <a href="/register">Register HERE</a>
+                Dont have account yet? <a href="{{URL::to("/register")}}">Register HERE</a>
             </div>
         </div>
     </div>

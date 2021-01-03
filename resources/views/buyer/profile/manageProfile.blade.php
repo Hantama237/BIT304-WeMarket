@@ -63,13 +63,13 @@
                 <div class="col-lg-4" style="padding-left:0px;">
                     <div class="col-lg-12 box" style="padding-bottom: 20px">
                         <ul class="myul">
-                            <a href="/manage/profile"><li class="active">Profile</li></a>
-                            <a href="/manage/address"><li>Address</li></a>
-                            <a href="/manage/account"><li>Account</li></a>
+                            <a href="{{URL::to("/manage/profile")}}"><li class="active" >Profile</li></a>
+                            <a href="{{URL::to("/manage/address")}}"><li>Address</li></a>
+                            <a href="{{URL::to("/manage/account")}}"><li >Account</li></a>
                         </ul>
                     </div>
                 </div>
-                <form enctype='multipart/form-data' action="/manage/profile/update/profile" method="POST">
+                <form enctype='multipart/form-data' action="{{URL::to("/manage/profile/update/profile")}}" method="POST">
                     @csrf
                     <div class="col-lg-8 box" style="padding-bottom: 20px">
                         <div style="padding-left:0px;" class="col-lg-12">

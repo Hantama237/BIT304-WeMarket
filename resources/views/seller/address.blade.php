@@ -32,15 +32,15 @@
     <div class="col-lg-12 box borderIn">
         Menu
         <ul>
-            <li><a href="/seller/dashboard">Home</a></li>
-            <li><a href="/seller/product">Products</a></li>
-            <li><a href="/seller/order">Orders</a></li>
+          <li><a href="{{URL::to("/seller/dashboard")}}">Home</a></li>
+          <li><a href="{{URL::to("/seller/product"))}}">Products</a></li>
+          <li><a href="{{URL::to("/seller/order")}}">Orders</a></li>
         </ul>
     </div>
 </div>
   <div class="col-lg-6 box">
     <h4>Update Shop Address</h4>
-<form action="/seller/update/address" method="POST" >
+<form action="{{URL::to("/seller/update/address")}}" method="POST" >
     @csrf
    
           {{-- <div class="row"> --}}
@@ -75,7 +75,7 @@
               {{-- </div> --}}
               {{-- <input type="hidden"  name="user_id" id="first_name" class="form-control" value="{{$sp->user_id}}" > --}}
             
-          <input type="submit" value="Save" class="btn btn-primary"> <a href="/seller/update"><button type="button"  style="margin-left: 10px" class="btn">cancel</button></a> 
+          <input type="submit" value="Save" class="btn btn-primary"> <a href="{{URL::to("/seller/update")}}"><button type="button"  style="margin-left: 10px" class="btn">cancel</button></a> 
         
         </div> 
       </div>
@@ -98,7 +98,7 @@
                  <p> {{$p->name}}</p>
                  <p></i> {{$p->description}}</p>
                  <div style="text-align: center;">
-                 <p><i class="fa fa-pencil fa-fw w3-margin-right w3-text-theme"></i><a href="/seller/update">edit</a> </p>
+                 <p><i class="fa fa-pencil fa-fw w3-margin-right w3-text-theme"></i><a href="{{URL::to("/seller/update")}}">edit</a> </p>
                 </div>
                  @endforeach
                  {{--<i class="fa fa-home fa-fw w3-margin-right w3-text-theme"> <i class="fa fa-pencil fa-fw w3-margin-right w3-text-theme"></i> --}}

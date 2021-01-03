@@ -97,7 +97,7 @@
         <div class="col-lg-9" style="margin-bottom: 100px;">
             <h3>Please Answer All Question</h3>
             <div class="col-lg-12 box" style="padding-bottom: 20px; color: black;">
-                <form action="/recommendation" method="GET">
+                <form action="{{URL::to("/recommendation")}}" method="GET">
                     <div class="col-lg-12" style="margin-bottom: 20px;">
                         <span style="font-weight: 600; font-size:20px; color:black; ">
                             Which of these are you looking for?
@@ -154,7 +154,7 @@
                         <label for="high">Higher the better</label>
                     </div>
                     <div class="col-lg-12" style="margin-top: 30px; text-align:right;">
-                        <a href="/"><button type="button" class="awe-btn">Cancel</button></a>
+                        <a href="{{URL::to("/")}}"><button type="button" class="awe-btn">Cancel</button></a>
                         <button type="submit" class="awe-btn awe-btn-style3">Submit</button>
                     </div>
                 </form>

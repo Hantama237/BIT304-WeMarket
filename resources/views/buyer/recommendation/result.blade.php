@@ -59,13 +59,13 @@
         <div class="col-lg-9">
             <h3>Search Products</h3>
             <div class="col-lg-12 box" style="padding-bottom: 20px;">
-                <form action="/search" method="get">
+                <form action="{{URL::to("/search")}}" method="get">
                     <div class="col-lg-6">
                         <input name="keywords" style="width: 100%;" type="text" value=""> 
                     </div>
                     <div style="padding-left:0px;" class="col-lg-6">
                         <button type="submit" class="awe-btn awe-btn-style3">Search</button> 
-                        <a href="/recommendation/form"><button type="button"  class="awe-btn ">Recommendation</button></a>
+                        <a href="{{URL::to("/recommendation/form")}}"><button type="button"  class="awe-btn ">Recommendation</button></a>
                     </div>
                 </form>
             </div>
@@ -76,7 +76,7 @@
                     $address = $p->shop->address;
                     
                 @endphp
-                <a href="/detail?id={{$p->id}}">
+                <a href="{{URL::to("/detail?id=".$p->id)}}">
                     <div class="product col-lg-3" >
                         <div style="width: 100%; height:120px; background-image:url('{{ url('/data_file/'.$p->picture) }}') ;" id="product-img" >
                             

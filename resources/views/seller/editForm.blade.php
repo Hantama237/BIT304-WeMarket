@@ -181,7 +181,7 @@
                  <p> {{$p->name}}</p>
                  <p></i> {{$p->description}}</p>
                  <div style="text-align: center;">
-                 <p><i class="fa fa-pencil fa-fw w3-margin-right w3-text-theme"></i><a href="/seller/update">edit</a> </p>
+                 <p><i class="fa fa-pencil fa-fw w3-margin-right w3-text-theme"></i><a href="{{URL::to("/seller/update")}}">edit</a> </p>
                 </div>
                  @endforeach
                  {{--<i class="fa fa-home fa-fw w3-margin-right w3-text-theme"> <i class="fa fa-pencil fa-fw w3-margin-right w3-text-theme"></i> --}}

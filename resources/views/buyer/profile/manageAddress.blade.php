@@ -63,9 +63,9 @@
                 <div class="col-lg-4" style="padding-left:0px;">
                     <div class="col-lg-12 box" style="padding-bottom: 20px">
                         <ul class="myul">
-                            <a href="/manage/profile"><li >Profile</li></a>
-                            <a href="/manage/address"><li class="active">Address</li></a>
-                            <a href="/manage/account"><li>Account</li></a>
+                            <a href="{{URL::to("/manage/profile")}}"><li >Profile</li></a>
+                            <a href="{{URL::to("/manage/address")}}"><li class="active">Address</li></a>
+                            <a href="{{URL::to("/manage/account")}}"><li >Account</li></a>
                         </ul>
                     </div>
                 </div>
@@ -138,7 +138,7 @@
             <span aria-hidden="true">&times;</span>
             </button>
         </div>
-        <form action="/manage/address/add/address" method="POST">
+        <form action="{{URL::to("/manage/address/add/address")}}" method="POST">
             <div class="modal-body">
                 <div class="row">
                     {{-- <div class="col-xs-12"><input type="text" disabled name="application_date" class="awe-calendar" value="Today" placeholder="Today"></div> --}}
@@ -189,7 +189,7 @@
             <span aria-hidden="true">&times;</span>
             </button>
         </div>
-        <form action="/manage/address/update/address" method="POST">
+        <form action="{{URL::to("/manage/address/update/address")}}" method="POST">
             <input type="hidden" name="id" id="address_id">
             <div class="modal-body">
                 <div class="row">

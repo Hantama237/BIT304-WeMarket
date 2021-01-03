@@ -14,12 +14,12 @@
             <div class="col-lg-12 box" style="padding-bottom: 20px;">
                 <div class="col-lg-3" >
                     <ul>
-                        <a href="/admin/home">
+                        <a href="{{URL::to("/admin/home")}}">
                             <li>
                                 Home
                             </li>
                         </a>
-                        <a href="/admin/verify">
+                        <a href="{{URL::to("/admin/verify")}}">
                             <li>
                                 Verify Seller
                             </li>
@@ -61,7 +61,7 @@
                                      {{$u->email}}
                                </td>
                                <td style="text-align: center">
-                               <a href="/admin/{{$route}}/{{$u->id}}" class="awe-btn">{{$button}}</a>
+                               <a href="{{URL::to("/admin\/".$route."/".$u->id)}}" class="awe-btn">{{$button}}</a>
                                </td>
                           </tr>
                             @endforeach

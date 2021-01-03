@@ -39,7 +39,7 @@
                 <span>Find fresh agricultural product</span>
                 <h2>JOIN US !</h2>
             </div>
-            <form action="/register" method="POST">
+            <form action="{{URL::to("/register")}}" method="POST">
                 @csrf
                 <div class="form-item">
                     <label>Full Name</label>
@@ -67,7 +67,7 @@
                 </div>
             </form>
             <div class="login-register-link">
-                Already have Account? <a href="/login">Log in HERE</a>
+                Already have Account? <a href="{{URL::to("/login")}}">Log in HERE</a>
             </div>
         </div>
     </div>

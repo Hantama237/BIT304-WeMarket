@@ -161,7 +161,7 @@
                     <span>{{$shop->description}}</span>
                 </div>
                 <div class="col-xs-6" style="text-align: right;  padding-top:10px;">
-                    <button>Contact Seller</button>
+                    <a href="https://api.whatsapp.com/send?phone=62081326892496"><button>Contact Seller</button></a>
                     {{-- <button>Visit Shop</button> --}}
                 </div>
             </div>
@@ -172,7 +172,7 @@
                 @php
                     $address = $p->shop->address;
                 @endphp
-                <a href="/detail?id={{$p->id}}">
+                <a href="{{URL::to("/detail?id=".$p->id)}}">
                     <div class="product col-lg-3" >
                         <div style="width: 100%; height:120px; background-image:url('{{ url('/data_file/'.$p->picture) }}') ;" id="product-img">
                             
@@ -219,7 +219,7 @@
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
-        <form action="/cart/add" method="POST">
+        <form action="{{URL::to("/cart/add")}}" method="POST">
             @csrf
             <div class="modal-body">
                 <div class="row">

@@ -30,7 +30,7 @@
                 <div class="col-lg-12 box borderIn" >
                     Menu
                     <ul>
-                        <li><a style="disabled" href="/seller/dashboard">Home</a></li>
+                        <li><a style="disabled" href="{{URL::to("/seller/dashboard")}}">Home</a></li>
                         <li><a href="#">Products</a></li>
                         <li><a href="#">Orders</a></li>
                     </ul>
@@ -65,7 +65,7 @@
               {{session('success')}}
         </div>
           @endif
-                  <form action="/seller/process" method="POST" enctype="multipart/form-data">
+                  <form action="{{URL::to("/seller/process")}}" method="POST" enctype="multipart/form-data">
                     {{ csrf_field() }}
                     {{ method_field('PUT') }}
                     @foreach($shop1 as $sp)

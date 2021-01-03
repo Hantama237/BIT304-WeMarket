@@ -110,7 +110,7 @@
                     @endforeach
                 </div>
                 @endforeach
-                <form action="/checkout/proceed" method="POST">
+                <form action="{{URL::to('/checkout/proceed')}}" method="POST">
                     @csrf
                     <div class="col-lg-6">
                         <h5>Please select delivery method</h5>
@@ -141,7 +141,7 @@
                     </div>
                     
                     <div class="col-lg-12" style="text-align: right; margin-top:30px;">
-                        <a href="/">
+                        <a href="{{URL::to("/")}}">
                             <button class="awe-btn">Cancel</button>
                         </a>
                         

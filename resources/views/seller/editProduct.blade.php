@@ -48,7 +48,7 @@
                 </div>
             </div>
             <div class="col-lg-9">
-                <a class="btn btn-success" href="/seller/add" role="button">Add product</a>
+                <a class="btn btn-success" href="{{URL::to("/seller/add")}}" role="button">Add product</a>
                 <a class="btn btn-primary" href="#" role="button">Edit Product</a> 
                   <h3>Product list</h3>
                   @foreach ($product as $pr)
@@ -84,8 +84,8 @@
                             <div class="price">
                                 Action
                             </div>
-                        <a href="/seller/editProduct/{{$pr->id}}" class="awe-btn">edit</a>
-                        <a href="/seller/delete/{{ $pr->id }}" class="awe-btn">delete</a>
+                        <a href="{{URL::to("/seller/editProduct/".$pr->id)}}" class="awe-btn">edit</a>
+                        <a href="{{URL::to("/seller/delete/".$pr->id)}}" class="awe-btn">delete</a>
                         </div>
  
 
@@ -134,7 +134,7 @@
                <p> {{$p->name}}</p>
                <p></i> {{$p->description}}</p>
                <div style="text-align: center;">
-               <p><i class="fa fa-pencil fa-fw w3-margin-right w3-text-theme"></i><a href="/seller/update">edit</a> </p>
+               <p><i class="fa fa-pencil fa-fw w3-margin-right w3-text-theme"></i><a href="{{URL::to("/seller/update")}}">edit</a> </p>
               </div>
                @endforeach
                {{--<i class="fa fa-home fa-fw w3-margin-right w3-text-theme"> <i class="fa fa-pencil fa-fw w3-margin-right w3-text-theme"></i> --}}

@@ -20,7 +20,7 @@
                     </ul>
                 </div>
             @endif
-            <form method="POST" action="/seller/register">
+            <form method="POST" action="{{URL::to("/seller/register")}}">
                 @csrf
                 <div class="col-lg-12">
                     <label for="name">Shop Name (No Spaces)</label><br>

@@ -14,17 +14,17 @@
             <div class="col-lg-12 box" style="padding-bottom: 20px;">
                 <div class="col-lg-3" >
                     <ul>
-                        <a href="/admin/home">
+                        <a href="{{URL::to("/admin/home")}}">
                             <li>
                                 Home
                             </li>
                         </a>
-                        <a href="/admin/verify">
+                        <a href="{{URL::to("/admin/verify")}}">
                             <li>
                                 Verify Seller
                             </li>
                         </a>
-                        <a href="/admin/manageUser">
+                        <a href="{{URL::to("/admin/manageUser")}}">
                             <li>
                                 Manage Users
                             </li>
@@ -32,7 +32,7 @@
                     </ul>
                 </div>
                 <div class="col-lg-9" style="color: black; border-left: 2px solid #dedede;">                    
-                <form method="POST" action="/admin/processBan/{{$user->id}}">
+                <form method="POST" action="{{URL::to("/admin/processBan/".$user->id)}}">
                         @csrf
                         <div class="col-lg-12">
                             <label for="name">User name</label><br>

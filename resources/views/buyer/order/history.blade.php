@@ -191,7 +191,7 @@
                             <td>{{$o->delivery_method}}</td>
                             <td>{{$o->address}}</td>
                             <td>
-                                <a href="/orders/detail?id={{$o->id}}"><button>Detail</button></a>
+                                <a href="{{URL::to("/orders/detail?id=".$o->id)}}"><button>Detail</button></a>
                             </td>
                         </tr>
                         @endforeach

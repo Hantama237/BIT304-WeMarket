@@ -17,7 +17,7 @@
                     @endforeach
                 @endif
             </div>
-            <form action="/admin/login" method="post">
+            <form action="{{URL::to("/admin/login")}}" method="post">
                 <input placeholder="username" type="text" name="username"> <br>
                 <br>
                 <input placeholder="password" type="password" name="password">

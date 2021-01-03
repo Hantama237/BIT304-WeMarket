@@ -175,7 +175,7 @@
                @endphp
                @if($p)
                    <div class="col-lg-12">
-                        <div class="col-lg-4"><a href="/detail?id={{$p->id}}">{{strlen($p->name)>25?substr($p->name,0,25)."..":$p->name}} </a></div>
+                        <div class="col-lg-4"><a href="{{URL::to("/detail?id=".$p->id)}}">{{strlen($p->name)>25?substr($p->name,0,25)."..":$p->name}} </a></div>
                         <div class="col-lg-3"> Rp. {{number_format($prod->price,0,',','.')}}</div>
                         <div class="col-lg-1">x{{$prod->quantity}}</div>
                         <div class="col-lg-1">=</div>

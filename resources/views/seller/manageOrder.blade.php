@@ -30,9 +30,9 @@
                 <div class="col-lg-12 box borderIn" >
                     Menu
                     <ul>
-                        <li><a href="/seller/dashboard">Home</a></li>
-                        <li><a href="/seller/product">Products</a></li>
-                        <li><a href="/seller/order">Orders</a></li>
+                      <li><a href="{{URL::to("/seller/dashboard")}}">Home</a></li>
+                      <li><a href="{{URL::to("/seller/product"))}}">Products</a></li>
+                      <li><a href="{{URL::to("/seller/order")}}">Orders</a></li>
                     </ul>
                 </div>
             </div>
@@ -49,8 +49,8 @@
                     {{session('success')}}
               </div>
                 @endif
-                <a class="btn btn-success" href="/seller/order" role="button">Order</a>
-                <a class="btn btn-primary" href="/seller/takeOrDelivery" role="button">Take/Delivery status</a>
+                <a class="btn btn-success" href="{{URL::to("/seller/order")}}" role="button">Order</a>
+                <a class="btn btn-primary" href="{{URL::to("/seller/takeOrDelivery")}}" role="button">Take/Delivery status</a>
                   <h3>Manage order</h3>
                
                   <table class="table" style="width: 100%; color:black;">
@@ -79,8 +79,8 @@
                     <td style="border: 1px solid #ddd;">{{$o->payment_method}}</td>
                     <td >{{$o->delivery_method}}</td>
                     <td >{{$o->total_price}}</td>
-                    <td style="border: 1px solid #ddd;"><a class="btn btn-primary" style="margin-top: 5px" href="/seller/processOrder/{{$o->id}}" role="button">Accept</a>
-                        <br><br><a class="btn btn-danger" href="/seller/cancelOrder/{{$o->id}}" role="button">Decline</a>
+                    <td style="border: 1px solid #ddd;"><a class="btn btn-primary" style="margin-top: 5px" href="{{URL::to("/seller/processOrder/".$o->id)}}" role="button">Accept</a>
+                        <br><br><a class="btn btn-danger" href="{{URL::to("/seller/cancelOrder/".$o->id)}}" role="button">Decline</a>
                     </td>
                     </tr>
                         
@@ -112,7 +112,7 @@
                <p> {{$p->name}}</p>
                <p></i> {{$p->description}}</p>
                <div style="text-align: center;">
-               <p><i class="fa fa-pencil fa-fw w3-margin-right w3-text-theme"></i><a href="/seller/update">edit</a> </p>
+               <p><i class="fa fa-pencil fa-fw w3-margin-right w3-text-theme"></i><a href="{{URL::to("/seller/update")}}">edit</a> </p>
               </div>
                @endforeach
                {{--<i class="fa fa-home fa-fw w3-margin-right w3-text-theme"> <i class="fa fa-pencil fa-fw w3-margin-right w3-text-theme"></i> --}}

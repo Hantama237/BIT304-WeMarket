@@ -3,9 +3,9 @@
     <h3>Menu</h3>
     <div class="col-lg-12 box" style="height: 170px;">
         <ul>
-            <li><a href="/cart">My Cart Detail</a></li>
-            <li><a href="/order/history">My Order</a></li>
-            <li><a href="/order/history">My Transaction</a></li>
+            <li><a data-toggle="modal" data-target="#cartModal" href="#">My Cart Detail</a></li>
+            <li><a href="{{URL::to("/orders")}}">My Order</a></li>
+            {{-- <li><a href="/order/history">My Transaction</a></li> --}}
         </ul>
     </div>
     <h3>Product Cart</h3>
@@ -34,7 +34,7 @@
         </div>
         <div class="" style="text-align:right; padding-top:5px;">
             {{-- <span style="display:unset; font-weight:600;">Total: Rp 250.000 &nbsp;</span> --}}
-            <button style="display:inline-block; width:100%;">Checkout</button>
+            <button data-toggle="modal" data-target="#cartModal" style="display:inline-block; width:100%;">Checkout</button>
         </div>
         @else 
         <div>No product in cart</div>

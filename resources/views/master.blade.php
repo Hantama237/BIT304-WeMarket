@@ -169,13 +169,13 @@
                                         </ul>
                                     </li> --}}
                                     <li>
-                                        <a href="/seller/register">Become a Seller</a>
+                                        <a href="{{URL::to("/seller/register")}}">Become a Seller</a>
                                     </li>
                                     <li>
-                                        <a href="/manage/profile">Edit Profile</a>
+                                        <a href="{{URL::to("/manage/profile")}}">Edit Profile</a>
                                     </li>
                                     <li>
-                                        <a href="/logout">Logout</a>
+                                        <a href="{{URL::to("/logout")}}">Logout</a>
                                     </li>
                                 </ul>
                                 @endif

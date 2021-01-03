@@ -169,7 +169,7 @@
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
-            <form action="/checkout" method="post">
+            <form action="{{URL::to("/checkout")}}" method="post">
                 @csrf
                 <div class="modal-body">
                     <div class="row">
@@ -182,7 +182,7 @@
                             <div class="col-lg-4"><a href="/detail?id={{$c['id']}}">{{strlen($c['name'])>25?substr($c['name'],0,25)."..":$c['name']}} </a></div>
                             <div class="col-lg-3"> Rp. {{number_format($c['price'],0,',','.')}}</div>
                             <div class="col-lg-1">x{{$c['ammount']}}</div>
-                            <div class="col-lg-3"><button type="button" onclick="updateEditCartModal({!!$c['id']!!})" data-toggle="modal" data-target="#editCartModal" >edit</button> <a href="/cart/remove?id={{$c['id']}}"><button type="button">hapus</button></a></div>
+                            <div class="col-lg-3"><button type="button" onclick="updateEditCartModal({!!$c['id']!!})" data-toggle="modal" data-target="#editCartModal" >edit</button> <a href="/cart/remove?id={{$c['id']}}"><button type="button">delete</button></a></div>
                             <div class="col-lg-12"><hr></div>
                             @endforeach
                         @else
@@ -217,7 +217,7 @@
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
-            <form action="/cart/set" method="POST">
+            <form action="{{URL::to("/cart/set")}}" method="POST">
                 @csrf
                 <div class="modal-body">
                     <div class="row">

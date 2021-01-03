@@ -38,15 +38,15 @@
     <div class="col-lg-12 box borderIn">
         Menu
         <ul>
-            <li><a href="/seller/dashboard">Home</a></li>
-            <li><a href="/seller/product">Products</a></li>
-            <li><a href="/seller/order">Orders</a></li>
+          <li><a href="{{URL::to("/seller/dashboard")}}">Home</a></li>
+          <li><a href="{{URL::to("/seller/product"))}}">Products</a></li>
+          <li><a href="{{URL::to("/seller/order")}}">Orders</a></li>
         </ul>
     </div>
 </div>
   <div class="col-lg-5 box">
     <h4>Manage shop information</h4>
-<form action="/seller/process" method="POST" enctype="multipart/form-data">
+<form action="{{URL::to("/seller/process")}}" method="POST" enctype="multipart/form-data">
     {{ csrf_field() }}
     {{ method_field('PUT') }}
     @foreach($shop as $sp)
@@ -74,7 +74,7 @@
             @isset($address)
             placeholder="{{$address->subdistrict->subdistrict_name}}, {{$address->city->city_name}}, {{$address->province->province_name}}, {{$address->postal_code}} {{$address->address_detail}}" 
             @endisset
-            disabled > <button type="button"><a href="/seller/address">change</a></button>
+            disabled > <button type="button"><a href="{{URL::to("/seller/address")}}">change</a></button>
         </div>
           
           {{-- <div class="form-group">
@@ -122,7 +122,7 @@
                  <p> {{$p->name}}</p>
                  <p></i> {{$p->description}}</p>
                  <div style="text-align: center;">
-                 <p><i class="fa fa-pencil fa-fw w3-margin-right w3-text-theme"></i><a href="/seller/update">edit</a> </p>
+                 <p><i class="fa fa-pencil fa-fw w3-margin-right w3-text-theme"></i><a href="{{URL::to("/seller/update")}}">edit</a> </p>
                 </div>
                  @endforeach
                  {{--<i class="fa fa-home fa-fw w3-margin-right w3-text-theme"> <i class="fa fa-pencil fa-fw w3-margin-right w3-text-theme"></i> --}}

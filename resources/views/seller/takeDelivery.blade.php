@@ -30,9 +30,9 @@
                 <div class="col-lg-12 box borderIn" >
                     Menu
                     <ul>
-                        <li><a href="/seller/dashboard">Home</a></li>
-                        <li><a href="/seller/product">Products</a></li>
-                        <li><a href="/seller/order">Orders</a></li>
+                      <li><a href="{{URL::to("/seller/dashboard")}}">Home</a></li>
+                      <li><a href="{{URL::to("/seller/product"))}}">Products</a></li>
+                      <li><a href="{{URL::to("/seller/order")}}">Orders</a></li>
                     </ul>
                 </div>
             </div>
@@ -44,8 +44,8 @@
                 @endforeach
               </div>
               @endif
-                <a class="btn btn-success" href="/seller/order" role="button">Order</a>
-                <a class="btn btn-primary" href="/seller/takeOrDelivery" role="button">Take/Delivery status</a>
+                <a class="btn btn-success" href="{{URL::to("/seller/order")}}" role="button">Order</a>
+                <a class="btn btn-primary" href="{{URL::to("/seller/takeOrDelivery")}}" role="button">Take/Delivery status</a>
                   <h3>Manage order</h3>
                
                   <table class="table" style="width: 100%; color:black;">
@@ -109,7 +109,7 @@
                <p> {{$p->name}}</p>
                <p></i> {{$p->description}}</p>
                <div style="text-align: center;">
-               <p><i class="fa fa-pencil fa-fw w3-margin-right w3-text-theme"></i><a href="/seller/update">edit</a> </p>
+               <p><i class="fa fa-pencil fa-fw w3-margin-right w3-text-theme"></i><a href="{{URL::to("/seller/update")}}">edit</a> </p>
               </div>
                @endforeach
                {{--<i class="fa fa-home fa-fw w3-margin-right w3-text-theme"> <i class="fa fa-pencil fa-fw w3-margin-right w3-text-theme"></i> --}}
@@ -136,7 +136,7 @@
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
-        <form action="/residences/apply" method="POST">
+        <form action="{{URL::to("/residences/apply")}}" method="POST">
             <div class="modal-body">
                 <div class="row">
                     {{-- <div class="col-xs-12"><input type="text" disabled name="application_date" class="awe-calendar" value="Today" placeholder="Today"></div> --}}

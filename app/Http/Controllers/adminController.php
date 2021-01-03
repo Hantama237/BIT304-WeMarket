@@ -63,12 +63,12 @@ class adminController extends Controller
         return view("admin.manageUser",['user'=>$user,'label'=>$label,'button'=>$button,'route'=>$route]);
     }
     public function form($id){
-        $user= User::find($id)->first();
+        $user= User::where('id',$id)->first();
         // dd($user);
         return view("admin.form",['user'=>$user]);
     }
     public function revoke($id){
-        $user= User::find($id)->first();
+        $user= User::where('id',$id)->first();
         
         $user->banned_until = null;
         $user->save();
@@ -80,7 +80,7 @@ class adminController extends Controller
             "banned_until"=>"required|date",
         ]);
         // dd($req);
-        $user= User::find($id)->first();
+        $user= User::where('id',$id)->first();
 
         $user->banned_until = $req->banned_until;
         $user->save();

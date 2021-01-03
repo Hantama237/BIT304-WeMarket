@@ -118,7 +118,7 @@
                 <div class="container">
                     <!-- LOGO -->
                     <div class="logo">
-                        <a href="/">
+                        <a href="{{URL::to("/")}}">
                             <h1 style="color: #2f990b;">WeMarket</h1>
                             {{-- <img  src="{{asset('gofar/images/logo.png')}}" alt=""> --}}
                         </a>
@@ -155,10 +155,10 @@
                                         </ul>
                                     </li> --}}
                                     <li>
-                                        <a href="/">Switch to buyer</a>
+                                        <a href="{{URL::to("/")}}">Switch to buyer</a>
                                     </li>
                                     <li>
-                                        <a href="/logout">Logout</a>
+                                        <a href="{{URL::to("/logout")}}">Logout</a>
                                     </li>
                                 </ul>
                                 @endif
